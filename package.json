@@ -1,0 +1,17 @@
+{
+  "name": "jazdrm-com-static-clone",
+  "version": "1.0.0",
+  "description": "Complete 100% offline static clone of jazdrm.com with Arabic and English pages, assets, fonts, and stylesheets.",
+  "scripts": {
+    "preview": "python3 -m http.server 8080",
+    "serve": "python3 preview.py",
+    "check-assets": "python3 check_assets.py"
+  },
+  "keywords": [
+    "static-site",
+    "archive",
+    "jazdrm"
+  ],
+  "author": "",
+  "license": "ISC"
+}
