@@ -6,6 +6,7 @@ complete product catalog, and interactive forms.
 """
 
 import os
+import re
 import json
 from pathlib import Path
 
@@ -14,6 +15,84 @@ ROOT_DIR = Path("/Users/macbook-pro/Desktop/Development/jazdrm.com/jazdrm.com")
 with open(ROOT_DIR / "assets" / "data" / "products.json", "r", encoding="utf-8") as f:
     PRODUCTS = json.load(f)
 
+
+# ---------------------------------------------------------------------------
+# Product content helpers - keep each language's page in that language only
+# ---------------------------------------------------------------------------
+
+def _has_arabic(t):
+    return any('؀' <= c <= 'ۿ' for c in (t or ""))
+
+
+def _is_filler(t):
+    t = (t or "")
+    return ("هذا النص" in t) or ("مولد النص" in t) or t.strip().lower() in ("write here desc", "desc", "")
+
+
+def product_desc(p, is_en):
+    """A prose description in the requested language, or '' if none exists.
+    Never returns the other language's text."""
+    ta = (p.get("title_ar") or "").strip()
+    te = (p.get("title_en") or "").strip()
+    sa = (p.get("short_desc_ar") or "").strip()
+    se = (p.get("short_desc_en") or "").strip()
+    if is_en:
+        for c in (se, sa):
+            if c and c not in (te, ta) and not _has_arabic(c) and not _is_filler(c) and len(c) > 25:
+                return c
+        return ""
+    for c in (sa,):
+        if c and c != ta and _has_arabic(c) and not _is_filler(c) and len(c) > 15:
+            return c
+    return ""
+
+
+_SPEC_LABELS = [
+    "Outside(mm)", "Inside(mm)", "Weight(kg)", "Shelf(pc.)", "Shelf(pc)",
+    "Shelves(pc.)", "Fire Class", "Fire Rating",
+    "Dimension", "Dimensions", "Outside", "Inside", "Overall", "Weight",
+    "Capacity", "Shelves", "Shelf", "Boxes", "Drawers", "Locking", "Lock",
+    "EMD", "Colour", "Color", "Material", "Body", "Door",
+]
+_SPEC_LABELS_AR = {
+    "Dimension": "الأبعاد", "Dimensions": "الأبعاد", "Overall": "الأبعاد الكلية",
+    "Outside": "الأبعاد الخارجية", "Inside": "الأبعاد الداخلية",
+    "Outside(mm)": "الأبعاد الخارجية (مم)", "Inside(mm)": "الأبعاد الداخلية (مم)",
+    "Weight": "الوزن", "Weight(kg)": "الوزن (كجم)", "Capacity": "السعة",
+    "Shelf": "الأرفف", "Shelves": "الأرفف", "Boxes": "الأدراج", "Drawers": "الأدراج",
+    "Locking": "نظام الإغلاق", "Lock": "القفل", "EMD": "فتحة الطوارئ (EMD)",
+    "Fire Class": "مقاومة الحريق", "Fire Rating": "تصنيف الحريق",
+    "Colour": "اللون", "Color": "اللون", "Material": "الخامة",
+    "Body": "الهيكل", "Door": "الباب",
+}
+
+
+def parse_specs(p, is_en):
+    """Turn the run-together spec text in full_desc_ar into [(label, value)] rows.
+    This is factual product data (dimensions, weight, lock type) reformatted for reading."""
+    fa = (p.get("full_desc_ar") or "").strip()
+    if _is_filler(fa) or not re.search(r"\d", fa):
+        return []
+    # A label only counts as a field boundary when it is followed by a colon.
+    pat = re.compile(r"(" + "|".join(re.escape(l) for l in
+                     sorted(_SPEC_LABELS, key=len, reverse=True)) + r")\s*:\s*", re.I)
+    matches = list(pat.finditer(fa))
+    rows, seen = [], set()
+    for i, m in enumerate(matches):
+        label = m.group(1)
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(fa)
+        val = re.sub(r"\s+", " ", fa[m.end():end]).strip(" :.,-")
+        if not val or len(val) > 70:
+            continue
+        canon = next((L for L in _SPEC_LABELS if L.lower() == label.lower()), label)
+        key = canon.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        disp = canon if is_en else _SPEC_LABELS_AR.get(canon, canon)
+        rows.append((disp, val))
+    return rows if len(rows) >= 2 else []
+
 def get_header(is_en=False, depth=0):
     rel = "../" * depth
     lang_toggle_url = f"{rel}en/index.html" if not is_en else f"{rel}index.html"
@@ -21,8 +100,8 @@ def get_header(is_en=False, depth=0):
     lang_target = "English" if not is_en else "العربية"
 
     t = {
-        "phone": "920028440",
-        "phone_display": "920028440",
+        "phone": "+966920028440",
+        "phone_display": "+966920028440",
         "hours": "الأحد - الخميس: 9:00 ص - 5:00 م" if not is_en else "Sun - Thu: 9:00 AM - 5:00 PM",
         "main_branch": "الرياض - المملكة العربية السعودية" if not is_en else "Riyadh - Kingdom of Saudi Arabia",
         "service_req": "طلب خدمة" if not is_en else "Request Service",
@@ -291,7 +370,7 @@ def get_footer(is_en=False, depth=0):
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 8px;">{t['address']}</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px;">{t['branches']}</p>
-            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">920028440</a>
+            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">+966920028440</a>
             <a href="https://wa.me/966554890900" target="_blank" style="color: #25d366; font-weight: 600;">+966 55 489 0900 (WhatsApp)</a>
           </div>
         </div>
@@ -308,11 +387,11 @@ def get_footer(is_en=False, depth=0):
 
   <!-- Floating Buttons -->
   <div class="floating-actions">
-    <a href="https://wa.me/966554890900" target="_blank" class="floating-btn floating-whatsapp" title="WhatsApp">
-      <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
+    <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="floating-btn floating-whatsapp" aria-label="{'تواصل عبر واتساب' if not is_en else 'Chat on WhatsApp'}" title="{'واتساب' if not is_en else 'WhatsApp'}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
-    <a href="tel:+966920028440" class="floating-btn floating-phone" title="Call Us">
-      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+    <a href="tel:+966920028440" class="floating-btn floating-phone" aria-label="{'اتصل بنا' if not is_en else 'Call us'}" title="{'اتصل بنا' if not is_en else 'Call us'}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.28.67-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
   </div>
 
@@ -398,6 +477,130 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
 </html>
 """
 
+def get_brand_wall(is_en=False, rel=""):
+    """Monochrome wordmark wall for the globally-authorized product brands."""
+    cat_prefix = f"{rel}en/" if is_en else f"{rel}"
+    safes_cat = f"{cat_prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    surv_cat = f"{cat_prefix}product-category/أنظمة-المراقبة-والأمن/index.html"
+    view = "استعراض المنتجات" if not is_en else "View products"
+
+    G = {
+        "vault": '<rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><circle cx="10" cy="12" r="3"/><path d="M10 12l1.8-1.8"/><path d="M16.5 9.2v5.6"/>',
+        "shield": '<path d="M12 3.2l7 2.6v4.9c0 4.3-2.9 7.6-7 8.9-4.1-1.3-7-4.6-7-8.9V5.8z"/><path d="M9 12l2.1 2.1L15.2 10"/>',
+        "fingerprint": '<path d="M12 4.6c-4 0-7 2.9-7 7.1 0 1.4.2 2.7.6 3.8"/><path d="M8.5 12c0-1.9 1.5-3.4 3.5-3.4s3.5 1.5 3.5 3.4c0 2 0 4-1 5.8"/><path d="M12 12v3.2c0 1.4-.3 2.7-.8 3.9"/><path d="M18.4 15.6c.4-1.2.6-2.4.6-3.6 0-1.6-.5-3-1.4-4.2"/>',
+        "sun": '<circle cx="12" cy="12" r="3.6"/><path d="M12 3.5v2M12 18.5v2M4.7 4.7l1.4 1.4M17.9 17.9l1.4 1.4M3.5 12h2M18.5 12h2M4.7 19.3l1.4-1.4M17.9 6.1l1.4-1.4"/>',
+        "bullet_cam": '<rect x="3" y="8" width="12.5" height="6.5" rx="2"/><path d="M15.5 9.5l4.5-2.2v9.4l-4.5-2.2z"/><path d="M7 14.5v4.5"/><path d="M5 19h4"/>',
+        "dome_cam": '<path d="M4.5 12a7.5 7.5 0 0115 0z"/><circle cx="12" cy="11.4" r="2.1"/><path d="M12 12.2V19"/><path d="M9.5 19h5"/>',
+    }
+
+    brands = [
+        ("falcon",    "falcon.png",    "FALCON",   "SAFES",      G["vault"],       safes_cat),
+        ("diplomat",  "diplomat.png",  "DIPLOMAT", "",           G["shield"],      safes_cat),
+        ("jiabao",    "jiabao.svg",    "JIABAO",   "SECURITY",   G["fingerprint"], safes_cat),
+        ("sunpower",  "sunpower.svg",  "SUNPOWER", "",           G["sun"],         safes_cat),
+        ("hik",       "hikvision.svg", "HIKVISION","",           G["bullet_cam"],  surv_cat),
+        ("dahua",     "dahua.svg",     "DAHUA",    "TECHNOLOGY", G["dome_cam"],    surv_cat),
+    ]
+
+    cells = []
+    for key, fil, name, sub, glyph, href in brands:
+        full = f"{name} {sub}".strip()
+        sub_html = f'<span class="brand-mark-sub">{sub}</span>' if sub else ""
+        cells.append(f"""        <li class="brand-wall-item">
+          <a class="brand-mark brand-mark--{key}" href="{href}" aria-label="{full} - {view}">
+            <img class="brand-mark-logo" src="{rel}assets/img/brands/{fil}" alt="" decoding="async"
+                 onload="this.closest('.brand-mark').classList.add('brand-mark--haslogo')" onerror="this.remove()">
+            <span class="brand-mark-fallback" aria-hidden="true">
+              <svg class="brand-mark-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{glyph}</svg>
+              <span class="brand-mark-text"><span class="brand-mark-name">{name}</span>{sub_html}</span>
+            </span>
+          </a>
+        </li>""")
+    return "\n".join(cells)
+
+
+def get_coverage(is_en=False):
+    """Nationwide coverage band: featured HQ + regional branch list."""
+    regions = [
+        ("جدة", "Jeddah", "المنطقة الغربية", "Western Region"),
+        ("المدينة المنورة", "Madinah", "منطقة المدينة المنورة", "Madinah Region"),
+        ("تبوك", "Tabuk", "المنطقة الشمالية", "Northern Region"),
+        ("بريدة", "Buraydah", "منطقة القصيم", "Qassim Region"),
+        ("الطائف", "Taif", "منطقة مكة المكرمة", "Makkah Region"),
+    ]
+    rows = "\n".join(
+        f'            <li class="coverage-branch">'
+        f'<span class="coverage-dot" aria-hidden="true"></span>'
+        f'<span class="coverage-city">{en if is_en else ar}</span>'
+        f'<span class="coverage-region">{ren if is_en else rar}</span></li>'
+        for ar, en, rar, ren in regions
+    )
+    hq_city = "الرياض" if not is_en else "Riyadh"
+    hq_tag = "الفرع الرئيسي" if not is_en else "Head Office"
+    hq_addr = ("حي الروابي، شارع طاهر الدباغ — الرياض، المملكة العربية السعودية"
+               if not is_en else
+               "Al-Rawabi District, Taher Al-Dabbagh St. — Riyadh, Saudi Arabia")
+    hq_hours = "الأحد - الخميس: 9:00 ص - 5:00 م" if not is_en else "Sun - Thu: 9:00 AM - 5:00 PM"
+    others = "الفروع الإقليمية" if not is_en else "Regional branches"
+    maps_label = "الموقع على الخريطة" if not is_en else "View on the map"
+    maps_url = "https://www.google.com/maps/search/?api=1&query=" + \
+        "Ahlam+Aljazeera+Al-Rawabi+Taher+Al-Dabbagh+Riyadh"
+    pin_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+               '<path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>')
+    clock_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                 '<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 10.6l4 2.3-.9 1.5L11 13V6h2z"/></svg>')
+    phone_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                 '<path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>')
+    return f"""
+        <div class="coverage-grid">
+          <div class="coverage-hq">
+            <span class="coverage-hq-tag">{hq_tag}</span>
+            <h3 class="coverage-hq-city">{hq_city}</h3>
+            <p class="coverage-hq-addr">{hq_addr}</p>
+            <div class="coverage-hq-meta">
+              <p class="coverage-hq-row">{clock_svg}<span>{hq_hours}</span></p>
+              <a href="tel:+966920028440" class="coverage-hq-row coverage-hq-phone">{phone_svg}<span>+966920028440</span></a>
+              <a href="{maps_url}" target="_blank" rel="noopener" class="coverage-hq-row coverage-hq-map">{pin_svg}<span>{maps_label}</span></a>
+            </div>
+          </div>
+          <div class="coverage-regions">
+            <p class="coverage-regions-label">{others}</p>
+            <ul class="coverage-list">
+{rows}
+            </ul>
+          </div>
+        </div>"""
+
+
+def get_clients(is_en=False, rel=""):
+    """Trusted-by strip: client logos carried over from the original site's
+    'شركاؤنا في النجاح' section (files already in the media library)."""
+    clients = [
+        ("01", "شركة عبدالله عثمان المبحر وأولاده للصرافة", "Abdullah Othman Almbher Exchange"),
+        ("02", "السبيعي للصرافة", "Al Subaie Exchange"),
+        ("03", "البنك العربي الوطني", "Arab National Bank"),
+        ("04", "بنك الجزيرة", "Bank AlJazira"),
+        ("05", "بنك البلاد", "Bank Albilad"),
+        ("06", "بنك مسقط", "Bank Muscat"),
+        ("07", "البنك السعودي الفرنسي", "Banque Saudi Fransi"),
+        ("08", "بنك الخليج الدولي", "Gulf International Bank"),
+        ("09", "البنك السعودي للاستثمار", "The Saudi Investment Bank"),
+        ("10", "البنك الأهلي السعودي", "Saudi National Bank"),
+        ("11", "بنك الرياض", "Riyad Bank"),
+        ("12", "بنك الإمارات دبي الوطني", "Emirates NBD"),
+        ("13", "ماكدونالدز", "McDonald's"),
+        ("14", "إرسال لتحويل الأموال", "Ersal Money Transfer"),
+        ("15", "مصرف الإنماء", "Alinma Bank"),
+    ]
+    return "\n".join(
+        f'          <li class="client-logo">'
+        f'<img src="{rel}assets/img/clients/client-{n}.png" alt="{en if is_en else ar}" '
+        f'loading="lazy" decoding="async" '
+        f'onerror="this.closest(\'.client-logo\').remove()"></li>'
+        for n, ar, en in clients
+    )
+
+
 def build_homepage(is_en=False):
     rel = "../" if is_en else ""
     t = {
@@ -423,15 +626,9 @@ def build_homepage(is_en=False):
         "srv3_desc": "معدات متخصصة لنقل وتركيب الخزائن والأبواب المحصنة ذات الأوزان العالية بأمان تام." if not is_en else "Specialized heavy equipment for transporting and anchoring multi-ton vaults and safes securely.",
         "srv4_title": "أنظمة المراقبة والتحكم الذكي" if not is_en else "AI Surveillance & Access Control",
         "srv4_desc": "كاميرات مراقبة متطورة بدقة 4K مع تقنيات التعرف على الوجوه والتكامل السحابي." if not is_en else "Advanced 4K AI surveillance with facial recognition, motion tracking, and remote cloud management.",
-        "prod_tag": "معرض المنتجات" if not is_en else "Product Showcase",
-        "prod_h2": "تصفح أحدث الخزائن وأنظمة الأمان" if not is_en else "Explore Our High-Security Product Lines",
-        "tab_all": "جميع المنتجات" if not is_en else "All Products",
-        "tab_safes": "الخزائن والأبواب" if not is_en else "Safes & Doors",
-        "tab_surv": "المراقبة والكاميرات" if not is_en else "Surveillance & CCTV",
-        "tab_locks": "الأقفال الذكية" if not is_en else "Smart Locks",
-        "search_ph": "ابحث عن موديل أو منتج..." if not is_en else "Search model or product name...",
         "partners_tag": "شركاء النجاح" if not is_en else "Partners of Success",
         "partners_h2": "العلامات التجارية المعتمدة عالمياً" if not is_en else "Globally Authorized Brands",
+        "partners_sub": "نورّد ونركّب أنظمة ومنتجات أمنية أصلية من كبرى المصنّعين العالميين، باعتماد رسمي وضمان معتمد." if not is_en else "We supply and install original security systems and hardware from the world's leading manufacturers, under official authorization and warranty.",
         "branches_tag": "تغطية شاملة" if not is_en else "Nationwide Coverage",
         "branches_h2": "فروعنا في جميع أنحاء المملكة" if not is_en else "Our Branches Across Saudi Arabia",
     }
@@ -481,6 +678,21 @@ def build_homepage(is_en=False):
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Trusted by / Clients -->
+    <section class="clients">
+      <div class="container">
+        <div class="clients-head">
+          <span class="section-tag">{'ثقة مؤسسية' if not is_en else 'Institutional trust'}</span>
+          <h2 class="section-title">{'شركاؤنا في النجاح' if not is_en else 'Partners in Success'}</h2>
+          <p class="section-subtitle">{'تعتمد كبرى البنوك والمصارف والمؤسسات في المملكة والخليج على أنظمة أحلام الجزيرة الأمنية.' if not is_en else 'Leading banks and institutions across Saudi Arabia and the Gulf rely on Aljazeera Dreams security systems.'}</p>
+          <p class="clients-count"><strong>+15</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
+        </div>
+        <ul class="clients-grid">
+{get_clients(is_en, rel)}
+        </ul>
       </div>
     </section>
 
@@ -540,84 +752,28 @@ def build_homepage(is_en=False):
       </div>
     </section>
 
-    <!-- Product Showcase Catalog Section -->
-    <section class="section" style="background: var(--bg-surface);" id="products">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{t['prod_tag']}</span>
-          <h2 class="section-title">{t['prod_h2']}</h2>
-        </div>
-
-        <div class="catalog-controls">
-          <div class="filter-tabs">
-            <button class="filter-tab active" data-category="all">{t['tab_all']}</button>
-            <button class="filter-tab" data-category="safes">{t['tab_safes']}</button>
-            <button class="filter-tab" data-category="surveillance">{t['tab_surv']}</button>
-            <button class="filter-tab" data-category="locks">{t['tab_locks']}</button>
-          </div>
-          <div class="search-box">
-            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            <input type="text" id="product-search-input" placeholder="{t['search_ph']}">
-          </div>
-        </div>
-
-        <div class="products-grid" id="products-grid-container">
-          <!-- Dynamically populated via assets/js/main.js -->
-        </div>
-      </div>
-    </section>
-
     <!-- Brands & Partners -->
     <section class="brands-section" id="partners">
       <div class="container">
-        <div class="section-header" style="margin-bottom: 30px;">
+        <div class="section-header" style="margin-bottom: 34px;">
           <span class="section-tag">{t['partners_tag']}</span>
           <h2 class="section-title" style="font-size: 1.75rem;">{t['partners_h2']}</h2>
+          <p class="section-subtitle">{t['partners_sub']}</p>
         </div>
-        <div class="brands-grid">
-          <div class="brand-item">FALCON SAFES</div>
-          <div class="brand-item">DIPLOMAT</div>
-          <div class="brand-item">JIABAO SECURITY</div>
-          <div class="brand-item">SUNPOWER</div>
-          <div class="brand-item">HIKVISION</div>
-          <div class="brand-item">DAHUA TECHNOLOGY</div>
-        </div>
+        <ul class="brand-wall">
+{get_brand_wall(is_en, rel)}
+        </ul>
       </div>
     </section>
 
-    <!-- Branches Directory -->
-    <section class="section" style="background: var(--bg-page);">
+    <!-- Nationwide Coverage -->
+    <section class="coverage">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">{t['branches_tag']}</span>
           <h2 class="section-title">{t['branches_h2']}</h2>
         </div>
-        <div class="branches-grid">
-          <div class="branch-card">
-            <h4 class="branch-name">{'الرياض (الفرع الرئيسي)' if not is_en else 'Riyadh (Main HQ)'}</h4>
-            <p class="branch-status">{'حي الروابي - شارع طاهر الدباغ' if not is_en else 'Al-Rawabi District'}</p>
-          </div>
-          <div class="branch-card">
-            <h4 class="branch-name">{'جدة' if not is_en else 'Jeddah'}</h4>
-            <p class="branch-status">{'المنطقة الغربية' if not is_en else 'Western Region'}</p>
-          </div>
-          <div class="branch-card">
-            <h4 class="branch-name">{'المدينة المنورة' if not is_en else 'Medina'}</h4>
-            <p class="branch-status">{'فرع المدينة' if not is_en else 'Medina Branch'}</p>
-          </div>
-          <div class="branch-card">
-            <h4 class="branch-name">{'تبوك' if not is_en else 'Tabuk'}</h4>
-            <p class="branch-status">{'المنطقة الشمالية' if not is_en else 'Northern Region'}</p>
-          </div>
-          <div class="branch-card">
-            <h4 class="branch-name">{'بريدة (القصيم)' if not is_en else 'Buraydah (Qassim)'}</h4>
-            <p class="branch-status">{'منطقة القصيم' if not is_en else 'Qassim Region'}</p>
-          </div>
-          <div class="branch-card">
-            <h4 class="branch-name">{'الطائف' if not is_en else 'Taif'}</h4>
-            <p class="branch-status">{'فرع الطائف' if not is_en else 'Taif Branch'}</p>
-          </div>
-        </div>
+        {get_coverage(is_en)}
       </div>
     </section>
     """
@@ -906,7 +1062,7 @@ def build_tech_support_page(is_en=False):
               <svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 00-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2a5 5 0 00-5-5v2c1.66 0 3 1.34 3 3z"/></svg>
             </div>
             <h3 class="branch-name">{'الرقم الموحد للدعم' if not is_en else 'Unified Support Line'}</h3>
-            <p style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 10px 0;">920028440</p>
+            <p style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 10px 0;">+966920028440</p>
             <p style="color: var(--text-muted); font-size: 0.85rem;">{'متاح طوال أيام العمل' if not is_en else 'Available during business hours'}</p>
           </div>
           <div class="branch-card" style="text-align: center; padding: 30px;">
@@ -1045,8 +1201,19 @@ def build_single_product_pages():
             
             title = p["title_en"] if is_en else p["title_ar"]
             cat = p["category_en"] if is_en else p["category_ar"]
-            desc = p["short_desc_en"] if is_en else p["short_desc_ar"]
+            desc = product_desc(p, is_en)
+            spec_rows = parse_specs(p, is_en)
             img = f"{rel}{p['image']}" if p["image"] else f"{rel}wp-content/uploads/2025/06/Asset-5.png"
+
+            spec_table = ""
+            if spec_rows:
+                spec_table = (
+                    f'<div class="product-specs">'
+                    f'<h2 class="product-specs-title">{"المواصفات الفنية" if not is_en else "Technical Specifications"}</h2>'
+                    f'<dl class="spec-list">'
+                    + "".join(f'<div class="spec-row"><dt>{k}</dt><dd>{v}</dd></div>' for k, v in spec_rows)
+                    + "</dl></div>"
+                )
 
             body = f"""
             <section class="section" style="padding-top: 40px;">
@@ -1073,8 +1240,10 @@ def build_single_product_pages():
                       {desc or ('حل أمني متطور من شركة أحلام الجزيرة مصمم وفق أعلى معايير الجودة والمواصفات المعتمدة.' if not is_en else 'High security solution engineered to international standards by Aljazeera Dreams.')}
                     </p>
 
-                    <div style="background: var(--primary-tint); border: 1px solid var(--primary-light); padding: 20px; border-radius: var(--radius-md); margin-bottom: 30px;">
-                      <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">{'المواصفات والضمان' if not is_en else 'Specifications & Warranty'}</h4>
+                    {spec_table}
+
+                    <div style="background: var(--primary-tint); border: 1px solid var(--primary-light); padding: 20px; border-radius: var(--radius-md); margin: 24px 0 30px;">
+                      <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">{'الضمان والاعتماد' if not is_en else 'Warranty & Compliance'}</h4>
                       <ul style="font-size: 0.9rem; color: var(--text-body); line-height: 1.8;">
                         <li>✓ {'مطابق لاشتراطات البنك المركزي والجهات الأمنية' if not is_en else 'Compliant with security & banking regulations'}</li>
                         <li>✓ {'ضمان شامل وقطع غيار أصلية متوفرة' if not is_en else 'Comprehensive warranty & genuine spare parts'}</li>
@@ -1157,6 +1326,78 @@ def build_category_pages():
             c_dir.mkdir(parents=True, exist_ok=True)
             (c_dir / "index.html").write_text(html, encoding="utf-8")
 
+def build_legal_pages():
+    """Privacy policy and terms — rebuilt on the shared template so they stay in sync."""
+    pages = {
+        "privacy-policy": {
+            "title": ("سياسة الخصوصية", "Privacy Policy"),
+            "updated": ("آخر تحديث: 2026", "Last updated: 2026"),
+            "blocks": [
+                (("مقدمة", "Introduction"),
+                 ("نلتزم في شركة أحلام الجزيرة للمقاولات والصيانة بحماية خصوصية بيانات عملائنا وزوّار موقعنا، وفق الأنظمة المعمول بها في المملكة العربية السعودية.",
+                  "Aljazeera Dreams Contracting & Maintenance is committed to protecting the privacy of our clients and website visitors, in line with the regulations in force in Saudi Arabia.")),
+                (("جمع البيانات واستخدامها", "Collection and use of data"),
+                 ("تُستخدم البيانات المُدخلة في نماذج طلب عرض السعر والتواصل وطلب الخدمة لغرض الرد على الطلب والتنسيق مع العميل فقط، ولا تتم مشاركتها مع أي طرف ثالث لأغراض تسويقية.",
+                  "Information you enter in the quotation, contact, and service-request forms is used only to respond to your request and coordinate with you. It is not shared with third parties for marketing purposes.")),
+                (("حماية المعلومات", "Data security"),
+                 ("تُحفظ البيانات في بيئة آمنة ويقتصر الوصول إليها على الموظفين المعنيين بتنفيذ الطلب.",
+                  "Data is stored securely and access is limited to the staff handling your request.")),
+                (("التواصل", "Contact"),
+                 ("لأي استفسار يتعلق بالخصوصية يمكنكم التواصل معنا عبر الهاتف <bdi>+966920028440</bdi> أو صفحة اتصل بنا.",
+                  "For any privacy question, contact us on <bdi>+966920028440</bdi> or via the Contact Us page.")),
+            ],
+        },
+        "terms-and-conditions": {
+            "title": ("الشروط والأحكام", "Terms & Conditions"),
+            "updated": ("آخر تحديث: 2026", "Last updated: 2026"),
+            "blocks": [
+                (("نطاق الاستخدام", "Scope"),
+                 ("تحكم هذه الشروط استخدام موقع شركة أحلام الجزيرة والخدمات والمنتجات المعروضة من خلاله. باستخدامك الموقع فإنك توافق على هذه الشروط.",
+                  "These terms govern the use of the Aljazeera Dreams website and the services and products presented through it. By using the site you agree to these terms.")),
+                (("عروض الأسعار", "Quotations"),
+                 ("الأسعار والمواصفات المعروضة استرشادية، ويُعتمد العرض الرسمي الصادر من الشركة بعد المعاينة وتحديد المتطلبات.",
+                  "Prices and specifications shown are indicative. The official quotation issued by the company after a site survey and requirement scoping is what applies.")),
+                (("الضمان والصيانة", "Warranty and maintenance"),
+                 ("تخضع الخزائن والأبواب والأقفال وأنظمة المراقبة لضمان الوكيل المعتمد، ووفق اتفاقيات مستوى الخدمة (SLA) المبرمة مع العميل.",
+                  "Safes, doors, locks, and surveillance systems are covered by the authorized manufacturer warranty and by the Service Level Agreement (SLA) signed with the client.")),
+                (("التركيب", "Installation"),
+                 ("يُنفَّذ النقل والتركيب بواسطة فنيي الشركة أو من تعتمدهم، ويُشترط تجهيز الموقع وفق المتطلبات الفنية المتفق عليها.",
+                  "Transport and installation are carried out by company technicians or its approved partners, and require the site to be prepared to the agreed technical specifications.")),
+            ],
+        },
+    }
+
+    for slug, p in pages.items():
+        for is_en in (False, True):
+            title = p["title"][1] if is_en else p["title"][0]
+            updated = p["updated"][1] if is_en else p["updated"][0]
+            sections = "\n".join(
+                f'          <h2>{h[1] if is_en else h[0]}</h2>\n'
+                f'          <p>{b[1] if is_en else b[0]}</p>'
+                for h, b in p["blocks"]
+            )
+            body = f"""
+    <section class="section" style="padding-top: 48px;">
+      <div class="container">
+        <div class="legal">
+          <span class="section-tag">{'معلومات قانونية' if not is_en else 'Legal'}</span>
+          <h1 class="section-title">{title}</h1>
+          <p class="legal-updated">{updated}</p>
+          <div class="legal-body">
+{sections}
+          </div>
+        </div>
+      </div>
+    </section>
+    """
+            html = generate_base_html(
+                title=title, body_content=body, is_en=is_en, depth=2 if is_en else 1
+            )
+            out_dir = ROOT_DIR / (("en/" if is_en else "") + slug)
+            out_dir.mkdir(parents=True, exist_ok=True)
+            (out_dir / "index.html").write_text(html, encoding="utf-8")
+
+
 def main():
     print("Building all Arabic and English pages...")
     build_homepage(is_en=False)
@@ -1182,7 +1423,8 @@ def main():
     
     build_single_product_pages()
     build_category_pages()
-    
+    build_legal_pages()
+
     print("All pages built successfully!")
 
 if __name__ == "__main__":
