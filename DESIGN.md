@@ -50,21 +50,38 @@ Derived steps are shades of `#047E79` only, each checked for WCAG AA:
 | `--bg-dark` | `#14201E` | teal-tinted charcoal | footer; white .75 text = 9:1 |
 | `--border-color` | `#E2E7ED` | locked cloud | |
 
+Elevation and rings (all tinted `rgba(2, 63, 60, a)` = deepest brand teal, never flat black):
+
+| Token | Value | Use |
+|---|---|---|
+| `--shadow-xs … --shadow-xl` | `rgba(2,63,60, .06 → .18)` | cards, panels, modals |
+| `--shadow-btn` / `--shadow-btn-hover` | `rgba(2,63,60, .2 / .28)` | pill buttons (`.btn-primary`, `.btn-quote`), active filter tabs |
+| `--ring` | `0 0 0 3px rgba(4,126,121, .16)` | soft focus ring on text inputs (the hard `:focus-visible` outline is separate) |
+
 Notes:
 
 - Pure `#000` is never used. `#fff` appears only as text on saturated teal or dark grounds, where a tint would look dirty.
 - Color strategy: **Committed** - teal carries identity across headers, buttons, and section framing; neutrals do the rest.
-- Removed in the retheme: the invented `--accent-gold` / `--accent-amber` / `--gradient-gold` (off-brand, "security + gold" cliche), `--shadow-glow`, and the `--transition-bounce` easing.
+- No bespoke `rgba()` colours in component rules: shadows and rings all reference the tokens above. The one deliberate literal is WhatsApp green `#25D366`.
+- Removed in the retheme: the invented `--accent-gold` / `--accent-amber` / `--gradient-gold` (off-brand, "security + gold" cliche), `--shadow-glow`, and the `--transition-bounce` easing. Also swept out (extract pass 2): the pre-retheme Material teal `rgba(0,137,123)` and cyan `rgba(0,188,212)` that had survived in 10 shadow/gradient rules.
+- `quieter` pass (two rounds): the goal was fewer competing heavy elements, not less teal. The POV (committed teal) is unchanged.
+  - **Hero:** the two-radial cyan/teal glow is now a single faint top-right wash (`rgba(31,186,179,.09)`, transparent by 55%) - the deep-teal ground carries identity, the glow only lights the reading entry point. Decorative `backdrop-filter` is gone from `.hero-badge`, `.btn-secondary`, and `.hero-media-card` (the media card is now a flat `rgba(255,255,255,.05)` panel, shadow `xl`->`lg`; the floating pill also `xl`->`lg`). `.stat-number` weight `900`->`800`; `.hero-title` keeps `900` as the single display anchor.
+  - **Dark bands flattened:** `.coverage` lost its dot-texture `background-image` (now flat `--primary-deep`). `.cta-whatsapp-card` lost its `primary-deep`->`primary-dark` gradient (now flat `--primary-deep`) and its shadow `xl`->`md`. Every full-bleed dark region is now a calm plane, not a glossy/textured panel.
+  - **Shadows pulled in:** `.clients-banner-wrapper` and `.category-banner-card` from the bespoke `0 8px 24px` literal to `--shadow-sm`; `.division-card:hover` `xl`->`lg`. `.btn-whatsapp-cta` dropped its green (`rgba(37,211,102,a)`) blurred shadow entirely for neutral `--shadow-sm` / `--shadow-md` - a coloured blur on the dark CTA card was reading as an AI-style glow; the bright green fill already identifies the button.
+  - **Motion softened:** `.service-card:hover` lift `-6px`->`-4px` (matches `.division-card`), and its icon-box lost the `scale(1.08)` bump (the teal fill is enough feedback).
+  - `backdrop-filter` now survives only where functional: the sticky `.site-header`, the `.modal-overlay` scrim, the `.drawer-backdrop` scrim.
 
 ## Typography
 
-| Language | Family | Fallback | Use |
-|---|---|---|---|
-| Arabic (primary) | **Cairo** | `'Noto Kufi Arabic', system-ui, sans-serif` | All Arabic UI and content. Headings and body. |
-| English | **Cairo** (Latin subset) or **Roboto** | `system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif` | All English UI and content. Keep one family across both languages if Cairo Latin is acceptable. |
-| Icons | Font Awesome 5 | - | Existing icon set; keep or replace wholesale, not piecemeal. |
+**One family, both languages: Cairo.** Self-hosted (SIL OFL) at `assets/fonts/` as one variable woff2 per subset (latin / latin-ext / arabic), weight axis 400-900, `font-display: swap`. No external font request; the arabic (RTL) or latin (LTR) subset is `<link rel="preload">`ed per page. `@font-face` is inlined at the top of `style.css`.
 
-- Cairo weights available: 400 (body), 600 (emphasis, subheads), 700 (headings), 800/900 (hero display only).
+| Language | Family | Fallback |
+|---|---|---|
+| Arabic + English | **Cairo** | `system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif` |
+| Icons | inline SVG | no icon font |
+
+- Cairo is variable (any weight 400-900). In use: 400 body, 600 emphasis, 700 headings, 800/900 hero display.
+- Dropped in the optimize pass: the Google Fonts `@import` and the Outfit + Inter families (Cairo's Latin carries the English pages).
 - Hierarchy through scale + weight, ratio >=1.25 between steps. Suggested scale (rem): 0.875 / 1 / 1.25 / 1.5 / 1.875 / 2.5 / 3.25.
 - Body: 1rem (16px) minimum on the redesign - the current site runs 12-15px, which is too small for the audience. Line height 1.6 for Arabic body, 1.5 for English.
 - Body line length capped at 65-75ch (Arabic counts similarly).
@@ -94,4 +111,6 @@ Real product and installation photography: safes, vault doors, cashier rooms, CC
 
 ## Components (starting set)
 
-Primary button (solid teal, white text, 10px radius), secondary button (teal outline), quote-request CTA block, product card, category tile, service card, brand/logo grid, branch/location list, bilingual header with language switch, footer with quick links + contact. Firm these up in `shape`.
+Primary button (solid teal, white text, 10px radius), secondary button (teal outline), quote-request CTA block, product card, category tile, brand/logo grid, branch/location list, bilingual header with language switch, footer with quick links + contact. Firm these up in `shape`.
+
+- **Homepage services** are NOT a card grid (`layout` pass). The section is an asymmetric 2-column composition: a sticky intro rail (eyebrow + heading + one lead sentence + a single "Talk to an Engineer" CTA) beside a numbered `01`-`04` capability list with full-width hairline rules between rows. No per-item card, icon box, or per-item button. Collapses to one column at 860px. This replaced 4 identical icon+heading+text+button cards (the "identical card grid" ban).

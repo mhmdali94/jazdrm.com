@@ -8,6 +8,7 @@
   <link rel="icon" href="../../wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="../../wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="../../wp-content/uploads/2025/06/cropped-favicon-180x180.png">
+  <link rel="preload" href="../../assets/fonts/cairo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body class="en-lang" data-root="../../">
@@ -39,7 +40,7 @@
     <div class="container">
       <div class="main-navbar">
         <a href="../../en/index.html" class="brand-logo">
-          <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams">
+          <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams" width="468" height="374">
           <div class="brand-text">
             <span class="brand-title">Aljazeera Dreams</span>
             <span class="brand-subtitle">Contracting, Maintenance & Security</span>
@@ -141,7 +142,7 @@
   <div class="mobile-drawer" id="mobile-drawer" aria-label="Mobile menu" aria-hidden="true">
     <div class="mobile-drawer-header">
       <div class="brand-logo">
-        <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams" style="height: 38px;">
+        <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams" width="468" height="374" style="height: 38px;">
         <span class="brand-title" style="font-size: 1.1rem;">Aljazeera Dreams</span>
       </div>
       <button type="button" class="drawer-close-btn" aria-label="Close">&times;</button>
@@ -178,8 +179,8 @@
         <div class="form-card">
           <form>
             <div class="form-group">
-              <label class="form-label">Service Type *</label>
-              <select class="form-control" required>
+              <label class="form-label" for="sr-1">Service Type *</label>
+              <select id="sr-1" aria-required="true" class="form-control" required>
                 <option value="atm">ATM & Vault Room Setup</option>
                 <option value="maintenance">Periodic / Emergency Maintenance</option>
                 <option value="relocation">Heavy Safe Relocation & Installation</option>
@@ -189,18 +190,18 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Company / Customer Name *</label>
-                <input type="text" class="form-control" required>
+                <label class="form-label" for="sr-2">Company / Customer Name *</label>
+                <input id="sr-2" aria-required="true" type="text" class="form-control" required>
               </div>
               <div class="form-group">
-                <label class="form-label">Phone Number *</label>
-                <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <label class="form-label" for="sr-3">Phone Number *</label>
+                <input id="sr-3" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">City / Nearest Branch</label>
-                <select class="form-control">
+                <label class="form-label" for="sr-4">City / Nearest Branch</label>
+                <select id="sr-4" class="form-control">
                   <option value="riyadh">Riyadh</option>
                   <option value="jeddah">Jeddah</option>
                   <option value="medina">Medina</option>
@@ -210,13 +211,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Preferred Date</label>
-                <input type="date" class="form-control">
+                <label class="form-label" for="sr-5">Preferred Date</label>
+                <input id="sr-5" type="date" class="form-control">
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label">Job Details *</label>
-              <textarea class="form-control" rows="4" required placeholder="Provide details regarding location and requirements..."></textarea>
+              <label class="form-label" for="sr-6">Job Details *</label>
+              <textarea id="sr-6" aria-required="true" class="form-control" rows="4" required placeholder="Provide details regarding location and requirements..."></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               Submit Service Request
@@ -234,13 +235,13 @@
       <div class="footer-grid">
         <div class="footer-about">
           <div class="brand-logo" style="margin-bottom: 12px;">
-            <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" style="height: 48px;">
+            <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" width="468" height="374" style="height: 48px;">
             <span class="brand-title" style="color: #fff; font-size: 1.2rem;">Aljazeera Dreams</span>
           </div>
           <p>Aljazeera Dreams Contracting & Security - Pioneers in security safes, bunker vault doors, surveillance, and smart locks for major banks and corporations across Saudi Arabia.</p>
         </div>
         <div>
-          <h4 class="footer-title">Quick Links</h4>
+          <h3 class="footer-title">Quick Links</h3>
           <div class="footer-links">
             <a href="../../en/index.html">Home</a>
             <a href="../../en/about-us/index.html">About Us</a>
@@ -251,7 +252,7 @@
           </div>
         </div>
         <div>
-          <h4 class="footer-title">Categories</h4>
+          <h3 class="footer-title">Categories</h3>
           <div class="footer-links">
             <a href="../../en/product-category/الخزائن-والأبواب-الأمنية/index.html">Safes & Vault Doors</a>
             <a href="../../en/product-category/أنظمة-المراقبة-والأمن/index.html">Surveillance Systems</a>
@@ -260,7 +261,7 @@
           </div>
         </div>
         <div>
-          <h4 class="footer-title">Contact Us</h4>
+          <h3 class="footer-title">Contact Us</h3>
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 8px;">Riyadh (Main HQ) - Al-Rawabi, Taher Al-Dabbagh St.</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px;">Branches: Riyadh, Jeddah, Medina, Tabuk, Buraydah, Taif</p>
@@ -299,17 +300,17 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="form-label">Full Name *</label>
-            <input type="text" class="form-control" required placeholder="e.g. John Doe">
+            <label class="form-label" for="qm-1">Full Name *</label>
+            <input id="qm-1" aria-required="true" type="text" class="form-control" required placeholder="e.g. John Doe">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Phone Number *</label>
-              <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+              <label class="form-label" for="qm-2">Phone Number *</label>
+              <input id="qm-2" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
             </div>
             <div class="form-group">
-              <label class="form-label">City / Branch *</label>
-              <select class="form-control" required>
+              <label class="form-label" for="qm-3">City / Branch *</label>
+              <select id="qm-3" aria-required="true" class="form-control" required>
                 <option value="riyadh">Riyadh (Main HQ)</option>
                 <option value="jeddah">Jeddah</option>
                 <option value="medina">Medina</option>
@@ -320,12 +321,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Required Product / Service</label>
+            <label class="form-label" for="modal-product-name">Required Product / Service</label>
             <input type="text" id="modal-product-name" class="form-control" placeholder="Enter product name or service">
           </div>
           <div class="form-group">
-            <label class="form-label">Additional Notes</label>
-            <textarea class="form-control" rows="3" placeholder="Write your requirements here..."></textarea>
+            <label class="form-label" for="qm-4">Additional Notes</label>
+            <textarea id="qm-4" class="form-control" rows="3" placeholder="Write your requirements here..."></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             Submit Request Now

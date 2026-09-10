@@ -8,6 +8,7 @@
   <link rel="icon" href="../../wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="../../wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="../../wp-content/uploads/2025/06/cropped-favicon-180x180.png">
+  <link rel="preload" href="../../assets/fonts/cairo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body class="en-lang" data-root="../../">
@@ -39,7 +40,7 @@
     <div class="container">
       <div class="main-navbar">
         <a href="../../en/index.html" class="brand-logo">
-          <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams">
+          <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams" width="468" height="374">
           <div class="brand-text">
             <span class="brand-title">Aljazeera Dreams</span>
             <span class="brand-subtitle">Contracting, Maintenance & Security</span>
@@ -141,7 +142,7 @@
   <div class="mobile-drawer" id="mobile-drawer" aria-label="Mobile menu" aria-hidden="true">
     <div class="mobile-drawer-header">
       <div class="brand-logo">
-        <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams" style="height: 38px;">
+        <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="Aljazeera Dreams" width="468" height="374" style="height: 38px;">
         <span class="brand-title" style="font-size: 1.1rem;">Aljazeera Dreams</span>
       </div>
       <button type="button" class="drawer-close-btn" aria-label="Close">&times;</button>
@@ -179,22 +180,22 @@
           <form>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Full Name *</label>
-                <input type="text" class="form-control" required placeholder="John Doe">
+                <label class="form-label" for="cf-1">Full Name *</label>
+                <input id="cf-1" aria-required="true" type="text" class="form-control" required placeholder="John Doe">
               </div>
               <div class="form-group">
-                <label class="form-label">Phone Number *</label>
-                <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <label class="form-label" for="cf-2">Phone Number *</label>
+                <input id="cf-2" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Email Address</label>
-                <input type="email" class="form-control" placeholder="name@example.com">
+                <label class="form-label" for="cf-3">Email Address</label>
+                <input id="cf-3" type="email" class="form-control" placeholder="name@example.com">
               </div>
               <div class="form-group">
-                <label class="form-label">City / Branch</label>
-                <select class="form-control">
+                <label class="form-label" for="cf-4">City / Branch</label>
+                <select id="cf-4" class="form-control">
                   <option value="riyadh">Riyadh (Main HQ)</option>
                   <option value="jeddah">Jeddah</option>
                   <option value="medina">Medina</option>
@@ -205,8 +206,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label">Message *</label>
-              <textarea class="form-control" rows="4" required placeholder="Write your inquiry here..."></textarea>
+              <label class="form-label" for="cf-5">Message *</label>
+              <textarea id="cf-5" aria-required="true" class="form-control" rows="4" required placeholder="Write your inquiry here..."></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               Send Message
@@ -225,12 +226,13 @@
               <div class="cta-whatsapp-actions">
                 <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="btn-whatsapp-cta">
                   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                <span>WhatsApp: +966 55 489 0900</span>
-              </a>
+                  <span>WhatsApp: +966 55 489 0900</span>
+                </a>
+              </div>
             </div>
-          </div>
-          <div class="cta-whatsapp-media">
-            <img src="../../assets/img/banners/banner-whatsapp.jpg" alt="Connect on WhatsApp - Ahlam Aljazeera" loading="lazy">
+            <div class="cta-whatsapp-media">
+              <img src="../../assets/img/banners/banner-whatsapp.jpg" alt="Connect on WhatsApp - Ahlam Aljazeera" width="1024" height="426" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
@@ -244,13 +246,13 @@
       <div class="footer-grid">
         <div class="footer-about">
           <div class="brand-logo" style="margin-bottom: 12px;">
-            <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" style="height: 48px;">
+            <img src="../../wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" width="468" height="374" style="height: 48px;">
             <span class="brand-title" style="color: #fff; font-size: 1.2rem;">Aljazeera Dreams</span>
           </div>
           <p>Aljazeera Dreams Contracting & Security - Pioneers in security safes, bunker vault doors, surveillance, and smart locks for major banks and corporations across Saudi Arabia.</p>
         </div>
         <div>
-          <h4 class="footer-title">Quick Links</h4>
+          <h3 class="footer-title">Quick Links</h3>
           <div class="footer-links">
             <a href="../../en/index.html">Home</a>
             <a href="../../en/about-us/index.html">About Us</a>
@@ -261,7 +263,7 @@
           </div>
         </div>
         <div>
-          <h4 class="footer-title">Categories</h4>
+          <h3 class="footer-title">Categories</h3>
           <div class="footer-links">
             <a href="../../en/product-category/الخزائن-والأبواب-الأمنية/index.html">Safes & Vault Doors</a>
             <a href="../../en/product-category/أنظمة-المراقبة-والأمن/index.html">Surveillance Systems</a>
@@ -270,7 +272,7 @@
           </div>
         </div>
         <div>
-          <h4 class="footer-title">Contact Us</h4>
+          <h3 class="footer-title">Contact Us</h3>
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 8px;">Riyadh (Main HQ) - Al-Rawabi, Taher Al-Dabbagh St.</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px;">Branches: Riyadh, Jeddah, Medina, Tabuk, Buraydah, Taif</p>
@@ -309,17 +311,17 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label class="form-label">Full Name *</label>
-            <input type="text" class="form-control" required placeholder="e.g. John Doe">
+            <label class="form-label" for="qm-1">Full Name *</label>
+            <input id="qm-1" aria-required="true" type="text" class="form-control" required placeholder="e.g. John Doe">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Phone Number *</label>
-              <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+              <label class="form-label" for="qm-2">Phone Number *</label>
+              <input id="qm-2" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
             </div>
             <div class="form-group">
-              <label class="form-label">City / Branch *</label>
-              <select class="form-control" required>
+              <label class="form-label" for="qm-3">City / Branch *</label>
+              <select id="qm-3" aria-required="true" class="form-control" required>
                 <option value="riyadh">Riyadh (Main HQ)</option>
                 <option value="jeddah">Jeddah</option>
                 <option value="medina">Medina</option>
@@ -330,12 +332,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Required Product / Service</label>
+            <label class="form-label" for="modal-product-name">Required Product / Service</label>
             <input type="text" id="modal-product-name" class="form-control" placeholder="Enter product name or service">
           </div>
           <div class="form-group">
-            <label class="form-label">Additional Notes</label>
-            <textarea class="form-control" rows="3" placeholder="Write your requirements here..."></textarea>
+            <label class="form-label" for="qm-4">Additional Notes</label>
+            <textarea id="qm-4" class="form-control" rows="3" placeholder="Write your requirements here..."></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             Submit Request Now

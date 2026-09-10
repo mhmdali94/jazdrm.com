@@ -93,6 +93,35 @@ def parse_specs(p, is_en):
         rows.append((disp, val))
     return rows if len(rows) >= 2 else []
 
+
+_FIELD_RE = re.compile(
+    r'(<label class="form-label"[^>]*>)(.*?)(</label>\s*)'
+    r'(<(?:input|select|textarea)\b)([^>]*?)(\s*/?>)',
+    re.S)
+
+
+def wire_form(html, prefix):
+    """Give every .form-label / .form-control pair a real for/id link in the markup
+    (the JS association stays as a fallback for older pages)."""
+    counter = [0]
+
+    def repl(m):
+        lbl_open, text, close, ctrl, attrs, end = m.groups()
+        existing = re.search(r'\bid="([^"]+)"', attrs)
+        if existing:
+            fid, new_attrs = existing.group(1), attrs
+        else:
+            counter[0] += 1
+            fid = f"{prefix}-{counter[0]}"
+            req = ' aria-required="true"' if re.search(r'\brequired\b', attrs) else ''
+            new_attrs = f' id="{fid}"{req}{attrs}'
+        if "for=" not in lbl_open:
+            lbl_open = lbl_open[:-1] + f' for="{fid}">'
+        return lbl_open + text + close + ctrl + new_attrs + end
+
+    return _FIELD_RE.sub(repl, html)
+
+
 def get_header(is_en=False, depth=0):
     rel = "../" * depth
     lang_toggle_url = f"{rel}en/index.html" if not is_en else f"{rel}index.html"
@@ -178,7 +207,7 @@ def get_header(is_en=False, depth=0):
     <div class="container">
       <div class="main-navbar">
         <a href="{home_url}" class="brand-logo">
-          <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="{t['brand_title']}">
+          <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="{t['brand_title']}" width="468" height="374">
           <div class="brand-text">
             <span class="brand-title">{t['brand_title']}</span>
             <span class="brand-subtitle">{t['brand_sub']}</span>
@@ -280,7 +309,7 @@ def get_header(is_en=False, depth=0):
   <div class="mobile-drawer" id="mobile-drawer" aria-label="{t['nav_drawer']}" aria-hidden="true">
     <div class="mobile-drawer-header">
       <div class="brand-logo">
-        <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="{t['brand_title']}" style="height: 38px;">
+        <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="{t['brand_title']}" width="468" height="374" style="height: 38px;">
         <span class="brand-title" style="font-size: 1.1rem;">{t['brand_title']}</span>
       </div>
       <button type="button" class="drawer-close-btn" aria-label="{t['close']}">&times;</button>
@@ -333,20 +362,20 @@ def get_footer(is_en=False, depth=0):
         "terms": "الشروط والأحكام" if not is_en else "Terms & Conditions",
     }
 
-    return f"""
+    return wire_form(f"""
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
           <div class="brand-logo" style="margin-bottom: 12px;">
-            <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" style="height: 48px;">
+            <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" width="468" height="374" style="height: 48px;">
             <span class="brand-title" style="color: #fff; font-size: 1.2rem;">{'أحلام الجزيرة' if not is_en else 'Aljazeera Dreams'}</span>
           </div>
           <p>{t['about_p']}</p>
         </div>
         <div>
-          <h4 class="footer-title">{t['nav_title']}</h4>
+          <h3 class="footer-title">{t['nav_title']}</h3>
           <div class="footer-links">
             <a href="{home_url}">{'الرئيسية' if not is_en else 'Home'}</a>
             <a href="{about_url}">{'نبذة عنا' if not is_en else 'About Us'}</a>
@@ -357,7 +386,7 @@ def get_footer(is_en=False, depth=0):
           </div>
         </div>
         <div>
-          <h4 class="footer-title">{t['cats_title']}</h4>
+          <h3 class="footer-title">{t['cats_title']}</h3>
           <div class="footer-links">
             <a href="{safes_url}">{'الخزائن والأبواب الأمنية' if not is_en else 'Safes & Vault Doors'}</a>
             <a href="{surveillance_url}">{'أنظمة المراقبة والأمن' if not is_en else 'Surveillance Systems'}</a>
@@ -366,7 +395,7 @@ def get_footer(is_en=False, depth=0):
           </div>
         </div>
         <div>
-          <h4 class="footer-title">{t['contact_title']}</h4>
+          <h3 class="footer-title">{t['contact_title']}</h3>
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 8px;">{t['address']}</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px;">{t['branches']}</p>
@@ -440,7 +469,8 @@ def get_footer(is_en=False, depth=0):
       </div>
     </div>
   </div>
-"""
+""", "qm")
+
 
 def generate_base_html(title, body_content, is_en=False, depth=0):
     rel = "../" * depth
@@ -461,6 +491,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-180x180.png">
+  <link rel="preload" href="{rel}assets/fonts/{'cairo-latin.woff2' if is_en else 'cairo-arabic.woff2'}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{rel}assets/css/style.css">
 </head>
 <body class="{body_cls}" data-root="{rel}">
@@ -508,7 +539,7 @@ def get_brand_wall(is_en=False, rel=""):
         sub_html = f'<span class="brand-mark-sub">{sub}</span>' if sub else ""
         cells.append(f"""        <li class="brand-wall-item">
           <a class="brand-mark brand-mark--{key}" href="{href}" aria-label="{full} - {view}">
-            <img class="brand-mark-logo" src="{rel}assets/img/brands/{fil}" alt="" decoding="async"
+            <img class="brand-mark-logo" src="{rel}assets/img/brands/{fil}" alt="" width="220" height="52" decoding="async"
                  onload="this.closest('.brand-mark').classList.add('brand-mark--haslogo')" onerror="this.remove()">
             <span class="brand-mark-fallback" aria-hidden="true">
               <svg class="brand-mark-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{glyph}</svg>
@@ -594,11 +625,229 @@ def get_clients(is_en=False, rel=""):
     ]
     return "\n".join(
         f'          <li class="client-logo">'
-        f'<img src="{rel}assets/img/clients/client-{n}.png" alt="{en if is_en else ar}" '
+        f'<img src="{rel}assets/img/clients/client-{n}.png" alt="{en if is_en else ar}" width="200" height="150" '
         f'loading="lazy" decoding="async" '
         f'onerror="this.closest(\'.client-logo\').remove()"></li>'
         for n, ar, en in clients
     )
+
+
+# ---- Shared page fragments (homepage / about / contact) ----------------------
+_ARROW_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">'
+              '<path d="M5 12h14M12 5l7 7-7 7"/></svg>')
+_WA_GLYPH = (
+    "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966"
+    "-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653"
+    "-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198"
+    ".05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01"
+    "-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074"
+    ".149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085"
+    " 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h"
+    "-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51"
+    "-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994"
+    "c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157"
+    " 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554"
+    " 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+)
+
+
+def get_clients_banner(is_en=False, rel="", style=""):
+    alt = ("شركاؤنا في النجاح - كبرى البنوك والمصارف في المملكة" if not is_en
+           else "Partners in Success - Leading Banks & Institutions in Saudi Arabia")
+    st = f' style="{style}"' if style else ""
+    return (f'<div class="clients-banner-wrapper"{st}>\n'
+            f'          <img src="{rel}assets/img/banners/banner-clients.jpg" alt="{alt}" width="1024" height="426" loading="lazy">\n'
+            f'        </div>')
+
+
+def division_card(img, alt, tag, title, desc, href, btn, comment=""):
+    cmt = f"          <!-- {comment} -->\n" if comment else ""
+    return f"""{cmt}          <article class="division-card">
+            <div class="division-media">
+              <img src="{img}" alt="{alt}" width="1024" height="426" loading="lazy">
+            </div>
+            <div class="division-body">
+              <span class="division-tag">{tag}</span>
+              <h3 class="division-title">{title}</h3>
+              <p class="division-desc">{desc}</p>
+              <a href="{href}" class="division-btn">
+                <span>{btn}</span>
+                {_ARROW_SVG}
+              </a>
+            </div>
+          </article>"""
+
+
+def _division_cards(is_en, banner_rel, cat_rel):
+    """banner_rel: prefix to assets/  ·  cat_rel: prefix to product-category/"""
+    b = f"{banner_rel}assets/img/banners/"
+    safes_href = f"{cat_rel}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    surv_href = f"{cat_rel}product-category/أنظمة-المراقبة-والأمن/index.html"
+    if is_en:
+        return (
+            division_card(f"{b}banner-safes.jpg", "Security Safes and Vault Doors",
+                "Safes & Vault Doors", "Heavy Commercial & Banking Safes",
+                "Reinforced bank safes, vault doors, and deposit boxes engineered and tested against burglary and fire to SAMA-compliant standards.",
+                safes_href, "Explore Safes Catalog", "Division 1: Safes & Vaults"),
+            division_card(f"{b}banner-cctv.jpg", "Smart CCTV and Surveillance Systems",
+                "Smart Surveillance", "Advanced Surveillance Systems (Dahua)",
+                "Enterprise IP cameras, PTZ, night-vision dome sensors, and high-performance NVR network recorders with comprehensive warranty.",
+                surv_href, "Explore Surveillance Catalog", "Division 2: CCTV Surveillance"),
+        )
+    return (
+        division_card(f"{b}banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
+            "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية المحصنة",
+            "خزائن مصرفية ثقيلة، أبواب غرف محصنة، وخزائن أمانات مصممة ومختبرة لمقاومة السطو والحرائق وفق أعلى المعايير المعتمدة لكبرى البنوك والمؤسسات.",
+            safes_href, "استعراض منتجات الخزائن", "Division 1: Safes & Vaults"),
+        division_card(f"{b}banner-cctv.jpg", "أنظمة المراقبة والكاميرات الذكية",
+            "مراقبة وتحكم ذكي", "أنظمة المراقبة المتطورة (Dahua)",
+            "منظومات مراقبة شبكية متقدمة تشمل كاميرات PTZ، كاميرات القبة والرؤية الليلية الذكية، وأجهزة التسجيل الشبكية NVR بأعلى دقة وتكامل سحابي.",
+            surv_href, "استعراض أنظمة المراقبة", "Division 2: CCTV Surveillance"),
+    )
+
+
+def get_divisions_section(is_en=False, rel=""):
+    tag = "أبرز قطاعاتنا الأمنية" if not is_en else "Specialized Divisions"
+    h2 = ("حلول الأمان المصرفي والمراقبة المتطورة" if not is_en
+          else "Banking Security Solutions & Smart Surveillance")
+    sub = ("نوفر تجهيزات متكاملة تلبي أعلى اشتراطات الأمان المعتمدة في المملكة" if not is_en
+           else "Delivering turnkey installations meeting the highest national security and compliance standards")
+    # homepage sits at its language root: category links are same-dir relative
+    c1, c2 = _division_cards(is_en, rel, "")
+    return f"""    <!-- Flagship Security Divisions -->
+    <section class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">{tag}</span>
+          <h2 class="section-title">{h2}</h2>
+          <p class="section-subtitle">{sub}</p>
+        </div>
+
+        <div class="divisions-grid">
+{c1}
+
+{c2}
+        </div>
+      </div>
+    </section>"""
+
+
+def get_contact_wa_cta(is_en=False):
+    assets = "../../" if is_en else "../"
+    badge = "دعم مباشر وفوري" if not is_en else "Instant Direct Support"
+    title = "تواصل أسرع عبر واتساب" if not is_en else "Faster Assistance via WhatsApp"
+    desc = ("يمكنك محادثة ممثلي خدمة العملاء والدعم الفني مباشرة والحصول على رد فوري ومباشر لاستفسارك أو طلبك على مدار الساعة." if not is_en
+            else "Chat directly with our technical support and customer care team for instant project inquiries or service requests.")
+    action = "محادثة واتساب: +966 55 489 0900" if not is_en else "WhatsApp: +966 55 489 0900"
+    media_alt = "تواصل معنا عبر واتساب - أحلام الجزيرة" if not is_en else "Connect on WhatsApp - Ahlam Aljazeera"
+    return f"""        <div style="margin-top: 50px;">
+          <div class="cta-whatsapp-card">
+            <div class="cta-whatsapp-content">
+              <span class="cta-whatsapp-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{_WA_GLYPH}"/></svg>
+                <span>{badge}</span>
+              </span>
+              <h2 class="cta-whatsapp-title">{title}</h2>
+              <p class="cta-whatsapp-desc">{desc}</p>
+              <div class="cta-whatsapp-actions">
+                <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="btn-whatsapp-cta">
+                  <svg viewBox="0 0 24 24"><path d="{_WA_GLYPH}"/></svg>
+                  <span>{action}</span>
+                </a>
+              </div>
+            </div>
+            <div class="cta-whatsapp-media">
+              <img src="{assets}assets/img/banners/banner-whatsapp.jpg" alt="{media_alt}" width="1024" height="426" loading="lazy">
+            </div>
+          </div>
+        </div>"""
+
+
+def get_about_showcase(is_en=False):
+    assets = "../../" if is_en else "../"
+    cat = "../"
+    safes_href = f"{cat}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    surv_href = f"{cat}product-category/أنظمة-المراقبة-والأمن/index.html"
+    if is_en:
+        p_tag, p_h2 = "Accredited by Top Financial Institutions", "Trusted Security Partner for Saudi Banking"
+        banner_alt = "Banking Accreditations - Top Banks in Saudi Arabia"
+        d_tag, d_h2 = "Core Expertise", "Integrated Security Divisions"
+        c1 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "Security Safes and Vault Doors",
+            "Safes & Vault Doors", "Commercial & Banking Safes",
+            "Turnkey fitting of financial institutions with heavy certified vaults meeting SAMA security standards.",
+            safes_href, "Explore Products")
+        c2 = division_card(f"{assets}assets/img/banners/banner-cctv.jpg", "Smart CCTV Systems",
+            "Smart Surveillance", "Smart Surveillance Systems",
+            "Advanced enterprise Dahua cameras and recording networks for critical infrastructure defense.",
+            surv_href, "Explore Products")
+    else:
+        p_tag, p_h2 = "اعتمادات كبرى المصارف", "شريك الأمان المعتمد لدى البنوك السعودية"
+        banner_alt = "اعتمادات مصرفية - كبرى البنوك والمصارف"
+        d_tag, d_h2 = "مجالات التميز والتخصص", "أقسامنا وحلولنا المتكاملة"
+        c1 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
+            "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية",
+            "تجهيز كامل لغرف البنوك والمصارف بخزائن ثقيلة وأبواب محصنة مطابقة لمعايير SAMA العالمية.",
+            safes_href, "استعراض المنتجات")
+        c2 = division_card(f"{assets}assets/img/banners/banner-cctv.jpg", "أنظمة المراقبة والكاميرات الذكية",
+            "مراقبة وتحكم ذكي", "أنظمة المراقبة الذكية",
+            "كاميرات متقدمة وشبكات تسجيل Dahua عالية الدقة لضمان الحماية الشاملة للمنشآت والمواقع الحيوية.",
+            surv_href, "استعراض المنتجات")
+    return f"""        <!-- Banking Partners & Trust Showcase -->
+        <div class="section-header" style="margin-top: 50px; margin-bottom: 25px;">
+          <span class="section-tag">{p_tag}</span>
+          <h2 class="section-title">{p_h2}</h2>
+        </div>
+        <div class="clients-banner-wrapper" style="margin-bottom: 50px;">
+          <img src="{assets}assets/img/banners/banner-clients.jpg" alt="{banner_alt}" width="1024" height="426" loading="lazy">
+        </div>
+
+        <!-- Core Divisions -->
+        <div class="section-header" style="margin-bottom: 25px;">
+          <span class="section-tag">{d_tag}</span>
+          <h2 class="section-title">{d_h2}</h2>
+        </div>
+        <div class="divisions-grid" style="margin-bottom: 50px;">
+{c1}
+{c2}
+        </div>"""
+
+
+def get_whatsapp_cta(is_en=False, rel=""):
+    badge = "خدمة العملاء والاستجابة الفورية" if not is_en else "Instant Support & Consultation"
+    title = ("تواصل فوري ومباشر مع فريقنا الهندسي" if not is_en
+             else "Connect Directly with Our Engineering Team")
+    desc = ("هل تحتاج إلى استشارة هندسية لمشروعك، أو تسعير مخصص، أو متابعة طلب صيانة عاجل؟ مهندسونا جاهزون لخدمتكم عبر واتساب مباشرة على مدار الساعة." if not is_en
+            else "Need project specifications, an instant quote, or urgent maintenance support? Our engineers are ready to assist you directly via WhatsApp 24/7.")
+    chat = "محادثة فورية عبر واتساب" if not is_en else "Chat on WhatsApp"
+    quote = "طلب تسعير رسمي" if not is_en else "Request Official Quote"
+    media_alt = "تواصل معنا عبر واتساب - أحلام الجزيرة" if not is_en else "Connect via WhatsApp - Ahlam Aljazeera"
+    return f"""    <!-- Direct WhatsApp Support CTA -->
+    <section class="cta-whatsapp-section">
+      <div class="container">
+        <div class="cta-whatsapp-card">
+          <div class="cta-whatsapp-content">
+            <span class="cta-whatsapp-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{_WA_GLYPH}"/></svg>
+              <span>{badge}</span>
+            </span>
+            <h2 class="cta-whatsapp-title">{title}</h2>
+            <p class="cta-whatsapp-desc">{desc}</p>
+            <div class="cta-whatsapp-actions">
+              <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="btn-whatsapp-cta">
+                <svg viewBox="0 0 24 24"><path d="{_WA_GLYPH}"/></svg>
+                <span>{chat}</span>
+              </a>
+              <button type="button" class="btn-whatsapp-secondary open-quote-modal">
+                <span>{quote}</span>
+              </button>
+            </div>
+          </div>
+          <div class="cta-whatsapp-media">
+            <img src="{rel}assets/img/banners/banner-whatsapp.jpg" alt="{media_alt}" width="1024" height="426" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>"""
 
 
 def build_homepage(is_en=False):
@@ -626,6 +875,8 @@ def build_homepage(is_en=False):
         "srv3_desc": "معدات متخصصة لنقل وتركيب الخزائن والأبواب المحصنة ذات الأوزان العالية بأمان تام." if not is_en else "Specialized heavy equipment for transporting and anchoring multi-ton vaults and safes securely.",
         "srv4_title": "أنظمة المراقبة والتحكم الذكي" if not is_en else "AI Surveillance & Access Control",
         "srv4_desc": "كاميرات مراقبة متطورة بدقة 4K مع تقنيات التعرف على الوجوه والتكامل السحابي." if not is_en else "Advanced 4K AI surveillance with facial recognition, motion tracking, and remote cloud management.",
+        "srv_lead": "من تصفيح غرف الصراف الآلي إلى عقود الصيانة طويلة الأمد، نغطّي دورة حياة المنشأة الأمنية بالكامل تحت سقف واحد." if not is_en else "From armor-plating ATM rooms to long-term maintenance contracts, we cover the full lifecycle of a secure facility under one roof.",
+        "srv_cta": "تحدث إلى مهندس" if not is_en else "Talk to an Engineer",
         "partners_tag": "شركاء النجاح" if not is_en else "Partners of Success",
         "partners_h2": "العلامات التجارية المعتمدة عالمياً" if not is_en else "Globally Authorized Brands",
         "partners_sub": "نورّد ونركّب أنظمة ومنتجات أمنية أصلية من كبرى المصنّعين العالميين، باعتماد رسمي وضمان معتمد." if not is_en else "We supply and install original security systems and hardware from the world's leading manufacturers, under official authorization and warranty.",
@@ -668,7 +919,7 @@ def build_homepage(is_en=False):
             </div>
           </div>
           <div class="hero-media-card">
-            <img src="{rel}wp-content/uploads/2025/06/IMG_0055_0171-500x500.webp" alt="SSM 130 Vault Door">
+            <img src="{rel}wp-content/uploads/2025/06/IMG_0055_0171-500x500.webp" alt="SSM 130 Vault Door" width="500" height="500">
             <div class="hero-floating-pill">
               <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
               <div>
@@ -690,67 +941,58 @@ def build_homepage(is_en=False):
           <p class="section-subtitle">{'تعتمد كبرى البنوك والمصارف والمؤسسات في المملكة والخليج على أنظمة أحلام الجزيرة الأمنية.' if not is_en else 'Leading banks and institutions across Saudi Arabia and the Gulf rely on Aljazeera Dreams security systems.'}</p>
           <p class="clients-count"><strong>+15</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
         </div>
+        {get_clients_banner(is_en, rel)}
         <ul class="clients-grid">
 {get_clients(is_en, rel)}
         </ul>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section" id="services">
+    <!-- Services / Capabilities -->
+    <section class="section services-section" id="services">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{t['srv_tag']}</span>
-          <h2 class="section-title">{t['srv_h2']}</h2>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
-            </div>
-            <h3 class="service-title">{t['srv1_title']}</h3>
-            <p class="service-desc">{t['srv1_desc']}</p>
-            <button class="service-link open-quote-modal" style="cursor: pointer;">
-              <span>{t['quote_btn']}</span>
-              <svg width="12" height="12" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </button>
+        <div class="services-layout">
+          <div class="services-intro">
+            <span class="section-tag">{t['srv_tag']}</span>
+            <h2 class="services-intro-title">{t['srv_h2']}</h2>
+            <p class="services-lead">{t['srv_lead']}</p>
+            <button type="button" class="btn-primary open-quote-modal">{t['srv_cta']}</button>
           </div>
-          <div class="service-card">
-            <div class="service-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
-            </div>
-            <h3 class="service-title">{t['srv2_title']}</h3>
-            <p class="service-desc">{t['srv2_desc']}</p>
-            <button class="service-link open-quote-modal" style="cursor: pointer;">
-              <span>{t['quote_btn']}</span>
-              <svg width="12" height="12" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </button>
-          </div>
-          <div class="service-card">
-            <div class="service-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-            </div>
-            <h3 class="service-title">{t['srv3_title']}</h3>
-            <p class="service-desc">{t['srv3_desc']}</p>
-            <button class="service-link open-quote-modal" style="cursor: pointer;">
-              <span>{t['quote_btn']}</span>
-              <svg width="12" height="12" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </button>
-          </div>
-          <div class="service-card">
-            <div class="service-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-            </div>
-            <h3 class="service-title">{t['srv4_title']}</h3>
-            <p class="service-desc">{t['srv4_desc']}</p>
-            <button class="service-link open-quote-modal" style="cursor: pointer;">
-              <span>{t['quote_btn']}</span>
-              <svg width="12" height="12" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </button>
-          </div>
+          <ol class="services-list">
+            <li class="service-item">
+              <span class="service-num">01</span>
+              <div class="service-item-body">
+                <h3>{t['srv1_title']}</h3>
+                <p>{t['srv1_desc']}</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <span class="service-num">02</span>
+              <div class="service-item-body">
+                <h3>{t['srv2_title']}</h3>
+                <p>{t['srv2_desc']}</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <span class="service-num">03</span>
+              <div class="service-item-body">
+                <h3>{t['srv3_title']}</h3>
+                <p>{t['srv3_desc']}</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <span class="service-num">04</span>
+              <div class="service-item-body">
+                <h3>{t['srv4_title']}</h3>
+                <p>{t['srv4_desc']}</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
+
+{get_divisions_section(is_en, rel)}
 
     <!-- Brands & Partners -->
     <section class="brands-section" id="partners">
@@ -776,8 +1018,10 @@ def build_homepage(is_en=False):
         {get_coverage(is_en)}
       </div>
     </section>
+
+{get_whatsapp_cta(is_en, rel)}
     """
-    
+
     html = generate_base_html(
         title="الرئيسية - حلول الخزائن والأبواب الأمنية" if not is_en else "Home - Security Safes & Vault Doors",
         body_content=body,
@@ -877,6 +1121,7 @@ def build_about_page(is_en=False):
             <p style="color: var(--text-muted); line-height: 1.8;">{t['mission_desc']}</p>
           </div>
         </div>
+{get_about_showcase(is_en)}
       </div>
     </section>
     """
@@ -946,13 +1191,14 @@ def build_contact_page(is_en=False):
             </button>
           </form>
         </div>
+{get_contact_wa_cta(is_en)}
       </div>
     </section>
     """
 
     html = generate_base_html(
         title="اتصل بنا" if not is_en else "Contact Us",
-        body_content=body,
+        body_content=wire_form(body, "cf"),
         is_en=is_en,
         depth=2 if is_en else 1
     )
@@ -1031,7 +1277,7 @@ def build_service_request_page(is_en=False):
 
     html = generate_base_html(
         title="طلب خدمة" if not is_en else "Service Request",
-        body_content=body,
+        body_content=wire_form(body, "sr"),
         is_en=is_en,
         depth=2 if is_en else 1
     )
@@ -1112,7 +1358,7 @@ def build_tech_support_page(is_en=False):
 
     html = generate_base_html(
         title="الدعم الفني" if not is_en else "Technical Support",
-        body_content=body,
+        body_content=wire_form(body, "ts"),
         is_en=is_en,
         depth=2 if is_en else 1
     )
@@ -1183,7 +1429,7 @@ def build_careers_page(is_en=False):
 
     html = generate_base_html(
         title="التوظيف" if not is_en else "Careers",
-        body_content=body,
+        body_content=wire_form(body, "jb"),
         is_en=is_en,
         depth=2 if is_en else 1
     )
@@ -1231,7 +1477,7 @@ def build_single_product_pages():
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; align-items: start; background: var(--bg-surface); padding: 40px; border-radius: var(--radius-xl); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
                   <div style="background: var(--bg-page); padding: 30px; border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--border-color);">
-                    <img src="{img}" alt="{title}" onerror="this.onerror=null; this.src='{rel}wp-content/uploads/2025/06/Asset-5.png';" style="max-height: 420px; margin: 0 auto; object-fit: contain;">
+                    <img src="{img}" alt="{title}" width="420" height="420" onerror="this.onerror=null; this.src='{rel}wp-content/uploads/2025/06/Asset-5.png';" style="max-height: 420px; margin: 0 auto; object-fit: contain;">
                   </div>
                   <div>
                     <span class="product-badge" style="position: static; display: inline-block; margin-bottom: 12px;">{cat}</span>
@@ -1243,7 +1489,7 @@ def build_single_product_pages():
                     {spec_table}
 
                     <div style="background: var(--primary-tint); border: 1px solid var(--primary-light); padding: 20px; border-radius: var(--radius-md); margin: 24px 0 30px;">
-                      <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">{'الضمان والاعتماد' if not is_en else 'Warranty & Compliance'}</h4>
+                      <h3 style="font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">{'الضمان والاعتماد' if not is_en else 'Warranty & Compliance'}</h3>
                       <ul style="font-size: 0.9rem; color: var(--text-body); line-height: 1.8;">
                         <li>✓ {'مطابق لاشتراطات البنك المركزي والجهات الأمنية' if not is_en else 'Compliant with security & banking regulations'}</li>
                         <li>✓ {'ضمان شامل وقطع غيار أصلية متوفرة' if not is_en else 'Comprehensive warranty & genuine spare parts'}</li>
@@ -1277,17 +1523,27 @@ def build_single_product_pages():
             (p_dir / "index.html").write_text(html, encoding="utf-8")
 
 def build_category_pages():
+    # (slug, ar, en, key, banner_img | None, banner_alt_ar, banner_alt_en)
     cats = [
-        ("الخزائن-والأبواب-الأمنية", "الخزائن والأبواب الأمنية", "Safes and Security Doors", "safes"),
-        ("أنظمة-المراقبة-والأمن", "أنظمة المراقبة والأمن", "Surveillance and Security Systems", "surveillance"),
-        ("الأقفال-الأمنية", "الأقفال الأمنية", "Security Locks", "locks"),
+        ("الخزائن-والأبواب-الأمنية", "الخزائن والأبواب الأمنية", "Safes and Security Doors", "safes",
+         "banner-safes.jpg", "الخزائن والأبواب الأمنية - أحلام الجزيرة", "Safes & Vault Doors - Ahlam Aljazeera"),
+        ("أنظمة-المراقبة-والأمن", "أنظمة المراقبة والأمن", "Surveillance and Security Systems", "surveillance",
+         "banner-cctv.jpg", "أنظمة المراقبة والأمن - أحلام الجزيرة", "Security & Surveillance Systems - Ahlam Aljazeera"),
+        ("الأقفال-الأمنية", "الأقفال الأمنية", "Security Locks", "locks", None, "", ""),
     ]
 
-    for slug, title_ar, title_en, cat_key in cats:
+    for slug, title_ar, title_en, cat_key, banner_img, alt_ar, alt_en in cats:
         for is_en in [False, True]:
             rel = "../../../" if is_en else "../../"
             depth = 3 if is_en else 2
             title = title_en if is_en else title_ar
+
+            banner = ""
+            if banner_img:
+                banner = (f'\n\n                <div class="category-banner-card">\n'
+                          f'                  <img src="{rel}assets/img/banners/{banner_img}" width="1024" height="426" '
+                          f'alt="{alt_en if is_en else alt_ar}" class="category-banner-img" loading="lazy">\n'
+                          f'                </div>')
 
             body = f"""
             <section class="section" style="padding-top: 50px;">
@@ -1296,7 +1552,7 @@ def build_category_pages():
                   <span class="section-tag">{'تصنيف المنتجات' if not is_en else 'Product Category'}</span>
                   <h1 class="section-title">{title}</h1>
                   <p class="section-subtitle">{'تصفح أفضل منتجاتنا وحلولنا في هذا التصنيف' if not is_en else 'Browse our specialized product range in this category'}</p>
-                </div>
+                </div>{banner}
 
                 <div class="catalog-controls">
                   <div class="filter-tabs">
