@@ -28,6 +28,7 @@ The 8 locked hues (Blocksy palette):
 | `#F8F9FB` | paper | Page background. |
 | `#FFFFFF` | white | Base surface. |
 | `#25D366` | whatsapp | Contact affordance ONLY. Never a brand color. |
+| `#17823F` | whatsapp-dark | Shade of `#25D366` (48%->28% lightness) for text/icons on light surfaces - `#25D366` itself is 2.9:1 on white and fails AA. 4.88:1. |
 
 ### Implemented tokens ([assets/css/style.css](assets/css/style.css) `:root`)
 
@@ -70,6 +71,9 @@ Notes:
   - **Shadows pulled in:** `.clients-banner-wrapper` and `.category-banner-card` from the bespoke `0 8px 24px` literal to `--shadow-sm`; `.division-card:hover` `xl`->`lg`. `.btn-whatsapp-cta` dropped its green (`rgba(37,211,102,a)`) blurred shadow entirely for neutral `--shadow-sm` / `--shadow-md` - a coloured blur on the dark CTA card was reading as an AI-style glow; the bright green fill already identifies the button.
   - **Motion softened:** `.service-card:hover` lift `-6px`->`-4px` (matches `.division-card`), and its icon-box lost the `scale(1.08)` bump (the teal fill is enough feedback).
   - `backdrop-filter` now survives only where functional: the sticky `.site-header`, the `.modal-overlay` scrim, the `.drawer-backdrop` scrim.
+- `colorize` pass: the site was already a full Committed-teal system (hero, buttons, badges, filter tabs, toast, coverage, CTAs), so this wasn't a grayscale-to-color job. Found and fixed one real drift plus one missed-meaning gap, both scoped to the locked palette:
+  - **Drift**: the tech-support page's "Instant WhatsApp Help" card used ad-hoc Material green (`#2e7d32` / `#e8f5e9`) instead of the sanctioned WhatsApp green. Replaced with `rgba(37,211,102,.12)` (tint, matches `.cta-whatsapp-badge`'s pattern) and the new `#17823F` text/icon shade.
+  - **Missed meaning**: the product-page "Warranty & Compliance" checkmarks (`✓`) were plain body-color text riding on a native list bullet (so each line showed a bullet *and* a checkmark). Now the `✓` is the sole marker, colored `--primary-dark` - it reads as an affirmative brand signal instead of punctuation.
 
 ## Typography
 

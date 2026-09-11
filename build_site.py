@@ -931,7 +931,7 @@ def build_homepage(is_en=False):
     </section>
 
     <!-- Trusted by / Clients -->
-    <section class="clients">
+    <section class="clients" id="partners">
       <div class="container">
         <div class="clients-head">
           <span class="section-tag">{'ثقة مؤسسية' if not is_en else 'Institutional trust'}</span>
@@ -991,8 +991,8 @@ def build_homepage(is_en=False):
 
 {get_divisions_section(is_en, rel)}
 
-    <!-- Brands & Partners -->
-    <section class="brands-section" id="partners">
+    <!-- Authorized Brands -->
+    <section class="brands-section" id="brands">
       <div class="container">
         <div class="section-header" style="margin-bottom: 34px;">
           <span class="section-tag">{t['partners_tag']}</span>
@@ -1309,11 +1309,11 @@ def build_tech_support_page(is_en=False):
             <p style="color: var(--text-muted); font-size: 0.85rem;">{'متاح طوال أيام العمل' if not is_en else 'Available during business hours'}</p>
           </div>
           <div class="branch-card" style="text-align: center; padding: 30px;">
-            <div class="service-icon-box" style="margin: 0 auto 15px; background: #e8f5e9; color: #2e7d32;">
+            <div class="service-icon-box" style="margin: 0 auto 15px; background: rgba(37, 211, 102, 0.12); color: #17823f;">
               <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
             </div>
             <h3 class="branch-name">{'دعم الواتساب الفوري' if not is_en else 'Instant WhatsApp Help'}</h3>
-            <p style="font-size: 1.1rem; font-weight: 800; color: #2e7d32; margin: 10px 0;">+966 55 489 0900</p>
+            <p style="font-size: 1.1rem; font-weight: 800; color: #17823f; margin: 10px 0;">+966 55 489 0900</p>
             <p style="color: var(--text-muted); font-size: 0.85rem;">{'استجابة سريعة للحالات الطارئة' if not is_en else 'Fast response for emergency inquiries'}</p>
           </div>
         </div>
@@ -1487,10 +1487,10 @@ def build_single_product_pages():
 
                     <div style="background: var(--primary-tint); border: 1px solid var(--primary-light); padding: 20px; border-radius: var(--radius-md); margin: 24px 0 30px;">
                       <h3 style="font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">{'الضمان والاعتماد' if not is_en else 'Warranty & Compliance'}</h3>
-                      <ul style="font-size: 0.9rem; color: var(--text-body); line-height: 1.8;">
-                        <li>✓ {'مطابق لاشتراطات البنك المركزي والجهات الأمنية' if not is_en else 'Compliant with security & banking regulations'}</li>
-                        <li>✓ {'ضمان شامل وقطع غيار أصلية متوفرة' if not is_en else 'Comprehensive warranty & genuine spare parts'}</li>
-                        <li>✓ {'تركيب وتدريب فني معتمد من قبل مهندسينا' if not is_en else 'Professional installation & technical support'}</li>
+                      <ul style="font-size: 0.9rem; color: var(--text-body); line-height: 1.8; list-style: none; margin: 0; padding: 0;">
+                        <li><span style="color: var(--primary-dark); font-weight: 700;">✓</span> {'مطابق لاشتراطات البنك المركزي والجهات الأمنية' if not is_en else 'Compliant with security & banking regulations'}</li>
+                        <li><span style="color: var(--primary-dark); font-weight: 700;">✓</span> {'ضمان شامل وقطع غيار أصلية متوفرة' if not is_en else 'Comprehensive warranty & genuine spare parts'}</li>
+                        <li><span style="color: var(--primary-dark); font-weight: 700;">✓</span> {'تركيب وتدريب فني معتمد من قبل مهندسينا' if not is_en else 'Professional installation & technical support'}</li>
                       </ul>
                     </div>
 
