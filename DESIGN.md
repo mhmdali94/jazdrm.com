@@ -94,6 +94,24 @@ Notes:
 - Direction: RTL is the authored default. Use logical properties (`margin-inline`, `padding-inline`, `inset-inline`) so the English LTR mirror is free.
 - Avoid identical card grids and blanket containerization (see PRODUCT.md anti-references).
 
+### Responsive (`adapt` pass)
+
+- Breakpoints in use: 1024 (hero + footer reflow), 850 (nav collapses to the drawer, top bar hides), 560 (header sheds the quote button, hero pill de-floats), 480 (tighten dense grids).
+- **Tap targets**: interactive elements carry a 44px minimum. `.btn-quote` / `.lang-btn` / drawer controls use `min-height: 44px`; footer link lists trade `gap` for `padding-block` so each row is ~44px without visually spreading; `.division-btn` and `.coverage-hq-row` links use `min-height: 44px`. Short text links (footer) clear the 24px AA floor comfortably; exact 44x44 is the target where geometry allows.
+- **Mobile header**: below 560px the always-visible `.btn-quote` is hidden (it crowded the row and wrapped). The quote action moves into the drawer footer (`.drawer-cta`: primary quote button + a plain language link). `.header-actions > *` is `flex-shrink: 0` so nothing gets squeezed.
+- **Hero on narrow screens**: `.hero-badge` is `max-width: 100%` with a non-shrinking icon so the long eyebrow wraps instead of forcing width; `.hero-title` has `overflow-wrap: break-word`; below 560px the `.hero-floating-pill` drops from absolute (`inset-inline: -20px`, which overhung the card) to static flow beneath the image.
+- Chrome headless clamps its viewport at ~500px, so sub-500 widths can't be screenshot-verified here; the fixes above are structural (`max-width`, `flex-shrink`, wrap, static flow) rather than width-tuned.
+
+### Polish pass
+
+- **Copy**: no em-dashes or spaced-hyphen dashes in UI copy. Sentence-level joins use `:` (about lead), Arabic `،` / commas (addresses), or `·` (footer copyright). Day ranges keep the hyphen (`الأحد - الخميس`).
+- **Brand name**: English is **Aljazeera Dreams** everywhere (was "Ahlam Aljazeera" in some alt text). The company descriptor is "Contracting & Maintenance" for the name (matches the Arabic legal name `للمقاولات والصيانة`); the header/footer identity line keeps the fuller "Contracting, Maintenance & Security"; `srv_h2` "Comprehensive Contracting & Security Standards" is a service-scope phrase, not the name.
+- **Homepage clients section**: dropped the baked `banner-clients.jpg` composite. It duplicated the real `.clients-grid` logo wall right below it (same ~15 logos, twice). The grid is the showcase; the banner stays only on the About page where no grid follows it.
+- **Services intro** is `align-self: center` (was `position: sticky`) so the rail sits centred against the taller list instead of top-aligned with a long tail of whitespace.
+- `text-wrap: balance` on `.section-title` / `.services-intro-title` / `.hero-title`; `text-wrap: pretty` on lead/subtitle. Progressive - ignored by old engines.
+- `.cta-whatsapp-media img` gets `object-position: 28% 42%` so `object-fit: cover` frames the hand and phone and crops out the baked-in corner wordmark that was bleeding at the panel seam.
+- Removed the unused `import os` from [build_site.py](build_site.py).
+
 ## Iconography
 
 Line icons, consistent stroke weight, `--color-primary` or `--color-ink` fill. Functional only - no decorative clip-art (a current-site problem). One set, used consistently.

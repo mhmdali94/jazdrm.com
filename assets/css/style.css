@@ -547,11 +547,17 @@ html[dir="ltr"] .dropdown-menu {
   gap: 12px;
 }
 
+.header-actions > * {
+  flex-shrink: 0;
+}
+
 .lang-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 6px 12px;
+  min-height: 44px;
+  padding: 6px 14px;
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--primary-dark);
@@ -569,7 +575,10 @@ html[dir="ltr"] .dropdown-menu {
 .btn-quote {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-height: 44px;
+  white-space: nowrap;
   background: var(--gradient-primary);
   color: #fff;
   font-weight: 700;
@@ -692,6 +701,31 @@ html[dir="ltr"] .mobile-drawer.active {
   padding: 12px 14px;
 }
 
+.drawer-cta {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.drawer-cta .btn-primary {
+  width: 100%;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.drawer-lang {
+  align-self: center;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
 .drawer-backdrop {
   position: fixed;
   inset: 0;
@@ -738,6 +772,7 @@ html[dir="ltr"] .mobile-drawer.active {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
   background: rgba(255, 255, 255, 0.08);
   padding: 6px 16px;
   border-radius: var(--radius-pill);
@@ -748,12 +783,18 @@ html[dir="ltr"] .mobile-drawer.active {
   margin-bottom: 20px;
 }
 
+.hero-badge svg {
+  flex-shrink: 0;
+}
+
 .hero-title {
   font-size: 3rem;
   font-weight: 900;
   line-height: 1.2;
   margin-bottom: 20px;
   color: #fff;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .hero-title span {
@@ -913,11 +954,13 @@ html[dir="ltr"] .hero-floating-pill {
   color: var(--text-main);
   margin-bottom: 15px;
   line-height: 1.3;
+  text-wrap: balance;
 }
 
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-muted);
+  text-wrap: pretty;
 }
 
 /* Services / capabilities - asymmetric editorial list, deliberately not a card grid */
@@ -929,8 +972,7 @@ html[dir="ltr"] .hero-floating-pill {
 }
 
 .services-intro {
-  position: sticky;
-  top: 108px;
+  align-self: center;
 }
 
 .services-intro-title {
@@ -939,6 +981,7 @@ html[dir="ltr"] .hero-floating-pill {
   color: var(--text-main);
   line-height: 1.32;
   margin: 12px 0 18px;
+  text-wrap: balance;
 }
 
 .services-lead {
@@ -946,7 +989,8 @@ html[dir="ltr"] .hero-floating-pill {
   color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: 28px;
-  max-width: 40ch;
+  max-width: 42ch;
+  text-wrap: pretty;
 }
 
 .services-list {
@@ -1017,9 +1061,6 @@ html[dir="ltr"] .hero-floating-pill {
   .services-layout {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-  .services-intro {
-    position: static;
   }
   .services-lead {
     max-width: 60ch;
@@ -1135,6 +1176,7 @@ html[dir="ltr"] .hero-floating-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--primary);
@@ -1298,6 +1340,8 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* frame the hand and phone; keeps the baked-in corner wordmark out of the crop */
+  object-position: 28% 42%;
   display: block;
 }
 
@@ -1444,6 +1488,7 @@ html[dir="ltr"] .search-box svg {
   position: absolute;
   top: 14px;
   right: 14px;
+  z-index: 2;
   background: var(--primary);
   color: #fff;
   font-size: 0.75rem;
@@ -1853,17 +1898,18 @@ html[dir="ltr"] .product-badge {
 
 .coverage-hq-meta {
   margin-top: auto;
-  padding-top: 22px;
+  padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 4px;
 }
 
 .coverage-hq-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 44px;
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.82);
 }
@@ -2195,10 +2241,13 @@ html[dir="ltr"] .footer-title::after {
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
 }
 
 .footer-links a {
+  display: inline-block;
+  align-self: flex-start;
+  padding-block: 11px;
   color: rgba(255, 255, 255, 0.75);
   font-size: 0.9rem;
   transition: color var(--transition-fast);
@@ -2218,6 +2267,11 @@ html[dir="ltr"] .footer-title::after {
   color: rgba(255, 255, 255, 0.6);
   flex-wrap: wrap;
   gap: 15px;
+}
+
+.footer-bottom a {
+  display: inline-block;
+  padding: 11px 0;
 }
 
 /* Floating Actions */
@@ -2332,8 +2386,40 @@ html[dir="ltr"] .footer-title::after {
   .hero-title {
     font-size: 2rem;
   }
+  .hero-media-card {
+    padding: 22px;
+  }
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  /* header: quote action moves into the drawer, keeps the row uncramped */
+  .header-actions .btn-quote {
+    display: none;
+  }
+  .hero-badge {
+    font-size: 0.78rem;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  /* the certification pill drops below the image, never overhanging the card edge */
+  .hero-floating-pill {
+    position: static;
+    inset: auto;
+    margin-top: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+  html[dir="ltr"] .hero-floating-pill {
+    inset: auto;
+  }
+  .hero-stats {
+    gap: 12px;
+  }
+  .stat-number {
+    font-size: 1.55rem;
   }
 }
 

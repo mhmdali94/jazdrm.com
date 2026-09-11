@@ -5,7 +5,6 @@ Generates all Arabic and English pages with the exact brand colors, modern archi
 complete product catalog, and interactive forms.
 """
 
-import os
 import re
 import json
 from pathlib import Path
@@ -325,10 +324,9 @@ def get_header(is_en=False, depth=0):
       <a href="{tech_support_url}" class="nav-link">{t['tech_support']}</a>
       <a href="{careers_url}" class="nav-link">{t['careers']}</a>
       <a href="{contact_url}" class="nav-link">{t['contact']}</a>
-      <div style="margin-top: 15px;">
-        <a href="{lang_toggle_url}" class="btn-primary" style="width: 100%; justify-content: center;">
-          <span>{lang_target}</span>
-        </a>
+      <div class="drawer-cta">
+        <button type="button" class="btn-primary open-quote-modal">{t['quote_btn']}</button>
+        <a href="{lang_toggle_url}" class="drawer-lang">{lang_target}</a>
       </div>
     </nav>
   </div>
@@ -351,13 +349,13 @@ def get_footer(is_en=False, depth=0):
     locks_url = f"{prefix}product-category/الأقفال-الأمنية/index.html"
 
     t = {
-        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة - رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، وأنظمة المراقبة والتحكم، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Security - Pioneers in security safes, bunker vault doors, surveillance, and smart locks for major banks and corporations across Saudi Arabia.",
+        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، وأنظمة المراقبة والتحكم، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Maintenance: pioneers in security safes, bunker vault doors, surveillance, and smart locks for major banks and corporations across Saudi Arabia.",
         "nav_title": "روابط سريعة" if not is_en else "Quick Links",
         "cats_title": "التصنيفات" if not is_en else "Categories",
         "contact_title": "تواصل معنا" if not is_en else "Contact Us",
-        "address": "الرياض (الفرع الرئيسي) - حي الروابي، شارع طاهر الدباغ" if not is_en else "Riyadh (Main HQ) - Al-Rawabi, Taher Al-Dabbagh St.",
+        "address": "الرياض (الفرع الرئيسي)، حي الروابي، شارع طاهر الدباغ" if not is_en else "Riyadh (Main HQ), Al-Rawabi, Taher Al-Dabbagh St.",
         "branches": "فروعنا: الرياض، جدة، المدينة المنورة، تبوك، بريدة، الطائف" if not is_en else "Branches: Riyadh, Jeddah, Medina, Tabuk, Buraydah, Taif",
-        "copyright": "جميع الحقوق محفوظة © 2026 - شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "All Rights Reserved © 2026 - Aljazeera Dreams Co.",
+        "copyright": "جميع الحقوق محفوظة © 2026 · شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "All Rights Reserved © 2026 · Aljazeera Dreams Co.",
         "privacy": "سياسة الخصوصية" if not is_en else "Privacy Policy",
         "terms": "الشروط والأحكام" if not is_en else "Terms & Conditions",
     }
@@ -487,7 +485,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | {'شركة أحلام الجزيرة' if not is_en else 'Aljazeera Dreams Co.'}</title>
-  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة - حلول الخزائن والأبواب الأمنية، أنظمة المراقبة، والأقفال الذكية' if not is_en else 'Aljazeera Dreams - Premium security safes, vault doors, CCTV surveillance, and biometric locks in Saudi Arabia'}">
+  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة: حلول الخزائن والأبواب الأمنية، أنظمة المراقبة، والأقفال الذكية' if not is_en else 'Aljazeera Dreams: premium security safes, vault doors, CCTV surveillance, and biometric locks in Saudi Arabia'}">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-180x180.png">
@@ -568,9 +566,9 @@ def get_coverage(is_en=False):
     )
     hq_city = "الرياض" if not is_en else "Riyadh"
     hq_tag = "الفرع الرئيسي" if not is_en else "Head Office"
-    hq_addr = ("حي الروابي، شارع طاهر الدباغ — الرياض، المملكة العربية السعودية"
+    hq_addr = ("حي الروابي، شارع طاهر الدباغ، الرياض، المملكة العربية السعودية"
                if not is_en else
-               "Al-Rawabi District, Taher Al-Dabbagh St. — Riyadh, Saudi Arabia")
+               "Al-Rawabi District, Taher Al-Dabbagh St., Riyadh, Saudi Arabia")
     hq_hours = "الأحد - الخميس: 9:00 ص - 5:00 م" if not is_en else "Sun - Thu: 9:00 AM - 5:00 PM"
     others = "الفروع الإقليمية" if not is_en else "Regional branches"
     maps_label = "الموقع على الخريطة" if not is_en else "View on the map"
@@ -739,7 +737,7 @@ def get_contact_wa_cta(is_en=False):
     desc = ("يمكنك محادثة ممثلي خدمة العملاء والدعم الفني مباشرة والحصول على رد فوري ومباشر لاستفسارك أو طلبك على مدار الساعة." if not is_en
             else "Chat directly with our technical support and customer care team for instant project inquiries or service requests.")
     action = "محادثة واتساب: +966 55 489 0900" if not is_en else "WhatsApp: +966 55 489 0900"
-    media_alt = "تواصل معنا عبر واتساب - أحلام الجزيرة" if not is_en else "Connect on WhatsApp - Ahlam Aljazeera"
+    media_alt = "تواصل مع أحلام الجزيرة عبر واتساب" if not is_en else "Contact Aljazeera Dreams on WhatsApp"
     return f"""        <div style="margin-top: 50px;">
           <div class="cta-whatsapp-card">
             <div class="cta-whatsapp-content">
@@ -820,7 +818,7 @@ def get_whatsapp_cta(is_en=False, rel=""):
             else "Need project specifications, an instant quote, or urgent maintenance support? Our engineers are ready to assist you directly via WhatsApp 24/7.")
     chat = "محادثة فورية عبر واتساب" if not is_en else "Chat on WhatsApp"
     quote = "طلب تسعير رسمي" if not is_en else "Request Official Quote"
-    media_alt = "تواصل معنا عبر واتساب - أحلام الجزيرة" if not is_en else "Connect via WhatsApp - Ahlam Aljazeera"
+    media_alt = "تواصل مع أحلام الجزيرة عبر واتساب" if not is_en else "Contact Aljazeera Dreams on WhatsApp"
     return f"""    <!-- Direct WhatsApp Support CTA -->
     <section class="cta-whatsapp-section">
       <div class="container">
@@ -941,7 +939,6 @@ def build_homepage(is_en=False):
           <p class="section-subtitle">{'تعتمد كبرى البنوك والمصارف والمؤسسات في المملكة والخليج على أنظمة أحلام الجزيرة الأمنية.' if not is_en else 'Leading banks and institutions across Saudi Arabia and the Gulf rely on Aljazeera Dreams security systems.'}</p>
           <p class="clients-count"><strong>+15</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
         </div>
-        {get_clients_banner(is_en, rel)}
         <ul class="clients-grid">
 {get_clients(is_en, rel)}
         </ul>
@@ -1088,7 +1085,7 @@ def build_products_page(is_en=False):
 def build_about_page(is_en=False):
     t = {
         "tag": "من نحن" if not is_en else "About Us",
-        "h1": "شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "Aljazeera Dreams Contracting & Security",
+        "h1": "شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "Aljazeera Dreams Contracting & Maintenance",
         "sub": "أكثر من 15 عاماً من الخبرة والتميز في تزويد وتركيب أحدث تقنيات الخزائن والأبواب الأمنية والحلول المصرفية في المملكة العربية السعودية." if not is_en else "Over 15 years of excellence delivering high-security safes, vault doors, and smart banking solutions across Saudi Arabia.",
         "vision_title": "رؤيتنا" if not is_en else "Our Vision",
         "vision_desc": "أن نكون الخيار الأول والموثوق في المملكة العربية السعودية والخليج لتوريد وتركيب وصيانة أحدث حلول الأمان والخزائن المحصنة." if not is_en else "To be the leading and most trusted provider of advanced security safes, fortified vault doors, and contracting solutions in the region.",
@@ -1526,9 +1523,9 @@ def build_category_pages():
     # (slug, ar, en, key, banner_img | None, banner_alt_ar, banner_alt_en)
     cats = [
         ("الخزائن-والأبواب-الأمنية", "الخزائن والأبواب الأمنية", "Safes and Security Doors", "safes",
-         "banner-safes.jpg", "الخزائن والأبواب الأمنية - أحلام الجزيرة", "Safes & Vault Doors - Ahlam Aljazeera"),
+         "banner-safes.jpg", "خزائن وأبواب أمنية من أحلام الجزيرة", "Aljazeera Dreams safes and vault doors"),
         ("أنظمة-المراقبة-والأمن", "أنظمة المراقبة والأمن", "Surveillance and Security Systems", "surveillance",
-         "banner-cctv.jpg", "أنظمة المراقبة والأمن - أحلام الجزيرة", "Security & Surveillance Systems - Ahlam Aljazeera"),
+         "banner-cctv.jpg", "أنظمة مراقبة وأمن من أحلام الجزيرة", "Aljazeera Dreams surveillance and security systems"),
         ("الأقفال-الأمنية", "الأقفال الأمنية", "Security Locks", "locks", None, "", ""),
     ]
 
