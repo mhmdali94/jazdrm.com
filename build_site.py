@@ -48,7 +48,8 @@ def product_desc(p, is_en):
 
 _SPEC_LABELS = [
     "Outside(mm)", "Inside(mm)", "Weight(kg)", "Shelf(pc.)", "Shelf(pc)",
-    "Shelves(pc.)", "Fire Class", "Fire Rating",
+    "Shelves(pc.)", "Fire Class", "Fire Rating", "Lock System", "Lock Type",
+    "Certification", "Burglary Resistance",
     "Dimension", "Dimensions", "Outside", "Inside", "Overall", "Weight",
     "Capacity", "Shelves", "Shelf", "Boxes", "Drawers", "Locking", "Lock",
     "EMD", "Colour", "Color", "Material", "Body", "Door",
@@ -61,6 +62,8 @@ _SPEC_LABELS_AR = {
     "Shelf": "الأرفف", "Shelves": "الأرفف", "Boxes": "الأدراج", "Drawers": "الأدراج",
     "Locking": "نظام الإغلاق", "Lock": "القفل", "EMD": "فتحة الطوارئ (EMD)",
     "Fire Class": "مقاومة الحريق", "Fire Rating": "تصنيف الحريق",
+    "Lock System": "نظام القفل", "Lock Type": "نوع القفل الإختياري",
+    "Certification": "الشهادة", "Burglary Resistance": "مقاومة السطو",
     "Colour": "اللون", "Color": "اللون", "Material": "الخامة",
     "Body": "الهيكل", "Door": "الباب",
 }
@@ -145,17 +148,11 @@ def get_header(is_en=False, depth=0):
         "contact": "اتصل بنا" if not is_en else "Contact Us",
         "quote_btn": "طلب تسعير" if not is_en else "Request Quote",
         "cat_safes": "الخزائن والأبواب الأمنية" if not is_en else "Safes & Security Doors",
-        "cat_surveillance": "أنظمة المراقبة والأمن" if not is_en else "Surveillance & Security",
         "cat_locks": "الأقفال الأمنية" if not is_en else "Security Locks",
         "sub_vault": "أبواب الخزائن المحصنة" if not is_en else "Vault & Bunker Doors",
         "sub_fireproof": "خزائن مقاومة للحريق" if not is_en else "Fireproof Safes",
         "sub_deposit": "خزائن الإيداع" if not is_en else "Deposit Lockers",
         "sub_filing": "دواليب الملفات الأمنية" if not is_en else "Security File Cabinets",
-        "sub_cctv": "كاميرات مراقبة (Hikvision / Dahua)" if not is_en else "CCTV Cameras (Hikvision/Dahua)",
-        "sub_dvr": "أنظمة تسجيل DVR / NVR" if not is_en else "DVR / NVR Recording Systems",
-        "sub_screens": "شاشات مراقبة وتحكم" if not is_en else "Control & Monitor Screens",
-        "sub_intercom": "أنظمة الإنتركوم الذكية" if not is_en else "Smart Intercom Systems",
-        "sub_attendance": "أجهزة الحضور والانصراف" if not is_en else "Biometric Attendance Systems",
         "sub_digital_locks": "أقفال رقمية ذكية" if not is_en else "Smart Digital Locks",
         "sub_bio_locks": "أقفال بصمة الإصبع" if not is_en else "Fingerprint Locks",
         "sub_face_locks": "أقفال التعرف على الوجه" if not is_en else "Facial Recognition Locks",
@@ -176,7 +173,6 @@ def get_header(is_en=False, depth=0):
     careers_url = f"{prefix}job-application/index.html"
 
     safes_url = f"{prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    surveillance_url = f"{prefix}product-category/أنظمة-المراقبة-والأمن/index.html"
     locks_url = f"{prefix}product-category/الأقفال-الأمنية/index.html"
 
     return f"""
@@ -226,7 +222,7 @@ def get_header(is_en=False, depth=0):
             <div class="dropdown-menu">
               <a href="{home_url}#services" class="dropdown-item">{t['sub_vault']}</a>
               <a href="{home_url}#services" class="dropdown-item">{t['sub_fireproof']}</a>
-              <a href="{home_url}#services" class="dropdown-item">{t['sub_cctv']}</a>
+              <a href="{home_url}#services" class="dropdown-item">{t['sub_digital_locks']}</a>
               <a href="{service_req_url}" class="dropdown-item">{t['service_req']}</a>
             </div>
           </div>
@@ -275,19 +271,6 @@ def get_header(is_en=False, depth=0):
             </div>
           </div>
           <div class="nav-item">
-            <a href="{surveillance_url}" class="nav-link">
-              <span>{t['cat_surveillance']}</span>
-              <svg class="arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </a>
-            <div class="dropdown-menu">
-              <a href="{surveillance_url}" class="dropdown-item">{t['sub_cctv']}</a>
-              <a href="{surveillance_url}" class="dropdown-item">{t['sub_dvr']}</a>
-              <a href="{surveillance_url}" class="dropdown-item">{t['sub_screens']}</a>
-              <a href="{surveillance_url}" class="dropdown-item">{t['sub_intercom']}</a>
-              <a href="{surveillance_url}" class="dropdown-item">{t['sub_attendance']}</a>
-            </div>
-          </div>
-          <div class="nav-item">
             <a href="{locks_url}" class="nav-link">
               <span>{t['cat_locks']}</span>
               <svg class="arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
@@ -317,7 +300,6 @@ def get_header(is_en=False, depth=0):
       <a href="{home_url}" class="nav-link">{t['home']}</a>
       <a href="{products_url}" class="nav-link">{t['products']}</a>
       <a href="{safes_url}" class="nav-link">{t['cat_safes']}</a>
-      <a href="{surveillance_url}" class="nav-link">{t['cat_surveillance']}</a>
       <a href="{locks_url}" class="nav-link">{t['cat_locks']}</a>
       <a href="{about_url}" class="nav-link">{t['about']}</a>
       <a href="{service_req_url}" class="nav-link">{t['service_req']}</a>
@@ -345,11 +327,10 @@ def get_footer(is_en=False, depth=0):
     tech_support_url = f"{prefix}technical-support/index.html"
 
     safes_url = f"{prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    surveillance_url = f"{prefix}product-category/أنظمة-المراقبة-والأمن/index.html"
     locks_url = f"{prefix}product-category/الأقفال-الأمنية/index.html"
 
     t = {
-        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، وأنظمة المراقبة والتحكم، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Maintenance: pioneers in security safes, bunker vault doors, surveillance, and smart locks for major banks and corporations across Saudi Arabia.",
+        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Maintenance: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
         "nav_title": "روابط سريعة" if not is_en else "Quick Links",
         "cats_title": "التصنيفات" if not is_en else "Categories",
         "contact_title": "تواصل معنا" if not is_en else "Contact Us",
@@ -387,8 +368,8 @@ def get_footer(is_en=False, depth=0):
           <h3 class="footer-title">{t['cats_title']}</h3>
           <div class="footer-links">
             <a href="{safes_url}">{'الخزائن والأبواب الأمنية' if not is_en else 'Safes & Vault Doors'}</a>
-            <a href="{surveillance_url}">{'أنظمة المراقبة والأمن' if not is_en else 'Surveillance Systems'}</a>
             <a href="{locks_url}">{'الأقفال الأمنية الذكية' if not is_en else 'Security Locks'}</a>
+            <a href="{safes_url}">{'دواليب الملفات المقاومة للحريق' if not is_en else 'Fireproof Filing Cabinets'}</a>
             <a href="{safes_url}">{'خزائن الإيداع والغرف المحصنة' if not is_en else 'Deposit & Vault Lockers'}</a>
           </div>
         </div>
@@ -485,7 +466,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | {'شركة أحلام الجزيرة' if not is_en else 'Aljazeera Dreams Co.'}</title>
-  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة: حلول الخزائن والأبواب الأمنية، أنظمة المراقبة، والأقفال الذكية' if not is_en else 'Aljazeera Dreams: premium security safes, vault doors, CCTV surveillance, and biometric locks in Saudi Arabia'}">
+  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة: حلول الخزائن والأبواب الأمنية، دواليب الملفات المقاومة للحريق، والأقفال الذكية' if not is_en else 'Aljazeera Dreams: premium security safes, vault doors, fireproof filing cabinets, and smart locks in Saudi Arabia'}">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-180x180.png">
@@ -510,25 +491,22 @@ def get_brand_wall(is_en=False, rel=""):
     """Monochrome wordmark wall for the globally-authorized product brands."""
     cat_prefix = f"{rel}en/" if is_en else f"{rel}"
     safes_cat = f"{cat_prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    surv_cat = f"{cat_prefix}product-category/أنظمة-المراقبة-والأمن/index.html"
     view = "استعراض المنتجات" if not is_en else "View products"
 
     G = {
         "vault": '<rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><circle cx="10" cy="12" r="3"/><path d="M10 12l1.8-1.8"/><path d="M16.5 9.2v5.6"/>',
         "shield": '<path d="M12 3.2l7 2.6v4.9c0 4.3-2.9 7.6-7 8.9-4.1-1.3-7-4.6-7-8.9V5.8z"/><path d="M9 12l2.1 2.1L15.2 10"/>',
         "fingerprint": '<path d="M12 4.6c-4 0-7 2.9-7 7.1 0 1.4.2 2.7.6 3.8"/><path d="M8.5 12c0-1.9 1.5-3.4 3.5-3.4s3.5 1.5 3.5 3.4c0 2 0 4-1 5.8"/><path d="M12 12v3.2c0 1.4-.3 2.7-.8 3.9"/><path d="M18.4 15.6c.4-1.2.6-2.4.6-3.6 0-1.6-.5-3-1.4-4.2"/>',
-        "sun": '<circle cx="12" cy="12" r="3.6"/><path d="M12 3.5v2M12 18.5v2M4.7 4.7l1.4 1.4M17.9 17.9l1.4 1.4M3.5 12h2M18.5 12h2M4.7 19.3l1.4-1.4M17.9 6.1l1.4-1.4"/>',
-        "bullet_cam": '<rect x="3" y="8" width="12.5" height="6.5" rx="2"/><path d="M15.5 9.5l4.5-2.2v9.4l-4.5-2.2z"/><path d="M7 14.5v4.5"/><path d="M5 19h4"/>',
-        "dome_cam": '<path d="M4.5 12a7.5 7.5 0 0115 0z"/><circle cx="12" cy="11.4" r="2.1"/><path d="M12 12.2V19"/><path d="M9.5 19h5"/>',
+        "lock": '<rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7.5a4 4 0 018 0V11"/><circle cx="12" cy="15.3" r="1.4"/>',
     }
 
     brands = [
-        ("falcon",    "falcon.png",    "FALCON",   "SAFES",      G["vault"],       safes_cat),
-        ("diplomat",  "diplomat.png",  "DIPLOMAT", "",           G["shield"],      safes_cat),
-        ("jiabao",    "jiabao.svg",    "JIABAO",   "SECURITY",   G["fingerprint"], safes_cat),
-        ("sunpower",  "sunpower.svg",  "SUNPOWER", "",           G["sun"],         safes_cat),
-        ("hik",       "hikvision.svg", "HIKVISION","",           G["bullet_cam"],  surv_cat),
-        ("dahua",     "dahua.svg",     "DAHUA",    "TECHNOLOGY", G["dome_cam"],    surv_cat),
+        ("falcon",     "falcon.png",     "FALCON",    "SAFES",             G["vault"],       safes_cat),
+        ("diplomat",   "diplomat.png",   "DIPLOMAT",  "",                  G["shield"],      safes_cat),
+        ("jiabao",     "jiabao.svg",     "JIABAO",    "SECURITY",          G["fingerprint"], safes_cat),
+        ("godrej",     "godrej.png",     "GODREJ",    "SECURITY SOLUTIONS",G["shield"],      safes_cat),
+        ("xyoungann",  "xyoungann.png",  "X YOUNG ANN","",                 G["vault"],       safes_cat),
+        ("ooilsafi",   "ooilsafi.png",   "B.I.",      "OOIL SAFI",         G["lock"],        safes_cat),
     ]
 
     cells = []
@@ -680,34 +658,33 @@ def _division_cards(is_en, banner_rel, cat_rel):
     """banner_rel: prefix to assets/  ·  cat_rel: prefix to product-category/"""
     b = f"{banner_rel}assets/img/banners/"
     safes_href = f"{cat_rel}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    surv_href = f"{cat_rel}product-category/أنظمة-المراقبة-والأمن/index.html"
     if is_en:
         return (
             division_card(f"{b}banner-safes.jpg", "Security Safes and Vault Doors",
                 "Safes & Vault Doors", "Heavy Commercial & Banking Safes",
                 "Reinforced bank safes, vault doors, and deposit boxes engineered and tested against burglary and fire to SAMA-compliant standards.",
                 safes_href, "Explore Safes Catalog", "Division 1: Safes & Vaults"),
-            division_card(f"{b}banner-cctv.jpg", "Smart CCTV and Surveillance Systems",
-                "Smart Surveillance", "Advanced Surveillance Systems (Dahua)",
-                "Enterprise IP cameras, PTZ, night-vision dome sensors, and high-performance NVR network recorders with comprehensive warranty.",
-                surv_href, "Explore Surveillance Catalog", "Division 2: CCTV Surveillance"),
+            division_card(f"{b}banner-safes.jpg", "Fireproof Filing Cabinets and Deposit Lockers",
+                "Fireproof Filing & Deposit", "Fireproof Filing Cabinets & Deposit Lockers",
+                "Fire and burglary-resistant filing cabinets and deposit lockers with electronic, combination, and dual-key locking, protecting documents and valuables for banks and institutions.",
+                safes_href, "Explore Products", "Division 2: Filing & Deposit Lockers"),
         )
     return (
         division_card(f"{b}banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
             "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية المحصنة",
             "خزائن مصرفية ثقيلة، أبواب غرف محصنة، وخزائن أمانات مصممة ومختبرة لمقاومة السطو والحرائق وفق أعلى المعايير المعتمدة لكبرى البنوك والمؤسسات.",
             safes_href, "استعراض منتجات الخزائن", "Division 1: Safes & Vaults"),
-        division_card(f"{b}banner-cctv.jpg", "أنظمة المراقبة والكاميرات الذكية",
-            "مراقبة وتحكم ذكي", "أنظمة المراقبة المتطورة (Dahua)",
-            "منظومات مراقبة شبكية متقدمة تشمل كاميرات PTZ، كاميرات القبة والرؤية الليلية الذكية، وأجهزة التسجيل الشبكية NVR بأعلى دقة وتكامل سحابي.",
-            surv_href, "استعراض أنظمة المراقبة", "Division 2: CCTV Surveillance"),
+        division_card(f"{b}banner-safes.jpg", "دواليب الملفات وخزائن الإيداع المحصنة",
+            "دواليب وخزائن إيداع", "دواليب الملفات وخزائن الإيداع المحصنة",
+            "دواليب ملفات وخزائن إيداع مقاومة للحريق والسرقة، بأقفال إلكترونية ومركبة وثنائية المفتاح، لحماية المستندات والأصول الثمينة لدى البنوك والمؤسسات.",
+            safes_href, "استعراض المنتجات", "Division 2: Filing & Deposit Lockers"),
     )
 
 
 def get_divisions_section(is_en=False, rel=""):
     tag = "أبرز قطاعاتنا الأمنية" if not is_en else "Specialized Divisions"
-    h2 = ("حلول الأمان المصرفي والمراقبة المتطورة" if not is_en
-          else "Banking Security Solutions & Smart Surveillance")
+    h2 = ("حلول الأمان المصرفي وخزائن الإيداع المحصنة" if not is_en
+          else "Banking Security Solutions & Fireproof Deposit Storage")
     sub = ("نوفر تجهيزات متكاملة تلبي أعلى اشتراطات الأمان المعتمدة في المملكة" if not is_en
            else "Delivering turnkey installations meeting the highest national security and compliance standards")
     # homepage sits at its language root: category links are same-dir relative
@@ -765,7 +742,6 @@ def get_about_showcase(is_en=False):
     assets = "../../" if is_en else "../"
     cat = "../"
     safes_href = f"{cat}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    surv_href = f"{cat}product-category/أنظمة-المراقبة-والأمن/index.html"
     if is_en:
         p_tag, p_h2 = "Accredited by Top Financial Institutions", "Trusted Security Partner for Saudi Banking"
         banner_alt = "Banking Accreditations - Top Banks in Saudi Arabia"
@@ -774,10 +750,10 @@ def get_about_showcase(is_en=False):
             "Safes & Vault Doors", "Commercial & Banking Safes",
             "Turnkey fitting of financial institutions with heavy certified vaults meeting SAMA security standards.",
             safes_href, "Explore Products")
-        c2 = division_card(f"{assets}assets/img/banners/banner-cctv.jpg", "Smart CCTV Systems",
-            "Smart Surveillance", "Smart Surveillance Systems",
-            "Advanced enterprise Dahua cameras and recording networks for critical infrastructure defense.",
-            surv_href, "Explore Products")
+        c2 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "Fireproof Filing Cabinets and Deposit Lockers",
+            "Fireproof Filing & Deposit", "Fireproof Filing Cabinets & Deposit Lockers",
+            "Fire and burglary-resistant filing cabinets and deposit lockers for documents and valuables.",
+            safes_href, "Explore Products")
     else:
         p_tag, p_h2 = "اعتمادات كبرى المصارف", "شريك الأمان المعتمد لدى البنوك السعودية"
         banner_alt = "اعتمادات مصرفية - كبرى البنوك والمصارف"
@@ -786,10 +762,10 @@ def get_about_showcase(is_en=False):
             "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية",
             "تجهيز كامل لغرف البنوك والمصارف بخزائن ثقيلة وأبواب محصنة مطابقة لمعايير SAMA العالمية.",
             safes_href, "استعراض المنتجات")
-        c2 = division_card(f"{assets}assets/img/banners/banner-cctv.jpg", "أنظمة المراقبة والكاميرات الذكية",
-            "مراقبة وتحكم ذكي", "أنظمة المراقبة الذكية",
-            "كاميرات متقدمة وشبكات تسجيل Dahua عالية الدقة لضمان الحماية الشاملة للمنشآت والمواقع الحيوية.",
-            surv_href, "استعراض المنتجات")
+        c2 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "دواليب الملفات وخزائن الإيداع المحصنة",
+            "دواليب وخزائن إيداع", "دواليب الملفات وخزائن الإيداع المحصنة",
+            "دواليب ملفات وخزائن إيداع مقاومة للحريق والسرقة لحماية المستندات والأصول الثمينة.",
+            safes_href, "استعراض المنتجات")
     return f"""        <!-- Banking Partners & Trust Showcase -->
         <div class="section-header" style="margin-top: 50px; margin-bottom: 25px;">
           <span class="section-tag">{p_tag}</span>
@@ -853,7 +829,7 @@ def build_homepage(is_en=False):
     t = {
         "badge": "الريادة في حلول الأمن والمقاولات منذ أكثر من 15 عاماً" if not is_en else "Leading Security & Contracting in Saudi Arabia for 15+ Years",
         "h1": "حلول متكاملة في <span>الخزائن المحصنة</span> وأنظمة الأمان الذكية" if not is_en else "Integrated Solutions for <span>Vault Doors</span> & Smart Security Systems",
-        "sub": "نقدم خدمات التوريد والتركيب والصيانة الدورية للخزائن والأبواب المصرفية المحصنة، كاميرات المراقبة، والأقفال الرقمية المتطورة لكبرى البنوك والمؤسسات في كافة أنحاء المملكة." if not is_en else "Supplying, installing, and maintaining fortified bank vault doors, fireproof safes, AI video surveillance, and biometric locks for enterprises across Saudi Arabia.",
+        "sub": "نقدم خدمات التوريد والتركيب والصيانة الدورية للخزائن والأبواب المصرفية المحصنة، دواليب الملفات المقاومة للحريق، والأقفال الرقمية المتطورة لكبرى البنوك والمؤسسات في كافة أنحاء المملكة." if not is_en else "Supplying, installing, and maintaining fortified bank vault doors, fireproof safes, fireproof filing cabinets, and biometric locks for enterprises across Saudi Arabia.",
         "explore_btn": "استكشف المنتجات" if not is_en else "Explore Products",
         "quote_btn": "طلب عرض سعر" if not is_en else "Request Quote",
         "stat_years": "+15" if not is_en else "15+",
@@ -868,11 +844,11 @@ def build_homepage(is_en=False):
         "srv1_title": "تجهيز غرف الصراف والبنوك" if not is_en else "ATM & Vault Room Setup",
         "srv1_desc": "تجهيز وتصفيح غرف الصراف الآلي (ATM) وغرف الخزائن الرئيسية وفق اشتراطات البنك المركزي السعودي." if not is_en else "Armor plating and custom engineering for bank ATM enclosures and vault rooms meeting central bank standards.",
         "srv2_title": "صيانة دورية وعقود تشغيل" if not is_en else "Periodic Maintenance Contracts",
-        "srv2_desc": "عقود صيانة معتمدة لضمان استمرارية عمل الأبواب المحصنة، أجهزة الإنذار، وأنظمة المراقبة 24/7." if not is_en else "Certified SLA maintenance ensuring 24/7 reliability for fortified doors, alarms, and CCTV systems.",
+        "srv2_desc": "عقود صيانة معتمدة لضمان استمرارية عمل الأبواب المحصنة، أجهزة الإنذار، والأقفال الرقمية 24/7." if not is_en else "Certified SLA maintenance ensuring 24/7 reliability for fortified doors, alarms, and digital locking systems.",
         "srv3_title": "نقل وتركيب الخزائن الثقيلة" if not is_en else "Heavy Safe Relocation & Install",
         "srv3_desc": "معدات متخصصة لنقل وتركيب الخزائن والأبواب المحصنة ذات الأوزان العالية بأمان تام." if not is_en else "Specialized heavy equipment for transporting and anchoring multi-ton vaults and safes securely.",
-        "srv4_title": "أنظمة المراقبة والتحكم الذكي" if not is_en else "AI Surveillance & Access Control",
-        "srv4_desc": "كاميرات مراقبة متطورة بدقة 4K مع تقنيات التعرف على الوجوه والتكامل السحابي." if not is_en else "Advanced 4K AI surveillance with facial recognition, motion tracking, and remote cloud management.",
+        "srv4_title": "الأقفال الرقمية وأنظمة التحكم بالدخول" if not is_en else "Digital Locks & Access Control",
+        "srv4_desc": "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية المعتمدة." if not is_en else "Supply and installation of all types of certified digital and manual locks, security keys, and digital combination systems.",
         "srv_lead": "من تصفيح غرف الصراف الآلي إلى عقود الصيانة طويلة الأمد، نغطّي دورة حياة المنشأة الأمنية بالكامل تحت سقف واحد." if not is_en else "From armor-plating ATM rooms to long-term maintenance contracts, we cover the full lifecycle of a secure facility under one roof.",
         "srv_cta": "تحدث إلى مهندس" if not is_en else "Talk to an Engineer",
         "partners_tag": "شركاء النجاح" if not is_en else "Partners of Success",
@@ -1033,11 +1009,10 @@ def build_homepage(is_en=False):
 def build_products_page(is_en=False):
     t = {
         "tag": "كتالوج المنتجات" if not is_en else "Product Catalog",
-        "h1": "جميع الخزائن وأنظمة الأمان والمراقبة" if not is_en else "All Security Safes, Vaults & Surveillance",
-        "sub": "تصفح تشكيلتنا الشاملة من الخزائن المصرفية المقاومة للحريق والسرقة، كاميرات المراقبة، والأقفال الذكية." if not is_en else "Explore our full catalog of fireproof bank vaults, ATM safes, 4K CCTV systems, and biometric locks.",
+        "h1": "جميع الخزائن وأنظمة الأمان" if not is_en else "All Security Safes & Vaults",
+        "sub": "تصفح تشكيلتنا الشاملة من الخزائن المصرفية المقاومة للحريق والسرقة، دواليب الملفات وخزائن الإيداع، والأقفال الذكية." if not is_en else "Explore our full catalog of fireproof bank vaults, ATM safes, filing cabinets and deposit lockers, and biometric locks.",
         "tab_all": "جميع المنتجات" if not is_en else "All Products",
         "tab_safes": "الخزائن والأبواب" if not is_en else "Safes & Doors",
-        "tab_surv": "المراقبة والكاميرات" if not is_en else "Surveillance & CCTV",
         "tab_locks": "الأقفال الذكية" if not is_en else "Smart Locks",
         "search_ph": "ابحث عن موديل أو منتج..." if not is_en else "Search model or product name...",
     }
@@ -1055,7 +1030,6 @@ def build_products_page(is_en=False):
           <div class="filter-tabs">
             <button class="filter-tab active" data-category="all">{t['tab_all']}</button>
             <button class="filter-tab" data-category="safes">{t['tab_safes']}</button>
-            <button class="filter-tab" data-category="surveillance">{t['tab_surv']}</button>
             <button class="filter-tab" data-category="locks">{t['tab_locks']}</button>
           </div>
           <div class="search-box">
@@ -1228,7 +1202,7 @@ def build_service_request_page(is_en=False):
                 <option value="atm">{'تجهيز غرف الصراف والبنوك' if not is_en else 'ATM & Vault Room Setup'}</option>
                 <option value="maintenance">{'صيانة دورية أو طارئة' if not is_en else 'Periodic / Emergency Maintenance'}</option>
                 <option value="relocation">{'نقل وتركيب خزائن ثقيلة' if not is_en else 'Heavy Safe Relocation & Installation'}</option>
-                <option value="cctv">{'تركيب وصيانة أنظمة مراقبة وأمن' if not is_en else 'CCTV & Security System Installation'}</option>
+                <option value="filing">{'تركيب دواليب ملفات وخزائن إيداع' if not is_en else 'Filing Cabinet & Deposit Locker Installation'}</option>
                 <option value="locks">{'برمجة وتركيب أقفال أمنية' if not is_en else 'Lock Programming & Installation'}</option>
               </select>
             </div>
@@ -1287,7 +1261,7 @@ def build_tech_support_page(is_en=False):
     t = {
         "tag": "الدعم الفني" if not is_en else "Technical Support",
         "h1": "مركز الدعم الفني وخدمة العملاء" if not is_en else "Technical Support & Customer Care",
-        "sub": "نقدم الدعم الفني المتواصل على مدار الساعة لضمان استقرار وحماية أنظمتكم الأمنية." if not is_en else "24/7 dedicated support for emergency safe opening, lock reset, and CCTV diagnostics.",
+        "sub": "نقدم الدعم الفني المتواصل على مدار الساعة لضمان استقرار وحماية أنظمتكم الأمنية." if not is_en else "24/7 dedicated support for emergency safe opening, lock reset, and fireproof cabinet servicing.",
     }
 
     body = f"""
@@ -1335,7 +1309,7 @@ def build_tech_support_page(is_en=False):
               <label class="form-label">{'نوع المشكلة الفنية' if not is_en else 'Issue Type'} *</label>
               <select class="form-control" required>
                 <option value="lock">{'مشكلة في فتح قفل الخزنة أو الباب' if not is_en else 'Lock opening / password reset issue'}</option>
-                <option value="camera">{'عطل في كاميرات المراقبة أو جهاز التسجيل' if not is_en else 'CCTV / DVR technical fault'}</option>
+                <option value="cabinet">{'عطل في دولاب ملفات أو خزانة إيداع' if not is_en else 'Filing cabinet / deposit locker fault'}</option>
                 <option value="door">{'صيانة أبواب الخزائن المحصنة' if not is_en else 'Vault door maintenance'}</option>
                 <option value="other">{'أخرى' if not is_en else 'Other'}</option>
               </select>
@@ -1401,7 +1375,7 @@ def build_careers_page(is_en=False):
                 <label class="form-label">{'الوظيفة المستهدفة' if not is_en else 'Target Position'} *</label>
                 <select class="form-control" required>
                   <option value="tech">{'فني تركيب وصيانة خزائن' if not is_en else 'Security Safe Technician'}</option>
-                  <option value="cctv_eng">{'مهندس أنظمة مراقبة وأمن' if not is_en else 'CCTV & Security Engineer'}</option>
+                  <option value="lock_eng">{'فني أقفال رقمية وأنظمة تحكم بالدخول' if not is_en else 'Digital Lock & Access Control Technician'}</option>
                   <option value="sales">{'مسؤول مبيعات ومشاريع' if not is_en else 'Sales & Project Executive'}</option>
                   <option value="admin">{'إدارة وخدمة عملاء' if not is_en else 'Customer Service / Admin'}</option>
                 </select>
@@ -1524,8 +1498,6 @@ def build_category_pages():
     cats = [
         ("الخزائن-والأبواب-الأمنية", "الخزائن والأبواب الأمنية", "Safes and Security Doors", "safes",
          "banner-safes.jpg", "خزائن وأبواب أمنية من أحلام الجزيرة", "Aljazeera Dreams safes and vault doors"),
-        ("أنظمة-المراقبة-والأمن", "أنظمة المراقبة والأمن", "Surveillance and Security Systems", "surveillance",
-         "banner-cctv.jpg", "أنظمة مراقبة وأمن من أحلام الجزيرة", "Aljazeera Dreams surveillance and security systems"),
         ("الأقفال-الأمنية", "الأقفال الأمنية", "Security Locks", "locks", None, "", ""),
     ]
 
@@ -1611,8 +1583,8 @@ def build_legal_pages():
                  ("الأسعار والمواصفات المعروضة استرشادية، ويُعتمد العرض الرسمي الصادر من الشركة بعد المعاينة وتحديد المتطلبات.",
                   "Prices and specifications shown are indicative. The official quotation issued by the company after a site survey and requirement scoping is what applies.")),
                 (("الضمان والصيانة", "Warranty and maintenance"),
-                 ("تخضع الخزائن والأبواب والأقفال وأنظمة المراقبة لضمان الوكيل المعتمد، ووفق اتفاقيات مستوى الخدمة (SLA) المبرمة مع العميل.",
-                  "Safes, doors, locks, and surveillance systems are covered by the authorized manufacturer warranty and by the Service Level Agreement (SLA) signed with the client.")),
+                 ("تخضع الخزائن والأبواب والأقفال ودواليب الملفات وخزائن الإيداع لضمان الوكيل المعتمد، ووفق اتفاقيات مستوى الخدمة (SLA) المبرمة مع العميل.",
+                  "Safes, doors, locks, filing cabinets, and deposit lockers are covered by the authorized manufacturer warranty and by the Service Level Agreement (SLA) signed with the client.")),
                 (("التركيب", "Installation"),
                  ("يُنفَّذ النقل والتركيب بواسطة فنيي الشركة أو من تعتمدهم، ويُشترط تجهيز الموقع وفق المتطلبات الفنية المتفق عليها.",
                   "Transport and installation are carried out by company technicians or its approved partners, and require the site to be prepared to the agreed technical specifications.")),
@@ -1651,6 +1623,15 @@ def build_legal_pages():
             (out_dir / "index.html").write_text(html, encoding="utf-8")
 
 
+def write_products_data_js():
+    """assets/js/products-data.js drives the client-side catalog grid (main.js
+    renderProducts()). It must stay in lockstep with assets/data/products.json -
+    the two were allowed to drift before, which is why removed/renamed products
+    kept showing up in the catalog grid after products.json was fixed."""
+    js = "window.JAZDRM_PRODUCTS = " + json.dumps(PRODUCTS, ensure_ascii=False, indent=2) + ";\n"
+    (ROOT_DIR / "assets" / "js" / "products-data.js").write_text(js, encoding="utf-8")
+
+
 def main():
     print("Building all Arabic and English pages...")
     build_homepage(is_en=False)
@@ -1677,6 +1658,7 @@ def main():
     build_single_product_pages()
     build_category_pages()
     build_legal_pages()
+    write_products_data_js()
 
     print("All pages built successfully!")
 
