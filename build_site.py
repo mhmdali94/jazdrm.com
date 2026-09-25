@@ -692,27 +692,6 @@ def _category_division_cards(is_en, banner_rel, cat_rel):
     return cards
 
 
-def get_divisions_section(is_en=False, rel=""):
-    tag = "أبرز قطاعاتنا الأمنية" if not is_en else "Specialized Divisions"
-    sub = ("نوفر تجهيزات متكاملة تلبي أعلى اشتراطات الأمان المعتمدة في المملكة" if not is_en
-           else "Delivering turnkey installations meeting the highest national security and compliance standards")
-    # homepage sits at its language root: category links are same-dir relative
-    cards = _category_division_cards(is_en, rel, "")
-    return f"""    <!-- Flagship Security Divisions -->
-    <section class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{tag}</span>
-          <p class="section-subtitle">{sub}</p>
-        </div>
-
-        <div class="divisions-grid">
-{chr(10).join(cards)}
-        </div>
-      </div>
-    </section>"""
-
-
 def get_contact_wa_cta(is_en=False):
     assets = "../../" if is_en else "../"
     badge = "دعم مباشر وفوري" if not is_en else "Instant Direct Support"
@@ -971,8 +950,6 @@ def build_homepage(is_en=False):
         </div>
       </div>
     </section>
-
-{get_divisions_section(is_en, rel)}
 
     <!-- Authorized Brands -->
     <section class="brands-section" id="brands">
