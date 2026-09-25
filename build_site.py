@@ -316,7 +316,7 @@ def get_footer(is_en=False, depth=0):
         "cats_title": "التصنيفات" if not is_en else "Categories",
         "contact_title": "تواصل معنا" if not is_en else "Contact Us",
         "address": "الرياض (الفرع الرئيسي)، حي الروابي، شارع طاهر الدباغ" if not is_en else "Riyadh (Main HQ), Al-Rawabi, Taher Al-Dabbagh St.",
-        "branches": "فروعنا: الرياض، جدة، المدينة المنورة، تبوك، بريدة، الطائف" if not is_en else "Branches: Riyadh, Jeddah, Medina, Tabuk, Buraydah, Taif",
+        "branches": "فروعنا: الرياض، جدة، الدمام، المدينة المنورة، بريدة، تبوك، الطائف" if not is_en else "Branches: Riyadh, Jeddah, Dammam, Medina, Buraydah, Tabuk, Taif",
         "copyright": "جميع الحقوق محفوظة © 2026 · شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "All Rights Reserved © 2026 · Aljazeera Dreams Co.",
         "privacy": "سياسة الخصوصية" if not is_en else "Privacy Policy",
         "terms": "الشروط والأحكام" if not is_en else "Terms & Conditions",
@@ -358,7 +358,10 @@ def get_footer(is_en=False, depth=0):
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 8px;">{t['address']}</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px;">{t['branches']}</p>
             <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">+966920028440</a>
+            <a href="tel:+966114718033" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">+966 11 471 8033</a>
             <a href="https://wa.me/966554890900" target="_blank" style="color: #25d366; font-weight: 600;">+966 55 489 0900 (WhatsApp)</a>
+            <a href="mailto:info@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">info@jazdrm.com</a>
+            <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
           </div>
         </div>
       </div>
@@ -405,6 +408,7 @@ def get_footer(is_en=False, depth=0):
               <select class="form-control" required>
                 <option value="riyadh">{'الرياض (الفرع الرئيسي)' if not is_en else 'Riyadh (Main HQ)'}</option>
                 <option value="jeddah">{'جدة' if not is_en else 'Jeddah'}</option>
+                <option value="dammam">{'الدمام' if not is_en else 'Dammam'}</option>
                 <option value="medina">{'المدينة المنورة' if not is_en else 'Medina'}</option>
                 <option value="tabuk">{'تبوك' if not is_en else 'Tabuk'}</option>
                 <option value="buraydah">{'بريدة' if not is_en else 'Buraydah'}</option>
@@ -521,6 +525,7 @@ def get_coverage(is_en=False):
     """Nationwide coverage band: featured HQ + regional branch list."""
     regions = [
         ("جدة", "Jeddah", "المنطقة الغربية", "Western Region"),
+        ("الدمام", "Dammam", "المنطقة الشرقية", "Eastern Region"),
         ("المدينة المنورة", "Madinah", "منطقة المدينة المنورة", "Madinah Region"),
         ("تبوك", "Tabuk", "المنطقة الشمالية", "Northern Region"),
         ("بريدة", "Buraydah", "منطقة القصيم", "Qassim Region"),
@@ -746,7 +751,7 @@ def build_homepage(is_en=False):
         "stat_years_lbl": "عاماً من الخبرة" if not is_en else "Years Experience",
         "stat_proj": "+500" if not is_en else "500+",
         "stat_proj_lbl": "مشروع مصرفي وتجاري" if not is_en else "Banking & Enterprise Projects",
-        "stat_branches": "6" if not is_en else "6",
+        "stat_branches": "7" if not is_en else "7",
         "stat_branches_lbl": "فروع بالمملكة" if not is_en else "Branches in KSA",
         "floating_cert": "معتمدون لدى كبرى البنوك" if not is_en else "Certified by Major Banks",
         "hero_img_alt": "أبواب الخزائن المحصنة، الخزائن الحديدية، دواليب الملفات، خزائن الإيداع، الأبواب الأمنية، والأقفال" if not is_en else "Vault doors, fireproof safes, filing cabinets, deposit lockers, security doors, and locks",
@@ -1268,7 +1273,39 @@ def build_contact_page(is_en=False):
         "tag": "تواصل معنا" if not is_en else "Contact Us",
         "h1": "يسعدنا دائماً استقبال استفساراتكم" if not is_en else "We Are Always Here to Assist You",
         "sub": "فريقنا الهندسي المتخصص جاهز لتقديم الاستشارات الفنية وعروض الأسعار في كافة مناطق المملكة." if not is_en else "Our engineering and sales team is ready to assist you across all regions in Saudi Arabia.",
+        "info_title": "معلومات التواصل" if not is_en else "Contact Information",
+        "unified_label": "الرقم الموحد" if not is_en else "Unified Number",
+        "phones_label": "أرقام الهاتف" if not is_en else "Phone Numbers",
+        "email_label": "البريد الإلكتروني" if not is_en else "Email",
+        "address_label": "العنوان والفروع" if not is_en else "Address & Branches",
+        "address_text": "المقر الرئيسي: الرياض، حي الروابي، شارع طاهر الدباغ. فروعنا: جدة، الدمام، المدينة المنورة، بريدة، تبوك، الطائف." if not is_en else "HQ: Riyadh, Al-Rawabi District, Taher Al-Dabbagh St. Branches: Jeddah, Dammam, Medina, Buraydah, Tabuk, Taif.",
     }
+
+    phone_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                 '<path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>')
+    mail_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                '<path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z"/></svg>')
+    pin_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+               '<path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>')
+
+    def info_row(svg, label, content_html):
+        return f"""            <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px;">
+              <div class="service-icon-box" style="width: 42px; height: 42px; margin-bottom: 0; flex-shrink: 0;">
+                <span style="width: 20px; height: 20px; display: block;">{svg}</span>
+              </div>
+              <div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px;">{label}</p>
+                {content_html}
+              </div>
+            </div>"""
+
+    contact_info_card = f"""          <div class="form-card" style="margin: 0; max-width: 100%;">
+            <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 24px;">{t['info_title']}</h3>
+{info_row(phone_svg, t['unified_label'], f'<a href="tel:+966920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">+966 92 002 8440</a>')}
+{info_row(phone_svg, t['phones_label'], f'<a href="tel:+966554890900" style="color: var(--text-main); font-weight: 700; display: block;">+966 55 489 0900</a><a href="tel:+966114718033" style="color: var(--text-main); font-weight: 700; display: block;">+966 11 471 8033</a>')}
+{info_row(mail_svg, t['email_label'], f'<a href="mailto:info@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">info@jazdrm.com</a><a href="mailto:wafi@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">wafi@jazdrm.com</a>')}
+{info_row(pin_svg, t['address_label'], f'<p style="color: var(--text-body); line-height: 1.8; font-size: 0.92rem; margin: 0;">{t["address_text"]}</p>')}
+          </div>"""
 
     body = f"""
     <section class="section" style="padding-top: 50px;">
@@ -1279,7 +1316,8 @@ def build_contact_page(is_en=False):
           <p class="section-subtitle">{t['sub']}</p>
         </div>
 
-        <div class="form-card">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: start;">
+        <div class="form-card" style="margin: 0; max-width: 100%;">
           <form>
             <div class="form-row">
               <div class="form-group">
@@ -1301,6 +1339,7 @@ def build_contact_page(is_en=False):
                 <select class="form-control">
                   <option value="riyadh">{'الرياض (الفرع الرئيسي)' if not is_en else 'Riyadh (Main HQ)'}</option>
                   <option value="jeddah">{'جدة' if not is_en else 'Jeddah'}</option>
+                  <option value="dammam">{'الدمام' if not is_en else 'Dammam'}</option>
                   <option value="medina">{'المدينة المنورة' if not is_en else 'Medina'}</option>
                   <option value="tabuk">{'تبوك' if not is_en else 'Tabuk'}</option>
                   <option value="buraydah">{'بريدة' if not is_en else 'Buraydah'}</option>
@@ -1316,6 +1355,8 @@ def build_contact_page(is_en=False):
               {'إرسال الرسالة' if not is_en else 'Send Message'}
             </button>
           </form>
+        </div>
+{contact_info_card}
         </div>
 {get_contact_wa_cta(is_en)}
       </div>
@@ -1377,6 +1418,7 @@ def build_service_request_page(is_en=False):
                 <select class="form-control">
                   <option value="riyadh">{'الرياض' if not is_en else 'Riyadh'}</option>
                   <option value="jeddah">{'جدة' if not is_en else 'Jeddah'}</option>
+                  <option value="dammam">{'الدمام' if not is_en else 'Dammam'}</option>
                   <option value="medina">{'المدينة المنورة' if not is_en else 'Medina'}</option>
                   <option value="tabuk">{'تبوك' if not is_en else 'Tabuk'}</option>
                   <option value="buraydah">{'بريدة' if not is_en else 'Buraydah'}</option>
