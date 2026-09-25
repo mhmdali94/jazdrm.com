@@ -938,13 +938,20 @@ def build_products_page(is_en=False):
         "tag": "كتالوج المنتجات" if not is_en else "Product Catalog",
         "h1": "جميع الخزائن وأنظمة الأمان" if not is_en else "All Security Safes & Vaults",
         "sub": "تصفح تشكيلتنا الشاملة من أبواب الخزائن المحصنة، الخزائن المقاومة للحريق والسطو، دواليب الملفات، خزائن الإيداع، والأبواب الأمنية." if not is_en else "Explore our full catalog of vault doors, fireproof safes, filing cabinets, deposit lockers, and security doors.",
-        "tab_all": "جميع المنتجات" if not is_en else "All Products",
+        "tab_all": "الكل" if not is_en else "All",
         "search_ph": "ابحث عن موديل أو منتج..." if not is_en else "Search model or product name...",
     }
 
+    tab_labels = {
+        "vault-doors": ("أبواب الخزائن", "Vault Doors"),
+        "fireproof-safes": ("الخزائن الحديدية", "Fireproof Safes"),
+        "filing-cabinets": ("دواليب الملفات", "Filing Cabinets"),
+        "deposit-lockers": ("خزائن الإيداع", "Deposit Lockers"),
+        "security-doors": ("الأبواب الأمنية", "Security Doors"),
+    }
     tabs = "\n            ".join(
-        f'<button class="filter-tab" data-category="{key}">{name_en if is_en else name_ar}</button>'
-        for key, _slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES
+        f'<button class="filter-tab" data-category="{key}">{tab_labels[key][1] if is_en else tab_labels[key][0]}</button>'
+        for key, _slug, _name_ar, _name_en, _banner in PRODUCT_CATEGORIES
     )
 
     body = f"""
