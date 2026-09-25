@@ -571,31 +571,33 @@ def get_coverage(is_en=False):
 
 
 def get_clients(is_en=False, rel=""):
-    """Trusted-by strip: client logos carried over from the original site's
-    'شركاؤنا في النجاح' section (files already in the media library)."""
+    """Trusted-by strip: the 17 partners listed on the corporate profile's
+    'شركاء النجاح' page (pdf/01-item-01.pdf, page 14)."""
     clients = [
-        ("01", "شركة عبدالله عثمان المبحر وأولاده للصرافة", "Abdullah Othman Almbher Exchange"),
-        ("02", "السبيعي للصرافة", "Al Subaie Exchange"),
-        ("03", "البنك العربي الوطني", "Arab National Bank"),
-        ("04", "بنك الجزيرة", "Bank AlJazira"),
-        ("05", "بنك البلاد", "Bank Albilad"),
-        ("06", "بنك مسقط", "Bank Muscat"),
-        ("07", "البنك السعودي الفرنسي", "Banque Saudi Fransi"),
-        ("08", "بنك الخليج الدولي", "Gulf International Bank"),
-        ("09", "البنك السعودي للاستثمار", "The Saudi Investment Bank"),
-        ("10", "البنك الأهلي السعودي", "Saudi National Bank"),
-        ("11", "بنك الرياض", "Riyad Bank"),
-        ("12", "بنك الإمارات دبي الوطني", "Emirates NBD"),
-        ("13", "ماكدونالدز", "McDonald's"),
-        ("14", "إرسال لتحويل الأموال", "Ersal Money Transfer"),
-        ("15", "مصرف الإنماء", "Alinma Bank"),
+        ("saudi-investment-bank", "البنك السعودي للاستثمار", "The Saudi Investment Bank"),
+        ("albilad", "بنك البلاد", "Bank Albilad"),
+        ("aljazira", "بنك الجزيرة", "Bank AlJazira"),
+        ("alinma", "مصرف الإنماء", "Alinma Bank"),
+        ("alrajhi", "مصرف الراجحي", "Al Rajhi Bank"),
+        ("fransi", "البنك السعودي الفرنسي", "Banque Saudi Fransi"),
+        ("gib", "بنك الخليج الدولي", "Gulf International Bank"),
+        ("muscat", "بنك مسقط", "Bank Muscat"),
+        ("snb", "البنك الأهلي السعودي", "Saudi National Bank"),
+        ("riyad", "بنك الرياض", "Riyad Bank"),
+        ("anb", "البنك العربي الوطني", "Arab National Bank"),
+        ("ersal", "إرسال لتحويل الأموال", "Ersal Money Transfer"),
+        ("amnco", "امنكو", "AMNCO"),
+        ("nadheer", "شركة النذير للصرافة", "Al Nadheer Exchange Co."),
+        ("emirates-nbd", "بنك الإمارات دبي الوطني", "Emirates NBD"),
+        ("omlah", "شركة عملة للصرافة", "Omlah Exchange Co."),
+        ("sab", "البنك السعودي الأول", "Saudi Awwal Bank (SAB)"),
     ]
     return "\n".join(
         f'          <li class="client-logo">'
-        f'<img src="{rel}assets/img/clients/client-{n}.png" alt="{en if is_en else ar}" width="200" height="150" '
+        f'<img src="{rel}assets/img/clients/{slug}.png" alt="{en if is_en else ar}" width="200" height="150" '
         f'loading="lazy" decoding="async" '
         f'onerror="this.closest(\'.client-logo\').remove()"></li>'
-        for n, ar, en in clients
+        for slug, ar, en in clients
     )
 
 
@@ -623,7 +625,7 @@ def get_clients_banner(is_en=False, rel="", style=""):
            else "Partners in Success - Leading Banks & Institutions in Saudi Arabia")
     st = f' style="{style}"' if style else ""
     return (f'<div class="clients-banner-wrapper"{st}>\n'
-            f'          <img src="{rel}assets/img/banners/banner-clients.jpg" alt="{alt}" width="1024" height="426" loading="lazy">\n'
+            f'          <img src="{rel}assets/img/banners/banner-clients.jpg" alt="{alt}" width="1200" height="338" loading="lazy">\n'
             f'        </div>')
 
 
@@ -741,7 +743,7 @@ def get_about_showcase(is_en=False):
           <h2 class="section-title">{p_h2}</h2>
         </div>
         <div class="clients-banner-wrapper" style="margin-bottom: 50px;">
-          <img src="{assets}assets/img/banners/banner-clients.jpg" alt="{banner_alt}" width="1024" height="426" loading="lazy">
+          <img src="{assets}assets/img/banners/banner-clients.jpg" alt="{banner_alt}" width="1200" height="338" loading="lazy">
         </div>
 
         <!-- Core Divisions -->
@@ -886,7 +888,7 @@ def build_homepage(is_en=False):
           <span class="section-tag">{'ثقة مؤسسية' if not is_en else 'Institutional trust'}</span>
           <h2 class="section-title">{'شركاؤنا في النجاح' if not is_en else 'Partners in Success'}</h2>
           <p class="section-subtitle">{'تعتمد كبرى البنوك والمصارف والمؤسسات في المملكة والخليج على أنظمة أحلام الجزيرة الأمنية.' if not is_en else 'Leading banks and institutions across Saudi Arabia and the Gulf rely on Aljazeera Dreams security systems.'}</p>
-          <p class="clients-count"><strong>+15</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
+          <p class="clients-count"><strong>+17</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
         </div>
         <ul class="clients-grid">
 {get_clients(is_en, rel)}
@@ -1166,11 +1168,71 @@ def build_about_page(is_en=False):
         "tag": "من نحن" if not is_en else "About Us",
         "h1": "شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "Aljazeera Dreams Contracting & Maintenance",
         "sub": "أكثر من 15 عاماً من الخبرة والتميز في تزويد وتركيب أحدث تقنيات الخزائن والأبواب الأمنية والحلول المصرفية في المملكة العربية السعودية." if not is_en else "Over 15 years of excellence delivering high-security safes, vault doors, and smart banking solutions across Saudi Arabia.",
+        "overview": (
+            "شركة أحلام الجزيرة للمقاولات هي شركة سعودية رائدة متخصصة في تصميم وتصنيع وتوريد وتركيب الحلول الأمنية المتكاملة، "
+            "حيث تقدم منتجات وخدمات تلبي أعلى معايير الجودة والأمان وفق المواصفات والاعتمادات الدولية. تمتلك الشركة خبرة واسعة "
+            "في توفير الحلول الأمنية للقطاعات الحكومية والمؤسسات المالية والمنشآت التجارية والصناعية، مع التركيز على منتجات "
+            "موثوقة مصممة لحماية الأصول والممتلكات والأموال والوثائق ذات القيمة العالية. وتتميز منتجاتنا بحصولها على اعتمادات "
+            "واختبارات دولية وفق معايير UL الأمريكية والأوروبية EN، بما يضمن أعلى مستويات الحماية والجودة والاعتمادية."
+            if not is_en else
+            "Aljazeera Dreams Contracting is a leading Saudi company specialized in designing, manufacturing, supplying, and "
+            "installing integrated security solutions, delivering products and services that meet the highest quality and "
+            "safety standards under international specifications and accreditations. The company has extensive experience "
+            "providing security solutions for government sectors, financial institutions, and commercial and industrial "
+            "facilities, focused on reliable products designed to protect high-value assets, property, funds, and documents. "
+            "Our products are certified and tested to American UL and European EN standards, ensuring the highest levels of "
+            "protection, quality, and reliability."
+        ),
         "vision_title": "رؤيتنا" if not is_en else "Our Vision",
-        "vision_desc": "أن نكون الخيار الأول والموثوق في المملكة العربية السعودية والخليج لتوريد وتركيب وصيانة أحدث حلول الأمان والخزائن المحصنة." if not is_en else "To be the leading and most trusted provider of advanced security safes, fortified vault doors, and contracting solutions in the region.",
+        "vision_desc": "أن نكون الشريك الأول في المملكة العربية السعودية في تقديم الحلول الأمنية المتكاملة، وأن نساهم في رفع مستوى الأمن والحماية من خلال منتجات معتمدة عالمياً وخدمات احترافية تتجاوز توقعات عملائنا." if not is_en else "To be the leading partner in Saudi Arabia for integrated security solutions, helping raise the standard of security and protection through globally certified products and professional services that exceed our clients' expectations.",
         "mission_title": "رسالتنا" if not is_en else "Our Mission",
-        "mission_desc": "تقديم منتجات وخدمات أمنية متفوقة تلتزم بأعلى المعايير والمواصفات العالمية، مع توفير دعم فني وصيانة مستمرة على مدار الساعة." if not is_en else "Delivering superior security products compliant with international standards, supported by 24/7 technical support and SLA maintenance.",
+        "mission_desc": "توفير حلول أمنية موثوقة ومبتكرة تعتمد على أحدث التقنيات والمعايير الدولية، مع الالتزام بالجودة والاستدامة وخدمة العملاء، بما يحقق أعلى مستويات الحماية والأمان." if not is_en else "To provide reliable and innovative security solutions built on the latest technologies and international standards, upholding quality, sustainability, and customer service to achieve the highest levels of protection and safety.",
+        "values_title": "قيمنا" if not is_en else "Our Values",
+        "values": [
+            ("الجودة والتميز" if not is_en else "Quality & Excellence"),
+            ("الموثوقية" if not is_en else "Reliability"),
+            ("الابتكار" if not is_en else "Innovation"),
+            ("الالتزام" if not is_en else "Commitment"),
+        ],
+        "chairman_tag": "كلمة رئيس مجلس الإدارة" if not is_en else "Chairman's Message",
+        "chairman_quote": (
+            "نضع نصب أعيننا هدفاً واضحاً يتمثل في توفير منتجات وخدمات أمنية موثوقة تلبي احتياجات عملائنا في مختلف القطاعات. "
+            "إن نجاحنا لم يكن وليد الصدفة، بل هو ثمرة الالتزام بالجودة والحرص على بناء شراكات استراتيجية مع كبرى الشركات "
+            "والمصنعين العالميين. نتقدم بجزيل الشكر لعملائنا وشركائنا على ثقتهم الغالية، ونتطلع إلى مستقبل مليء بالنجاحات "
+            "والإنجازات المشتركة."
+            if not is_en else
+            "We have set ourselves a clear goal: to provide reliable security products and services that meet our clients' "
+            "needs across every sector. Our success was never a coincidence, it is the fruit of our commitment to quality "
+            "and our drive to build strategic partnerships with leading global manufacturers. We thank our clients and "
+            "partners for their valued trust, and we look forward to a future full of shared achievements."
+        ),
+        "chairman_name": "علي عبدالله الحميد" if not is_en else "Ali Abdullah Al-Humaid",
+        "chairman_title": "رئيس مجلس الإدارة" if not is_en else "Chairman of the Board",
+        "cert_tag": "الشهادات والاعتمادات" if not is_en else "Certifications & Accreditations",
+        "cert_h2": "معتمدون وفق أعلى المعايير الدولية" if not is_en else "Certified to the Highest International Standards",
+        "cert_sub": "حاصلون على شهادات الأيزو المعتمدة دولياً في إدارة الجودة والبيئة والصحة والسلامة المهنية، الصادرة عن QRO Certification." if not is_en else "Certified to internationally accredited ISO standards for quality, environmental, and occupational health & safety management, issued by QRO Certification.",
     }
+
+    certs = [
+        ("ISO 9001:2015", "نظام إدارة الجودة" if not is_en else "Quality Management System"),
+        ("ISO 14001:2015", "نظام الإدارة البيئية" if not is_en else "Environmental Management System"),
+        ("ISO 45001:2018", "نظام إدارة الصحة والسلامة المهنية" if not is_en else "Occupational Health & Safety Management System"),
+    ]
+    cert_cards = "\n".join(f"""          <div class="form-card" style="margin: 0; max-width: 100%; text-align: center;">
+            <div class="service-icon-box" style="margin-left: auto; margin-right: auto;">
+              <svg viewBox="0 0 24 24"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z"/></svg>
+            </div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px;">{code}</h3>
+            <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.92rem;">{label}</p>
+          </div>""" for code, label in certs)
+
+    values_list = "\n".join(
+        f'<li style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; color: var(--text-body); font-weight: 600;">'
+        f'<span style="color: var(--primary); font-weight: 800;">✓</span> {v}</li>'
+        for v in t["values"]
+    )
+
+    rel = "../../" if is_en else "../"
 
     body = f"""
     <section class="section" style="padding-top: 50px;">
@@ -1181,7 +1243,9 @@ def build_about_page(is_en=False):
           <p class="section-subtitle">{t['sub']}</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px;">
+        <p style="max-width: 900px; margin: 0 auto 50px; color: var(--text-body); line-height: 1.9; text-align: center;">{t['overview']}</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px;">
           <div class="form-card" style="margin: 0; max-width: 100%;">
             <div class="service-icon-box">
               <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
@@ -1196,7 +1260,40 @@ def build_about_page(is_en=False):
             <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['mission_title']}</h3>
             <p style="color: var(--text-muted); line-height: 1.8;">{t['mission_desc']}</p>
           </div>
+          <div class="form-card" style="margin: 0; max-width: 100%;">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z"/></svg>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['values_title']}</h3>
+            <ul style="list-style: none; margin: 0; padding: 0;">
+{values_list}
+            </ul>
+          </div>
         </div>
+
+        <!-- Chairman's Message -->
+        <div class="section-header" style="margin-bottom: 25px;">
+          <span class="section-tag">{t['chairman_tag']}</span>
+        </div>
+        <div class="form-card" style="max-width: 100%; margin: 0 0 60px; display: flex; flex-wrap: wrap; gap: 36px; align-items: center;">
+          <img src="{rel}assets/img/team/chairman-ali-alhumaid.jpg" alt="{t['chairman_name']}" width="700" height="1213" loading="lazy" style="flex: 0 1 220px; width: 100%; max-width: 220px; height: auto; border-radius: var(--radius-lg); object-fit: cover;">
+          <div style="flex: 1 1 320px;">
+            <p style="color: var(--text-body); line-height: 1.9; font-size: 1.02rem; margin-bottom: 18px;">&ldquo;{t['chairman_quote']}&rdquo;</p>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 2px;">{t['chairman_name']}</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">{t['chairman_title']}</p>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section-header" style="margin-bottom: 25px;">
+          <span class="section-tag">{t['cert_tag']}</span>
+          <h2 class="section-title" style="font-size: 1.75rem;">{t['cert_h2']}</h2>
+          <p class="section-subtitle">{t['cert_sub']}</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 60px;">
+{cert_cards}
+        </div>
+
 {get_about_showcase(is_en)}
       </div>
     </section>
