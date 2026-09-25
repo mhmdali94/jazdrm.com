@@ -853,15 +853,19 @@ def build_homepage(is_en=False):
         "floating_cert": "معتمدون لدى كبرى البنوك" if not is_en else "Certified by Major Banks",
         "srv_tag": "خدماتنا المتميزة" if not is_en else "Our Core Services",
         "srv_h2": "حلول مقاولات وأمن شاملة بأعلى المعايير" if not is_en else "Comprehensive Contracting & Security Standards",
-        "srv1_title": "تجهيز غرف الصراف والبنوك" if not is_en else "ATM & Vault Room Setup",
-        "srv1_desc": "تجهيز وتصفيح غرف الصراف الآلي (ATM) وغرف الخزائن الرئيسية وفق اشتراطات البنك المركزي السعودي." if not is_en else "Armor plating and custom engineering for bank ATM enclosures and vault rooms meeting central bank standards.",
-        "srv2_title": "صيانة دورية وعقود تشغيل" if not is_en else "Periodic Maintenance Contracts",
-        "srv2_desc": "عقود صيانة معتمدة لضمان استمرارية عمل الأبواب المحصنة، أجهزة الإنذار، والأقفال الرقمية 24/7." if not is_en else "Certified SLA maintenance ensuring 24/7 reliability for fortified doors, alarms, and digital locking systems.",
-        "srv3_title": "نقل وتركيب الخزائن الثقيلة" if not is_en else "Heavy Safe Relocation & Install",
-        "srv3_desc": "معدات متخصصة لنقل وتركيب الخزائن والأبواب المحصنة ذات الأوزان العالية بأمان تام." if not is_en else "Specialized heavy equipment for transporting and anchoring multi-ton vaults and safes securely.",
-        "srv4_title": "الأقفال الرقمية وأنظمة التحكم بالدخول" if not is_en else "Digital Locks & Access Control",
-        "srv4_desc": "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية المعتمدة." if not is_en else "Supply and installation of all types of certified digital and manual locks, security keys, and digital combination systems.",
-        "srv_lead": "من تصفيح غرف الصراف الآلي إلى عقود الصيانة طويلة الأمد، نغطّي دورة حياة المنشأة الأمنية بالكامل تحت سقف واحد." if not is_en else "From armor-plating ATM rooms to long-term maintenance contracts, we cover the full lifecycle of a secure facility under one roof.",
+        "srv1_title": "أبواب الخزائن والغرف المحصنة" if not is_en else "Vault & Bunker Room Doors",
+        "srv1_desc": "توريد وتركيب أبواب الغرف المحصنة الحاصلة على شهادات اعتماد أمريكية UL وأوروبية EN." if not is_en else "Supply and installation of reinforced vault room doors, certified to American UL and European EN standards.",
+        "srv2_title": "الخزائن المقاومة للحريق والسطو" if not is_en else "Fireproof & Burglary-Resistant Safes",
+        "srv2_desc": "توريد وتركيب الخزن الحديدية المقاومة للحريق والسطو بمختلف الأحجام والمواصفات." if not is_en else "Supply and installation of fire and burglary-resistant steel safes in all sizes and specifications.",
+        "srv3_title": "دواليب الملفات وخزائن الإيداع المحصنة" if not is_en else "Fireproof Filing Cabinets & Deposit Lockers",
+        "srv3_desc": "توريد وتركيب الدواليب الحديدية المقاومة للحريق، وصناديق الأمانات، وخزائن الإيداع المصرفية." if not is_en else "Supply and installation of fire-resistant filing cabinets, safety deposit boxes, and banking deposit lockers.",
+        "srv4_title": "أبواب الصرافين وأبواب الطوارئ" if not is_en else "Teller, ATM & Emergency Doors",
+        "srv4_desc": "تصنيع وتركيب أبواب الصرافين وغرف الصراف الآلي والبيانات وأبواب الطوارئ، حاصلة على شهادة Intertek لمقاومة الحريق UL 10C." if not is_en else "Manufacturing and installation of teller cabinet, ATM, data room, and emergency exit doors, Intertek listed to UL 10C for fire resistance.",
+        "srv5_title": "الأقفال الرقمية واليدوية" if not is_en else "Digital & Manual Locks",
+        "srv5_desc": "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية المعتمدة." if not is_en else "Supply and installation of all types of certified digital and manual locks, security keys, and digital combinations.",
+        "srv6_title": "الفك والنقل والتركيب والصيانة" if not is_en else "Dismantling, Transport, Installation & Maintenance",
+        "srv6_desc": "فك ونقل وتركيب الخزائن والأبواب المحصنة بمعدات متخصصة، وعقود صيانة دورية وطارئة على مدار الساعة." if not is_en else "Dismantling, transporting, and reinstalling vaults and fortified doors with specialized equipment, backed by 24/7 periodic and emergency maintenance contracts.",
+        "srv_lead": "من توريد وتركيب أبواب الخزائن المحصنة إلى عقود الصيانة والنقل طويلة الأمد، نغطّي دورة حياة المنشأة الأمنية بالكامل تحت سقف واحد." if not is_en else "From supplying and installing fortified vault doors to long-term maintenance and relocation contracts, we cover the full lifecycle of a secure facility under one roof.",
         "srv_cta": "تحدث إلى مهندس" if not is_en else "Talk to an Engineer",
         "partners_tag": "شركاء النجاح" if not is_en else "Partners of Success",
         "partners_h2": "العلامات التجارية المعتمدة عالمياً" if not is_en else "Globally Authorized Brands",
@@ -970,6 +974,20 @@ def build_homepage(is_en=False):
               <div class="service-item-body">
                 <h3>{t['srv4_title']}</h3>
                 <p>{t['srv4_desc']}</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <span class="service-num">05</span>
+              <div class="service-item-body">
+                <h3>{t['srv5_title']}</h3>
+                <p>{t['srv5_desc']}</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <span class="service-num">06</span>
+              <div class="service-item-body">
+                <h3>{t['srv6_title']}</h3>
+                <p>{t['srv6_desc']}</p>
               </div>
             </li>
           </ol>
