@@ -14,6 +14,21 @@ ROOT_DIR = Path("/Users/macbook-pro/Desktop/Development/jazdrm.com/jazdrm.com")
 with open(ROOT_DIR / "assets" / "data" / "products.json", "r", encoding="utf-8") as f:
     PRODUCTS = json.load(f)
 
+# Single source of truth for real, filterable product categories.
+# (category_key, url_slug, name_ar, name_en, banner_img | None)
+PRODUCT_CATEGORIES = [
+    ("vault-doors", "أبواب-الخزائن-المحصنة",
+     "أبواب الخزائن المحصنة", "Vault & Bunker Room Doors", "banner-safes.jpg"),
+    ("fireproof-safes", "الخزائن-المقاومة-للحريق",
+     "الخزائن الحديدية المقاومة للحريق والسطو", "Fireproof & Burglary-Resistant Safes", "banner-safes.jpg"),
+    ("filing-cabinets", "دواليب-الملفات",
+     "دواليب الملفات المقاومة للحريق", "Fireproof Filing Cabinets", None),
+    ("deposit-lockers", "خزائن-الإيداع",
+     "خزائن الإيداع وصناديق الأمانات", "Deposit Lockers & Safety Deposit Boxes", None),
+    ("security-doors", "الأبواب-الأمنية-ومقاومة-الحريق",
+     "الأبواب الأمنية ومقاومة الحريق", "Security & Fire-Rated Doors", None),
+]
+
 
 # ---------------------------------------------------------------------------
 # Product content helpers - keep each language's page in that language only
@@ -147,15 +162,6 @@ def get_header(is_en=False, depth=0):
         "about": "نبذة عنا" if not is_en else "About Us",
         "contact": "اتصل بنا" if not is_en else "Contact Us",
         "quote_btn": "طلب تسعير" if not is_en else "Request Quote",
-        "cat_safes": "الخزائن والأبواب الأمنية" if not is_en else "Safes & Security Doors",
-        "cat_locks": "الأقفال الأمنية" if not is_en else "Security Locks",
-        "sub_vault": "أبواب الخزائن المحصنة" if not is_en else "Vault & Bunker Doors",
-        "sub_fireproof": "خزائن مقاومة للحريق" if not is_en else "Fireproof Safes",
-        "sub_deposit": "خزائن الإيداع" if not is_en else "Deposit Lockers",
-        "sub_filing": "دواليب الملفات الأمنية" if not is_en else "Security File Cabinets",
-        "sub_digital_locks": "أقفال رقمية ذكية" if not is_en else "Smart Digital Locks",
-        "sub_bio_locks": "أقفال بصمة الإصبع" if not is_en else "Fingerprint Locks",
-        "sub_face_locks": "أقفال التعرف على الوجه" if not is_en else "Facial Recognition Locks",
         "menu_label": "فتح القائمة" if not is_en else "Open menu",
         "nav_primary": "التنقل الرئيسي" if not is_en else "Primary",
         "nav_categories": "تصنيفات المنتجات" if not is_en else "Product categories",
@@ -173,8 +179,10 @@ def get_header(is_en=False, depth=0):
     tech_support_url = f"{prefix}technical-support/index.html"
     careers_url = f"{prefix}job-application/index.html"
 
-    safes_url = f"{prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    locks_url = f"{prefix}product-category/الأقفال-الأمنية/index.html"
+    cat_urls = [
+        (key, f"{prefix}product-category/{slug}/index.html", name_en if is_en else name_ar)
+        for key, slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES
+    ]
 
     return f"""
   <!-- Top Bar -->
@@ -250,29 +258,7 @@ def get_header(is_en=False, depth=0):
     <nav class="category-nav-bar" aria-label="{t['nav_categories']}">
       <div class="container">
         <div class="category-menu">
-          <div class="nav-item">
-            <a href="{safes_url}" class="nav-link">
-              <span>{t['cat_safes']}</span>
-              <svg class="arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </a>
-            <div class="dropdown-menu">
-              <a href="{safes_url}" class="dropdown-item">{t['sub_vault']}</a>
-              <a href="{safes_url}" class="dropdown-item">{t['sub_fireproof']}</a>
-              <a href="{safes_url}" class="dropdown-item">{t['sub_deposit']}</a>
-              <a href="{safes_url}" class="dropdown-item">{t['sub_filing']}</a>
-            </div>
-          </div>
-          <div class="nav-item">
-            <a href="{locks_url}" class="nav-link">
-              <span>{t['cat_locks']}</span>
-              <svg class="arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </a>
-            <div class="dropdown-menu">
-              <a href="{locks_url}" class="dropdown-item">{t['sub_digital_locks']}</a>
-              <a href="{locks_url}" class="dropdown-item">{t['sub_bio_locks']}</a>
-              <a href="{locks_url}" class="dropdown-item">{t['sub_face_locks']}</a>
-            </div>
-          </div>
+{chr(10).join(f'          <div class="nav-item"><a href="{url}" class="nav-link">{name}</a></div>' for _key, url, name in cat_urls)}
         </div>
       </div>
     </nav>
@@ -292,8 +278,7 @@ def get_header(is_en=False, depth=0):
       <a href="{home_url}" class="nav-link">{t['home']}</a>
       <a href="{services_url}" class="nav-link">{t['services']}</a>
       <a href="{products_url}" class="nav-link">{t['products']}</a>
-      <a href="{safes_url}" class="nav-link">{t['cat_safes']}</a>
-      <a href="{locks_url}" class="nav-link">{t['cat_locks']}</a>
+{chr(10).join(f'      <a href="{url}" class="nav-link">{name}</a>' for _key, url, name in cat_urls)}
       <a href="{about_url}" class="nav-link">{t['about']}</a>
       <a href="{service_req_url}" class="nav-link">{t['service_req']}</a>
       <a href="{tech_support_url}" class="nav-link">{t['tech_support']}</a>
@@ -320,8 +305,10 @@ def get_footer(is_en=False, depth=0):
     service_req_url = f"{prefix}service-request/index.html"
     tech_support_url = f"{prefix}technical-support/index.html"
 
-    safes_url = f"{prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    locks_url = f"{prefix}product-category/الأقفال-الأمنية/index.html"
+    cat_urls = [
+        (f"{prefix}product-category/{slug}/index.html", name_en if is_en else name_ar)
+        for _key, slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES
+    ]
 
     t = {
         "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Maintenance: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
@@ -362,10 +349,7 @@ def get_footer(is_en=False, depth=0):
         <div>
           <h3 class="footer-title">{t['cats_title']}</h3>
           <div class="footer-links">
-            <a href="{safes_url}">{'الخزائن والأبواب الأمنية' if not is_en else 'Safes & Vault Doors'}</a>
-            <a href="{locks_url}">{'الأقفال الأمنية الذكية' if not is_en else 'Security Locks'}</a>
-            <a href="{safes_url}">{'دواليب الملفات المقاومة للحريق' if not is_en else 'Fireproof Filing Cabinets'}</a>
-            <a href="{safes_url}">{'خزائن الإيداع والغرف المحصنة' if not is_en else 'Deposit & Vault Lockers'}</a>
+{chr(10).join(f'            <a href="{url}">{name}</a>' for url, name in cat_urls)}
           </div>
         </div>
         <div>
@@ -497,7 +481,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
 def get_brand_wall(is_en=False, rel=""):
     """Monochrome wordmark wall for the globally-authorized product brands."""
     cat_prefix = f"{rel}en/" if is_en else f"{rel}"
-    safes_cat = f"{cat_prefix}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    products_cat = f"{cat_prefix}products/index.html"
     view = "استعراض المنتجات" if not is_en else "View products"
 
     G = {
@@ -508,12 +492,12 @@ def get_brand_wall(is_en=False, rel=""):
     }
 
     brands = [
-        ("falcon",     "falcon.png",     "FALCON",    "SAFES",             G["vault"],       safes_cat),
-        ("diplomat",   "diplomat.png",   "DIPLOMAT",  "",                  G["shield"],      safes_cat),
-        ("jiabao",     "jiabao.svg",     "JIABAO",    "SECURITY",          G["fingerprint"], safes_cat),
-        ("godrej",     "godrej.png",     "GODREJ",    "SECURITY SOLUTIONS",G["shield"],      safes_cat),
-        ("xyoungann",  "xyoungann.png",  "X YOUNG ANN","",                 G["vault"],       safes_cat),
-        ("ooilsafi",   "ooilsafi.png",   "B.I.",      "OOIL SAFI",         G["lock"],        safes_cat),
+        ("falcon",     "falcon.png",     "FALCON",    "SAFES",             G["vault"],       products_cat),
+        ("diplomat",   "diplomat.png",   "DIPLOMAT",  "",                  G["shield"],      products_cat),
+        ("jiabao",     "jiabao.svg",     "JIABAO",    "SECURITY",          G["fingerprint"], products_cat),
+        ("godrej",     "godrej.png",     "GODREJ",    "SECURITY SOLUTIONS",G["shield"],      products_cat),
+        ("xyoungann",  "xyoungann.png",  "X YOUNG ANN","",                 G["vault"],       products_cat),
+        ("ooilsafi",   "ooilsafi.png",   "B.I.",      "OOIL SAFI",         G["lock"],        products_cat),
     ]
 
     cells = []
@@ -664,27 +648,30 @@ def division_card(img, alt, tag, title, desc, href, btn, comment=""):
 def _division_cards(is_en, banner_rel, cat_rel):
     """banner_rel: prefix to assets/  ·  cat_rel: prefix to product-category/"""
     b = f"{banner_rel}assets/img/banners/"
-    safes_href = f"{cat_rel}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    cat_href = {
+        key: f"{cat_rel}product-category/{slug}/index.html"
+        for key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES
+    }
     if is_en:
         return (
             division_card(f"{b}banner-safes.jpg", "Security Safes and Vault Doors",
                 "Safes & Vault Doors", "Heavy Commercial & Banking Safes",
                 "Reinforced bank safes, vault doors, and deposit boxes engineered and tested against burglary and fire to SAMA-compliant standards.",
-                safes_href, "Explore Safes Catalog", "Division 1: Safes & Vaults"),
+                cat_href["vault-doors"], "Explore Safes Catalog", "Division 1: Safes & Vaults"),
             division_card(f"{b}banner-safes.jpg", "Fireproof Filing Cabinets and Deposit Lockers",
                 "Fireproof Filing & Deposit", "Fireproof Filing Cabinets & Deposit Lockers",
                 "Fire and burglary-resistant filing cabinets and deposit lockers with electronic, combination, and dual-key locking, protecting documents and valuables for banks and institutions.",
-                safes_href, "Explore Products", "Division 2: Filing & Deposit Lockers"),
+                cat_href["filing-cabinets"], "Explore Products", "Division 2: Filing & Deposit Lockers"),
         )
     return (
         division_card(f"{b}banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
             "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية المحصنة",
             "خزائن مصرفية ثقيلة، أبواب غرف محصنة، وخزائن أمانات مصممة ومختبرة لمقاومة السطو والحرائق وفق أعلى المعايير المعتمدة لكبرى البنوك والمؤسسات.",
-            safes_href, "استعراض منتجات الخزائن", "Division 1: Safes & Vaults"),
+            cat_href["vault-doors"], "استعراض منتجات الخزائن", "Division 1: Safes & Vaults"),
         division_card(f"{b}banner-safes.jpg", "دواليب الملفات وخزائن الإيداع المحصنة",
             "دواليب وخزائن إيداع", "دواليب الملفات وخزائن الإيداع المحصنة",
             "دواليب ملفات وخزائن إيداع مقاومة للحريق والسرقة، بأقفال إلكترونية ومركبة وثنائية المفتاح، لحماية المستندات والأصول الثمينة لدى البنوك والمؤسسات.",
-            safes_href, "استعراض المنتجات", "Division 2: Filing & Deposit Lockers"),
+            cat_href["filing-cabinets"], "استعراض المنتجات", "Division 2: Filing & Deposit Lockers"),
     )
 
 
@@ -748,7 +735,10 @@ def get_contact_wa_cta(is_en=False):
 def get_about_showcase(is_en=False):
     assets = "../../" if is_en else "../"
     cat = "../"
-    safes_href = f"{cat}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    cat_href = {
+        key: f"{cat}product-category/{slug}/index.html"
+        for key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES
+    }
     if is_en:
         p_tag, p_h2 = "Accredited by Top Financial Institutions", "Trusted Security Partner for Saudi Banking"
         banner_alt = "Banking Accreditations - Top Banks in Saudi Arabia"
@@ -756,11 +746,11 @@ def get_about_showcase(is_en=False):
         c1 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "Security Safes and Vault Doors",
             "Safes & Vault Doors", "Commercial & Banking Safes",
             "Turnkey fitting of financial institutions with heavy certified vaults meeting SAMA security standards.",
-            safes_href, "Explore Products")
+            cat_href["vault-doors"], "Explore Products")
         c2 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "Fireproof Filing Cabinets and Deposit Lockers",
             "Fireproof Filing & Deposit", "Fireproof Filing Cabinets & Deposit Lockers",
             "Fire and burglary-resistant filing cabinets and deposit lockers for documents and valuables.",
-            safes_href, "Explore Products")
+            cat_href["filing-cabinets"], "Explore Products")
     else:
         p_tag, p_h2 = "اعتمادات كبرى المصارف", "شريك الأمان المعتمد لدى البنوك السعودية"
         banner_alt = "اعتمادات مصرفية - كبرى البنوك والمصارف"
@@ -768,11 +758,11 @@ def get_about_showcase(is_en=False):
         c1 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
             "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية",
             "تجهيز كامل لغرف البنوك والمصارف بخزائن ثقيلة وأبواب محصنة مطابقة لمعايير SAMA العالمية.",
-            safes_href, "استعراض المنتجات")
+            cat_href["vault-doors"], "استعراض المنتجات")
         c2 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "دواليب الملفات وخزائن الإيداع المحصنة",
             "دواليب وخزائن إيداع", "دواليب الملفات وخزائن الإيداع المحصنة",
             "دواليب ملفات وخزائن إيداع مقاومة للحريق والسرقة لحماية المستندات والأصول الثمينة.",
-            safes_href, "استعراض المنتجات")
+            cat_href["filing-cabinets"], "استعراض المنتجات")
     return f"""        <!-- Banking Partners & Trust Showcase -->
         <div class="section-header" style="margin-top: 50px; margin-bottom: 25px;">
           <span class="section-tag">{p_tag}</span>
@@ -1035,12 +1025,15 @@ def build_products_page(is_en=False):
     t = {
         "tag": "كتالوج المنتجات" if not is_en else "Product Catalog",
         "h1": "جميع الخزائن وأنظمة الأمان" if not is_en else "All Security Safes & Vaults",
-        "sub": "تصفح تشكيلتنا الشاملة من الخزائن المصرفية المقاومة للحريق والسرقة، دواليب الملفات وخزائن الإيداع، والأقفال الذكية." if not is_en else "Explore our full catalog of fireproof bank vaults, ATM safes, filing cabinets and deposit lockers, and biometric locks.",
+        "sub": "تصفح تشكيلتنا الشاملة من أبواب الخزائن المحصنة، الخزائن المقاومة للحريق والسطو، دواليب الملفات، خزائن الإيداع، والأبواب الأمنية." if not is_en else "Explore our full catalog of vault doors, fireproof safes, filing cabinets, deposit lockers, and security doors.",
         "tab_all": "جميع المنتجات" if not is_en else "All Products",
-        "tab_safes": "الخزائن والأبواب" if not is_en else "Safes & Doors",
-        "tab_locks": "الأقفال الذكية" if not is_en else "Smart Locks",
         "search_ph": "ابحث عن موديل أو منتج..." if not is_en else "Search model or product name...",
     }
+
+    tabs = "\n            ".join(
+        f'<button class="filter-tab" data-category="{key}">{name_en if is_en else name_ar}</button>'
+        for key, _slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES
+    )
 
     body = f"""
     <section class="section" style="padding-top: 50px;">
@@ -1054,8 +1047,7 @@ def build_products_page(is_en=False):
         <div class="catalog-controls">
           <div class="filter-tabs">
             <button class="filter-tab active" data-category="all">{t['tab_all']}</button>
-            <button class="filter-tab" data-category="safes">{t['tab_safes']}</button>
-            <button class="filter-tab" data-category="locks">{t['tab_locks']}</button>
+            {tabs}
           </div>
           <div class="search-box">
             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -1084,8 +1076,10 @@ def build_products_page(is_en=False):
 def build_services_page(is_en=False):
     assets = "../../" if is_en else "../"
     cat = "../"
-    safes_href = f"{cat}product-category/الخزائن-والأبواب-الأمنية/index.html"
-    locks_href = f"{cat}product-category/الأقفال-الأمنية/index.html"
+    cat_href = {
+        key: f"{cat}product-category/{slug}/index.html"
+        for key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES
+    }
     service_req_href = f"{cat}service-request/index.html"
     img = f"{assets}assets/img/services/"
 
@@ -1106,7 +1100,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب أبواب الغرف المحصنة الحاصلة على شهادات الاعتماد الأمريكي UL وشهادات الاعتماد الأوروبي EN، بمقاسات وتصاميم تناسب متطلبات البنوك ومراكز البيانات والمؤسسات المالية."
             if not is_en else
             "Supply and installation of reinforced vault and bunker room doors, certified to American UL and European EN standards, in sizes and designs suited to banks, data centers, and financial institutions.",
-            safes_href,
+            cat_href["vault-doors"],
         ),
         (
             f"{img}fireproof-safes.jpg", "Fireproof & Burglary-Resistant Safes",
@@ -1115,7 +1109,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب الخزن الحديدية المقاومة للحريق والسطو بجميع أنواعها وأحجامها، بما يشمل الخزائن المصرفية والتجارية ذات الأقفال الإلكترونية والميكانيكية."
             if not is_en else
             "Supply and installation of fire and burglary-resistant steel safes in all types and sizes, including banking and commercial safes with electronic and mechanical locking.",
-            safes_href,
+            cat_href["fireproof-safes"],
         ),
         (
             f"{img}filing-cabinets.jpg", "Fireproof Filing Cabinets",
@@ -1124,7 +1118,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب الدواليب الحديدية المقاومة للحريق بعدد أدراج يبدأ من درجين وحتى خمسة أدراج، بمختلف أنواع الأقفال الميكانيكية والإلكترونية، لحفظ المستندات والسجلات الهامة."
             if not is_en else
             "Supply and installation of fireproof steel filing cabinets from 2 up to 5 drawers, with a range of mechanical and electronic locks, for safeguarding important documents and records.",
-            safes_href,
+            cat_href["filing-cabinets"],
         ),
         (
             f"{img}security-doors.jpg", "Teller, ATM, Data Room & Emergency Doors",
@@ -1133,7 +1127,7 @@ def build_services_page(is_en=False):
             "تصنيع وتوريد وتركيب أبواب مقاومة للحريق ومقاومة للرصاص، تشمل أبواب الصرافين ومخارج الطوارئ وأبواب غرف الصراف الآلي (ATM) وغرف الداتا، حاصلة على شهادة مقاومة الحريق المعتمدة من Intertek وفق معيار UL 10C."
             if not is_en else
             "Manufacturing, supply, and installation of fire- and bullet-resistant doors, including teller cabinet doors, emergency exits, ATM room doors, and data room doors, Intertek listed to UL 10C for fire resistance.",
-            safes_href,
+            cat_href["security-doors"],
         ),
         (
             f"{img}locks.jpg", "Digital & Manual Locks",
@@ -1142,7 +1136,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية، الحاصلة على شهادات اختبار معتمدة، مع خدمة إعادة برمجة وتغيير الأقفال."
             if not is_en else
             "Supply and installation of all types of certified digital and manual locks with security keys and digital combinations, plus lock reprogramming and replacement service.",
-            locks_href,
+            service_req_href,
         ),
         (
             f"{img}deposit-lockers.jpg", "Deposit Lockers & Safety Deposit Boxes",
@@ -1151,7 +1145,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب جميع أنواع صناديق الأمانات وخزائن الإيداع المصرفية وأقفالها، بالإضافة إلى خدمة ترهيم (إعادة برمجة) الأقفال والأقراص للموديلات القديمة."
             if not is_en else
             "Supply and installation of all types of safety deposit boxes, banking deposit lockers, and their locks, plus re-keying and re-coding of locks and dials for older models.",
-            safes_href,
+            cat_href["deposit-lockers"],
         ),
         (
             f"{img}installation-maintenance.jpg", "Dismantling, Transport, Installation & Maintenance",
@@ -1635,14 +1629,8 @@ def build_single_product_pages():
             (p_dir / "index.html").write_text(html, encoding="utf-8")
 
 def build_category_pages():
-    # (slug, ar, en, key, banner_img | None, banner_alt_ar, banner_alt_en)
-    cats = [
-        ("الخزائن-والأبواب-الأمنية", "الخزائن والأبواب الأمنية", "Safes and Security Doors", "safes",
-         "banner-safes.jpg", "خزائن وأبواب أمنية من أحلام الجزيرة", "Aljazeera Dreams safes and vault doors"),
-        ("الأقفال-الأمنية", "الأقفال الأمنية", "Security Locks", "locks", None, "", ""),
-    ]
-
-    for slug, title_ar, title_en, cat_key, banner_img, alt_ar, alt_en in cats:
+    for cat_key, slug, title_ar, title_en, banner_img in PRODUCT_CATEGORIES:
+        alt_ar, alt_en = title_ar, title_en
         for is_en in [False, True]:
             rel = "../../../" if is_en else "../../"
             depth = 3 if is_en else 2
