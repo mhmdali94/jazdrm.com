@@ -355,8 +355,8 @@ def get_footer(is_en=False, depth=0):
         <div>
           <h3 class="footer-title">{t['contact_title']}</h3>
           <div class="footer-links">
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 8px;">{t['address']}</p>
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 12px;">{t['branches']}</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">{t['address']}</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 12px;">{t['branches']}</p>
             <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">+966920028440</a>
             <a href="tel:+966114718033" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">+966 11 471 8033</a>
             <a href="https://wa.me/966554890900" target="_blank" style="color: #25d366; font-weight: 600;">+966 55 489 0900 (WhatsApp)</a>
@@ -1182,8 +1182,8 @@ def build_about_page(is_en=False):
               <img src="{rel}assets/img/certificates/{img}.jpg" alt="{code} - {label}" width="700" height="1029" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
             </a>
             <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px;">{code}</h3>
-            <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.92rem; margin-bottom: 14px;">{label}</p>
-            <p style="color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 12px; margin: 0;">
+            <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.875rem; margin-bottom: 14px;">{label}</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem; border-top: 1px solid var(--border-color); padding-top: 12px; margin: 0;">
               {cert_no_label}: <bdi>{number}</bdi><br>{cert_valid_label}
             </p>
           </div>""" for code, label, number, img in certs)
@@ -1210,21 +1210,21 @@ def build_about_page(is_en=False):
             <div class="service-icon-box">
               <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
             </div>
-            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['vision_title']}</h3>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['vision_title']}</h3>
             <p style="color: var(--text-muted); line-height: 1.8;">{t['vision_desc']}</p>
           </div>
           <div class="form-card" style="margin: 0; max-width: 100%;">
             <div class="service-icon-box">
               <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.8l7.53 13.2H4.47L12 5.8z"/></svg>
             </div>
-            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['mission_title']}</h3>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['mission_title']}</h3>
             <p style="color: var(--text-muted); line-height: 1.8;">{t['mission_desc']}</p>
           </div>
           <div class="form-card" style="margin: 0; max-width: 100%;">
             <div class="service-icon-box">
               <svg viewBox="0 0 24 24"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z"/></svg>
             </div>
-            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['values_title']}</h3>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">{t['values_title']}</h3>
             <ul style="list-style: none; margin: 0; padding: 0;">
 {values_list}
             </ul>
@@ -1240,7 +1240,7 @@ def build_about_page(is_en=False):
           <div style="flex: 1 1 320px;">
             <p style="color: var(--text-body); line-height: 1.9; font-size: 1.02rem; margin-bottom: 18px;">&ldquo;{t['chairman_quote']}&rdquo;</p>
             <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 2px;">{t['chairman_name']}</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">{t['chairman_title']}</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem;">{t['chairman_title']}</p>
           </div>
         </div>
 
@@ -1296,13 +1296,13 @@ def build_contact_page(is_en=False):
                 <span style="width: 20px; height: 20px; display: block;">{svg}</span>
               </div>
               <div>
-                <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px;">{label}</p>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 4px;">{label}</p>
                 {content_html}
               </div>
             </div>"""
 
     contact_info_card = f"""          <div class="form-card" style="margin: 0; max-width: 100%;">
-            <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 24px;">{t['info_title']}</h3>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 24px;">{t['info_title']}</h3>
 {info_row(phone_svg, t['unified_label'], f'<a href="tel:+966920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">+966 92 002 8440</a>')}
 {info_row(phone_svg, t['phones_label'], f'<a href="tel:+966554890900" style="color: var(--text-main); font-weight: 700; display: block;">+966 55 489 0900</a><a href="tel:+966114718033" style="color: var(--text-main); font-weight: 700; display: block;">+966 11 471 8033</a>')}
 {info_row(mail_svg, t['email_label'], f'<a href="mailto:info@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">info@jazdrm.com</a><a href="mailto:wafi@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">wafi@jazdrm.com</a>')}
