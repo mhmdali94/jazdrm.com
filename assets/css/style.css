@@ -1681,8 +1681,9 @@ html[dir="ltr"] .product-badge {
 
 /* Client logo wall: hairline inset grid, greyscale at rest */
 .clients-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1px;
   background: var(--border-color);
   border: 1px solid var(--border-color);
@@ -1697,6 +1698,8 @@ html[dir="ltr"] .product-badge {
   min-height: 132px;
   padding: 26px 22px;
   background: var(--bg-surface);
+  flex: 0 0 calc(20% - 1px);
+  box-sizing: border-box;
 }
 
 .client-logo img {
@@ -1715,14 +1718,13 @@ html[dir="ltr"] .product-badge {
 }
 
 @media (max-width: 900px) {
-  .clients-grid { grid-template-columns: repeat(3, 1fr); }
+  .client-logo { flex-basis: calc(33.333% - 1px); }
 }
 
 @media (max-width: 560px) {
   .clients { padding: 56px 0; }
   .clients-head .section-title { font-size: 1.55rem; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .client-logo { min-height: 108px; padding: 20px 16px; }
+  .client-logo { flex-basis: calc(50% - 1px); min-height: 108px; padding: 20px 16px; }
   .client-logo img { max-height: 52px; }
 }
 

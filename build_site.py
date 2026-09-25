@@ -311,13 +311,13 @@ def get_footer(is_en=False, depth=0):
     ]
 
     t = {
-        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Maintenance: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
+        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة والأمن: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting, Maintenance & Security: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
         "nav_title": "روابط سريعة" if not is_en else "Quick Links",
         "cats_title": "التصنيفات" if not is_en else "Categories",
         "contact_title": "تواصل معنا" if not is_en else "Contact Us",
         "address": "الرياض (الفرع الرئيسي)، حي الروابي، شارع طاهر الدباغ" if not is_en else "Riyadh (Main HQ), Al-Rawabi, Taher Al-Dabbagh St.",
         "branches": "فروعنا: الرياض، جدة، الدمام، المدينة المنورة، بريدة، تبوك، الطائف" if not is_en else "Branches: Riyadh, Jeddah, Dammam, Medina, Buraydah, Tabuk, Taif",
-        "copyright": "جميع الحقوق محفوظة © 2026 · شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "All Rights Reserved © 2026 · Aljazeera Dreams Co.",
+        "copyright": "جميع الحقوق محفوظة © 2026 · شركة أحلام الجزيرة للمقاولات والصيانة والأمن" if not is_en else "All Rights Reserved © 2026 · Aljazeera Dreams Co.",
         "privacy": "سياسة الخصوصية" if not is_en else "Privacy Policy",
         "terms": "الشروط والأحكام" if not is_en else "Terms & Conditions",
     }
@@ -461,7 +461,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | {'شركة أحلام الجزيرة' if not is_en else 'Aljazeera Dreams Co.'}</title>
-  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة: حلول الخزائن والأبواب الأمنية، دواليب الملفات المقاومة للحريق، والأقفال الذكية' if not is_en else 'Aljazeera Dreams: premium security safes, vault doors, fireproof filing cabinets, and smart locks in Saudi Arabia'}">
+  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة والأمن: حلول الخزائن والأبواب الأمنية، دواليب الملفات المقاومة للحريق، والأقفال الذكية' if not is_en else 'Aljazeera Dreams Contracting, Maintenance & Security: premium security safes, vault doors, fireproof filing cabinets, and smart locks in Saudi Arabia'}">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-180x180.png">
@@ -746,6 +746,7 @@ def build_homepage(is_en=False):
         "h1": "حلول متكاملة في <span>الخزائن المحصنة</span> وأنظمة الأمان الذكية" if not is_en else "Integrated Solutions for <span>Vault Doors</span> & Smart Security Systems",
         "sub": "نقدم خدمات التوريد والتركيب والصيانة الدورية للخزائن والأبواب المصرفية المحصنة، دواليب الملفات المقاومة للحريق، والأقفال الرقمية المتطورة لكبرى البنوك والمؤسسات في كافة أنحاء المملكة." if not is_en else "Supplying, installing, and maintaining fortified bank vault doors, fireproof safes, fireproof filing cabinets, and biometric locks for enterprises across Saudi Arabia.",
         "explore_btn": "استكشف المنتجات" if not is_en else "Explore Products",
+        "explore_services_btn": "اكتشف الخدمات" if not is_en else "Explore Services",
         "quote_btn": "طلب عرض سعر" if not is_en else "Request Quote",
         "stat_years": "+15" if not is_en else "15+",
         "stat_years_lbl": "عاماً من الخبرة" if not is_en else "Years Experience",
@@ -779,6 +780,7 @@ def build_homepage(is_en=False):
     }
 
     products_page_url = f"{rel}products/index.html" if not is_en else f"{rel}en/products/index.html"
+    services_page_url = f"{rel}services/index.html" if not is_en else f"{rel}en/services/index.html"
 
     body = f"""
     <!-- Hero Section -->
@@ -795,6 +797,7 @@ def build_homepage(is_en=False):
             <p class="hero-subtitle">{t['sub']}</p>
             <div class="hero-actions">
               <a href="{products_page_url}" class="btn-primary">{t['explore_btn']}</a>
+              <a href="{services_page_url}" class="btn-secondary">{t['explore_services_btn']}</a>
               <button class="btn-secondary open-quote-modal">{t['quote_btn']}</button>
             </div>
             <div class="hero-stats">
@@ -1000,10 +1003,6 @@ def build_products_page(is_en=False):
 def build_services_page(is_en=False):
     assets = "../../" if is_en else "../"
     cat = "../"
-    cat_href = {
-        key: f"{cat}product-category/{slug}/index.html"
-        for key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES
-    }
     service_req_href = f"{cat}service-request/index.html"
     img = f"{assets}assets/img/services/"
 
@@ -1024,7 +1023,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب أبواب الغرف المحصنة الحاصلة على شهادات الاعتماد الأمريكي UL وشهادات الاعتماد الأوروبي EN، بمقاسات وتصاميم تناسب متطلبات البنوك ومراكز البيانات والمؤسسات المالية."
             if not is_en else
             "Supply and installation of reinforced vault and bunker room doors, certified to American UL and European EN standards, in sizes and designs suited to banks, data centers, and financial institutions.",
-            cat_href["vault-doors"],
+            service_req_href,
         ),
         (
             f"{img}fireproof-safes.jpg", "Fireproof & Burglary-Resistant Safes",
@@ -1033,7 +1032,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب الخزن الحديدية المقاومة للحريق والسطو بجميع أنواعها وأحجامها، بما يشمل الخزائن المصرفية والتجارية ذات الأقفال الإلكترونية والميكانيكية."
             if not is_en else
             "Supply and installation of fire and burglary-resistant steel safes in all types and sizes, including banking and commercial safes with electronic and mechanical locking.",
-            cat_href["fireproof-safes"],
+            service_req_href,
         ),
         (
             f"{img}filing-cabinets.jpg", "Fireproof Filing Cabinets",
@@ -1042,7 +1041,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب الدواليب الحديدية المقاومة للحريق بعدد أدراج يبدأ من درجين وحتى خمسة أدراج، بمختلف أنواع الأقفال الميكانيكية والإلكترونية، لحفظ المستندات والسجلات الهامة."
             if not is_en else
             "Supply and installation of fireproof steel filing cabinets from 2 up to 5 drawers, with a range of mechanical and electronic locks, for safeguarding important documents and records.",
-            cat_href["filing-cabinets"],
+            service_req_href,
         ),
         (
             f"{img}security-doors.jpg", "Teller, ATM, Data Room & Emergency Doors",
@@ -1051,7 +1050,7 @@ def build_services_page(is_en=False):
             "تصنيع وتوريد وتركيب أبواب مقاومة للحريق ومقاومة للرصاص، تشمل أبواب الصرافين ومخارج الطوارئ وأبواب غرف الصراف الآلي (ATM) وغرف الداتا، حاصلة على شهادة مقاومة الحريق المعتمدة من Intertek وفق معيار UL 10C."
             if not is_en else
             "Manufacturing, supply, and installation of fire- and bullet-resistant doors, including teller cabinet doors, emergency exits, ATM room doors, and data room doors, Intertek listed to UL 10C for fire resistance.",
-            cat_href["security-doors"],
+            service_req_href,
         ),
         (
             f"{img}locks.jpg", "Digital & Manual Locks",
@@ -1069,7 +1068,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب جميع أنواع صناديق الأمانات وخزائن الإيداع المصرفية وأقفالها، بالإضافة إلى خدمة ترهيم (إعادة برمجة) الأقفال والأقراص للموديلات القديمة."
             if not is_en else
             "Supply and installation of all types of safety deposit boxes, banking deposit lockers, and their locks, plus re-keying and re-coding of locks and dials for older models.",
-            cat_href["deposit-lockers"],
+            service_req_href,
         ),
         (
             f"{img}installation-maintenance.jpg", "Dismantling, Transport, Installation & Maintenance",
@@ -1118,7 +1117,7 @@ def build_services_page(is_en=False):
 def build_about_page(is_en=False):
     t = {
         "tag": "من نحن" if not is_en else "About Us",
-        "h1": "شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "Aljazeera Dreams Contracting & Maintenance",
+        "h1": "شركة أحلام الجزيرة للمقاولات والصيانة والأمن" if not is_en else "Aljazeera Dreams Contracting, Maintenance & Security",
         "sub": "أكثر من 15 عاماً من الخبرة والتميز في تزويد وتركيب أحدث تقنيات الخزائن والأبواب الأمنية والحلول المصرفية في المملكة العربية السعودية." if not is_en else "Over 15 years of excellence delivering high-security safes, vault doors, and smart banking solutions across Saudi Arabia.",
         "overview": (
             "شركة أحلام الجزيرة للمقاولات هي شركة سعودية رائدة متخصصة في تصميم وتصنيع وتوريد وتركيب الحلول الأمنية المتكاملة، "
@@ -1750,8 +1749,8 @@ def build_legal_pages():
             "updated": ("آخر تحديث: 2026", "Last updated: 2026"),
             "blocks": [
                 (("مقدمة", "Introduction"),
-                 ("نلتزم في شركة أحلام الجزيرة للمقاولات والصيانة بحماية خصوصية بيانات عملائنا وزوّار موقعنا، وفق الأنظمة المعمول بها في المملكة العربية السعودية.",
-                  "Aljazeera Dreams Contracting & Maintenance is committed to protecting the privacy of our clients and website visitors, in line with the regulations in force in Saudi Arabia.")),
+                 ("نلتزم في شركة أحلام الجزيرة للمقاولات والصيانة والأمن بحماية خصوصية بيانات عملائنا وزوّار موقعنا، وفق الأنظمة المعمول بها في المملكة العربية السعودية.",
+                  "Aljazeera Dreams Contracting, Maintenance & Security is committed to protecting the privacy of our clients and website visitors, in line with the regulations in force in Saudi Arabia.")),
                 (("جمع البيانات واستخدامها", "Collection and use of data"),
                  ("تُستخدم البيانات المُدخلة في نماذج طلب عرض السعر والتواصل وطلب الخدمة لغرض الرد على الطلب والتنسيق مع العميل فقط، ولا تتم مشاركتها مع أي طرف ثالث لأغراض تسويقية.",
                   "Information you enter in the quotation, contact, and service-request forms is used only to respond to your request and coordinate with you. It is not shared with third parties for marketing purposes.")),
