@@ -451,11 +451,23 @@ def get_footer(is_en=False, depth=0):
 """, "qm")
 
 
+def _asset_ver(rel_path):
+    """Short content hash for cache-busting (?v=...). Without this, browsers and
+    dev servers happily keep serving a stale copy of products-data.js/style.css/
+    main.js after a rebuild - a real static-site footgun, not a hypothetical one."""
+    import hashlib
+    full = ROOT_DIR / rel_path
+    return hashlib.md5(full.read_bytes()).hexdigest()[:8]
+
+
 def generate_base_html(title, body_content, is_en=False, depth=0):
     rel = "../" * depth
     dir_attr = 'dir="ltr" lang="en"' if is_en else 'dir="rtl" lang="ar"'
     body_cls = 'en-lang' if is_en else 'ar-lang'
     skip_label = 'تخطي إلى المحتوى' if not is_en else 'Skip to content'
+    v_css = _asset_ver("assets/css/style.css")
+    v_products = _asset_ver("assets/js/products-data.js")
+    v_main = _asset_ver("assets/js/main.js")
 
     header = get_header(is_en=is_en, depth=depth)
     footer = get_footer(is_en=is_en, depth=depth)
@@ -471,7 +483,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-180x180.png">
   <link rel="preload" href="{rel}assets/fonts/{'cairo-latin.woff2' if is_en else 'cairo-arabic.woff2'}" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="{rel}assets/css/style.css">
+  <link rel="stylesheet" href="{rel}assets/css/style.css?v={v_css}">
 </head>
 <body class="{body_cls}" data-root="{rel}">
   <a class="skip-link" href="#main-content">{skip_label}</a>
@@ -481,8 +493,8 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   </main>
   {footer}
 
-  <script src="{rel}assets/js/products-data.js"></script>
-  <script src="{rel}assets/js/main.js"></script>
+  <script src="{rel}assets/js/products-data.js?v={v_products}"></script>
+  <script src="{rel}assets/js/main.js?v={v_main}"></script>
 </body>
 </html>
 """
@@ -1634,6 +1646,8 @@ def write_products_data_js():
 
 def main():
     print("Building all Arabic and English pages...")
+    write_products_data_js()  # must run before any page is built: generate_base_html()
+                               # hashes this file's content for the cache-busting ?v= param
     build_homepage(is_en=False)
     build_homepage(is_en=True)
     
@@ -1658,7 +1672,6 @@ def main():
     build_single_product_pages()
     build_category_pages()
     build_legal_pages()
-    write_products_data_js()
 
     print("All pages built successfully!")
 
