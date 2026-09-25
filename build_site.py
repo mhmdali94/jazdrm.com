@@ -807,6 +807,7 @@ def build_homepage(is_en=False):
         "stat_branches": "6" if not is_en else "6",
         "stat_branches_lbl": "فروع بالمملكة" if not is_en else "Branches in KSA",
         "floating_cert": "معتمدون لدى كبرى البنوك" if not is_en else "Certified by Major Banks",
+        "hero_img_alt": "أبواب الخزائن المحصنة، الخزائن الحديدية، دواليب الملفات، خزائن الإيداع، الأبواب الأمنية، والأقفال" if not is_en else "Vault doors, fireproof safes, filing cabinets, deposit lockers, security doors, and locks",
         "srv_tag": "خدماتنا المتميزة" if not is_en else "Our Core Services",
         "srv_h2": "حلول مقاولات وأمن شاملة بأعلى المعايير" if not is_en else "Comprehensive Contracting & Security Standards",
         "srv1_title": "أبواب الخزائن والغرف المحصنة" if not is_en else "Vault & Bunker Room Doors",
@@ -865,7 +866,7 @@ def build_homepage(is_en=False):
             </div>
           </div>
           <div class="hero-media-card">
-            <img src="{rel}assets/img/products/ssm-130-door-in-door.jpg" alt="SSM 130 Door in Door Vault" width="900" height="839">
+            <img src="{rel}assets/img/banners/hero-showcase.jpg" alt="{t['hero_img_alt']}" width="1098" height="932">
             <div class="hero-floating-pill">
               <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
               <div>
