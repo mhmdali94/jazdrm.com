@@ -167,6 +167,7 @@ def get_header(is_en=False, depth=0):
     home_url = f"{prefix}index.html"
     about_url = f"{prefix}about-us/index.html"
     products_url = f"{prefix}products/index.html"
+    services_url = f"{prefix}services/index.html"
     contact_url = f"{prefix}contact-us/index.html"
     service_req_url = f"{prefix}service-request/index.html"
     tech_support_url = f"{prefix}technical-support/index.html"
@@ -215,16 +216,7 @@ def get_header(is_en=False, depth=0):
             <a href="{home_url}" class="nav-link">{t['home']}</a>
           </div>
           <div class="nav-item">
-            <a href="{home_url}#services" class="nav-link">
-              <span>{t['services']}</span>
-              <svg class="arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </a>
-            <div class="dropdown-menu">
-              <a href="{home_url}#services" class="dropdown-item">{t['sub_vault']}</a>
-              <a href="{home_url}#services" class="dropdown-item">{t['sub_fireproof']}</a>
-              <a href="{home_url}#services" class="dropdown-item">{t['sub_digital_locks']}</a>
-              <a href="{service_req_url}" class="dropdown-item">{t['service_req']}</a>
-            </div>
+            <a href="{services_url}" class="nav-link">{t['services']}</a>
           </div>
           <div class="nav-item">
             <a href="{products_url}" class="nav-link">{t['products']}</a>
@@ -298,6 +290,7 @@ def get_header(is_en=False, depth=0):
     </div>
     <nav class="mobile-drawer-body" aria-label="{t['nav_drawer']}">
       <a href="{home_url}" class="nav-link">{t['home']}</a>
+      <a href="{services_url}" class="nav-link">{t['services']}</a>
       <a href="{products_url}" class="nav-link">{t['products']}</a>
       <a href="{safes_url}" class="nav-link">{t['cat_safes']}</a>
       <a href="{locks_url}" class="nav-link">{t['cat_locks']}</a>
@@ -320,6 +313,7 @@ def get_footer(is_en=False, depth=0):
     home_url = f"{prefix}index.html"
     about_url = f"{prefix}about-us/index.html"
     products_url = f"{prefix}products/index.html"
+    services_url = f"{prefix}services/index.html"
     contact_url = f"{prefix}contact-us/index.html"
     privacy_url = f"{prefix}privacy-policy/index.html"
     terms_url = f"{prefix}terms-and-conditions/index.html"
@@ -358,6 +352,7 @@ def get_footer(is_en=False, depth=0):
           <div class="footer-links">
             <a href="{home_url}">{'الرئيسية' if not is_en else 'Home'}</a>
             <a href="{about_url}">{'نبذة عنا' if not is_en else 'About Us'}</a>
+            <a href="{services_url}">{'خدماتنا' if not is_en else 'Our Services'}</a>
             <a href="{products_url}">{'منتجاتنا' if not is_en else 'Products'}</a>
             <a href="{service_req_url}">{'طلب خدمة' if not is_en else 'Service Request'}</a>
             <a href="{tech_support_url}">{'الدعم الفني' if not is_en else 'Technical Support'}</a>
@@ -1086,6 +1081,122 @@ def build_products_page(is_en=False):
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html, encoding="utf-8")
 
+def build_services_page(is_en=False):
+    assets = "../../" if is_en else "../"
+    cat = "../"
+    safes_href = f"{cat}product-category/الخزائن-والأبواب-الأمنية/index.html"
+    locks_href = f"{cat}product-category/الأقفال-الأمنية/index.html"
+    service_req_href = f"{cat}service-request/index.html"
+    img = f"{assets}assets/img/services/"
+
+    t = {
+        "tag": "خدماتنا" if not is_en else "Our Services",
+        "h1": "خدمات التوريد والتركيب والصيانة الأمنية" if not is_en else "Security Supply, Installation & Maintenance Services",
+        "sub": "من أبواب الخزائن المحصنة إلى الصيانة الدورية، نغطي دورة حياة المنشأة الأمنية بالكامل بفرق هندسية متخصصة ومعدات نقل وتركيب مخصصة." if not is_en else "From fortified vault doors to periodic maintenance, we cover the full lifecycle of a secure facility with specialized engineering teams and dedicated transport and installation equipment.",
+        "btn": "اطلب هذه الخدمة" if not is_en else "Request This Service",
+    }
+
+    quote_btn = t["btn"]
+
+    services = [
+        (
+            f"{img}vault-doors.jpg", "Vault & Bunker Room Doors",
+            "أبواب محصنة" if not is_en else "Vault Doors",
+            "توريد وتركيب أبواب الخزائن والغرف المحصنة" if not is_en else "Vault & Bunker Room Doors",
+            "توريد وتركيب أبواب الغرف المحصنة الحاصلة على شهادات الاعتماد الأمريكي UL وشهادات الاعتماد الأوروبي EN، بمقاسات وتصاميم تناسب متطلبات البنوك ومراكز البيانات والمؤسسات المالية."
+            if not is_en else
+            "Supply and installation of reinforced vault and bunker room doors, certified to American UL and European EN standards, in sizes and designs suited to banks, data centers, and financial institutions.",
+            safes_href,
+        ),
+        (
+            f"{img}fireproof-safes.jpg", "Fireproof & Burglary-Resistant Safes",
+            "خزائن حديدية" if not is_en else "Fireproof Safes",
+            "توريد وتركيب الخزائن المقاومة للحريق والسطو" if not is_en else "Fireproof & Burglary-Resistant Safes",
+            "توريد وتركيب الخزن الحديدية المقاومة للحريق والسطو بجميع أنواعها وأحجامها، بما يشمل الخزائن المصرفية والتجارية ذات الأقفال الإلكترونية والميكانيكية."
+            if not is_en else
+            "Supply and installation of fire and burglary-resistant steel safes in all types and sizes, including banking and commercial safes with electronic and mechanical locking.",
+            safes_href,
+        ),
+        (
+            f"{img}filing-cabinets.jpg", "Fireproof Filing Cabinets",
+            "دواليب الملفات" if not is_en else "Filing Cabinets",
+            "توريد وتركيب دواليب الملفات المقاومة للحريق" if not is_en else "Fireproof Filing Cabinets",
+            "توريد وتركيب الدواليب الحديدية المقاومة للحريق بعدد أدراج يبدأ من درجين وحتى خمسة أدراج، بمختلف أنواع الأقفال الميكانيكية والإلكترونية، لحفظ المستندات والسجلات الهامة."
+            if not is_en else
+            "Supply and installation of fireproof steel filing cabinets from 2 up to 5 drawers, with a range of mechanical and electronic locks, for safeguarding important documents and records.",
+            safes_href,
+        ),
+        (
+            f"{img}security-doors.jpg", "Teller, ATM, Data Room & Emergency Doors",
+            "أبواب الصرافين" if not is_en else "Teller & Emergency Doors",
+            "تصنيع وتركيب أبواب الصرافين وأبواب الطوارئ" if not is_en else "Teller, ATM & Emergency Doors",
+            "تصنيع وتوريد وتركيب أبواب مقاومة للحريق ومقاومة للرصاص، تشمل أبواب الصرافين ومخارج الطوارئ وأبواب غرف الصراف الآلي (ATM) وغرف الداتا، حاصلة على شهادة مقاومة الحريق المعتمدة من Intertek وفق معيار UL 10C."
+            if not is_en else
+            "Manufacturing, supply, and installation of fire- and bullet-resistant doors, including teller cabinet doors, emergency exits, ATM room doors, and data room doors, Intertek listed to UL 10C for fire resistance.",
+            safes_href,
+        ),
+        (
+            f"{img}locks.jpg", "Digital & Manual Locks",
+            "الأقفال الأمنية" if not is_en else "Security Locks",
+            "توريد وتركيب الأقفال الرقمية واليدوية" if not is_en else "Digital & Manual Locks",
+            "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية، الحاصلة على شهادات اختبار معتمدة، مع خدمة إعادة برمجة وتغيير الأقفال."
+            if not is_en else
+            "Supply and installation of all types of certified digital and manual locks with security keys and digital combinations, plus lock reprogramming and replacement service.",
+            locks_href,
+        ),
+        (
+            f"{img}deposit-lockers.jpg", "Deposit Lockers & Safety Deposit Boxes",
+            "خزائن الإيداع" if not is_en else "Deposit Lockers",
+            "توريد وتركيب خزائن الإيداع وصناديق الأمانات" if not is_en else "Deposit Lockers & Safety Deposit Boxes",
+            "توريد وتركيب جميع أنواع صناديق الأمانات وخزائن الإيداع المصرفية وأقفالها، بالإضافة إلى خدمة ترهيم (إعادة برمجة) الأقفال والأقراص للموديلات القديمة."
+            if not is_en else
+            "Supply and installation of all types of safety deposit boxes, banking deposit lockers, and their locks, plus re-keying and re-coding of locks and dials for older models.",
+            safes_href,
+        ),
+        (
+            f"{img}installation-maintenance.jpg", "Dismantling, Transport, Installation & Maintenance",
+            "الصيانة والنقل" if not is_en else "Maintenance & Transport",
+            "الفك والنقل والتركيب والصيانة الدورية" if not is_en else "Dismantling, Transport, Installation & Maintenance",
+            "فك ونقل وتركيب أبواب الغرف المحصنة وأبواب الطوارئ والصرافين، والخزائن الحديدية وأعمدة الأمانات ودواليب الملفات المقاومة للحريق، بمعدات نقل متخصصة وفرق تركيب معتمدة، إلى جانب عقود صيانة دورية وطارئة تشمل الفحص الشامل وإصلاح الأعطال وتحديث الأنظمة على مدار الساعة."
+            if not is_en else
+            "Dismantling, transporting, and reinstalling vault room doors, emergency and teller doors, steel safes, deposit lockers, and fireproof filing cabinets with specialized transport equipment and certified installation teams, backed by 24/7 periodic and emergency maintenance contracts covering full inspection, fault repair, and system updates.",
+            service_req_href,
+        ),
+    ]
+
+    cards = "\n\n".join(
+        division_card(src, alt, tag, title, desc, href, quote_btn)
+        for src, alt, tag, title, desc, href in services
+    )
+
+    body = f"""
+    <section class="section" style="padding-top: 50px;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">{t['tag']}</span>
+          <h1 class="section-title">{t['h1']}</h1>
+          <p class="section-subtitle">{t['sub']}</p>
+        </div>
+
+        <div class="divisions-grid">
+{cards}
+        </div>
+{get_contact_wa_cta(is_en)}
+      </div>
+    </section>
+    """
+
+    html = generate_base_html(
+        title="خدماتنا" if not is_en else "Our Services",
+        body_content=body,
+        is_en=is_en,
+        depth=2 if is_en else 1
+    )
+
+    out_path = ROOT_DIR / ("en/services/index.html" if is_en else "services/index.html")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(html, encoding="utf-8")
+
 def build_about_page(is_en=False):
     t = {
         "tag": "من نحن" if not is_en else "About Us",
@@ -1671,7 +1782,10 @@ def main():
     
     build_products_page(is_en=False)
     build_products_page(is_en=True)
-    
+
+    build_services_page(is_en=False)
+    build_services_page(is_en=True)
+
     build_about_page(is_en=False)
     build_about_page(is_en=True)
     
