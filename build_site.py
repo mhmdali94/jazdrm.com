@@ -443,14 +443,17 @@ def _asset_ver(rel_path):
     return hashlib.md5(full.read_bytes()).hexdigest()[:8]
 
 
-def generate_base_html(title, body_content, is_en=False, depth=0):
+def generate_base_html(title, body_content, is_en=False, depth=0, needs_products=False):
     rel = "../" * depth
     dir_attr = 'dir="ltr" lang="en"' if is_en else 'dir="rtl" lang="ar"'
     body_cls = 'en-lang' if is_en else 'ar-lang'
     skip_label = 'تخطي إلى المحتوى' if not is_en else 'Skip to content'
     v_css = _asset_ver("assets/css/style.css")
-    v_products = _asset_ver("assets/js/products-data.js")
     v_main = _asset_ver("assets/js/main.js")
+    products_script = ""
+    if needs_products:
+        v_products = _asset_ver("assets/js/products-data.js")
+        products_script = f'\n  <script src="{rel}assets/js/products-data.js?v={v_products}"></script>'
 
     header = get_header(is_en=is_en, depth=depth)
     footer = get_footer(is_en=is_en, depth=depth)
@@ -475,8 +478,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
     {body_content}
   </main>
   {footer}
-
-  <script src="{rel}assets/js/products-data.js?v={v_products}"></script>
+{products_script}
   <script src="{rel}assets/js/main.js?v={v_main}"></script>
 </body>
 </html>
@@ -993,7 +995,8 @@ def build_products_page(is_en=False):
         title="منتجاتنا" if not is_en else "Our Products",
         body_content=body,
         is_en=is_en,
-        depth=2 if is_en else 1
+        depth=2 if is_en else 1,
+        needs_products=True
     )
     
     out_path = ROOT_DIR / ("en/products/index.html" if is_en else "products/index.html")
@@ -1734,7 +1737,8 @@ def build_category_pages():
                 title=title,
                 body_content=body,
                 is_en=is_en,
-                depth=depth
+                depth=depth,
+                needs_products=True
             )
 
             c_dir = ROOT_DIR / ("en/product-category" if is_en else "product-category") / slug
