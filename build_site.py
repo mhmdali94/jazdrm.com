@@ -645,57 +645,69 @@ def division_card(img, alt, tag, title, desc, href, btn, comment=""):
           </article>"""
 
 
-def _division_cards(is_en, banner_rel, cat_rel):
-    """banner_rel: prefix to assets/  ·  cat_rel: prefix to product-category/"""
-    b = f"{banner_rel}assets/img/banners/"
-    cat_href = {
-        key: f"{cat_rel}product-category/{slug}/index.html"
-        for key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES
+def _category_division_cards(is_en, banner_rel, cat_rel):
+    """One division-card per real product category, each with its own photo.
+    banner_rel: prefix to assets/  ·  cat_rel: prefix to product-category/"""
+    img_dir = f"{banner_rel}assets/img/services/"
+    btn = "استعراض المنتجات" if not is_en else "Explore Products"
+
+    copy = {
+        "vault-doors": (
+            "أبواب محصنة", "Vault Doors",
+            "أبواب غرف محصنة حاصلة على شهادتي الاعتماد الأمريكي UL والأوروبي EN، لغرف البنوك والخزائن المصرفية الكبرى.",
+            "Reinforced vault room doors, UL- and EN-certified, engineered for bank vaults and high-security rooms.",
+        ),
+        "fireproof-safes": (
+            "خزائن حديدية", "Fireproof Safes",
+            "خزائن حديدية مقاومة للحريق والسطو بمختلف الأحجام، من الخزائن المصرفية إلى التجارية.",
+            "Fire- and burglary-resistant steel safes in every size, from banking vaults to commercial use.",
+        ),
+        "filing-cabinets": (
+            "دواليب الملفات", "Filing Cabinets",
+            "دواليب ملفات مقاومة للحريق من درجين حتى خمسة أدراج، لحماية المستندات والسجلات الهامة.",
+            "Fireproof filing cabinets from 2 to 5 drawers, protecting important documents and records.",
+        ),
+        "deposit-lockers": (
+            "خزائن الإيداع", "Deposit Lockers",
+            "خزائن إيداع وصناديق أمانات مصرفية بأقفال متعددة، لحفظ المقتنيات الثمينة لدى البنوك.",
+            "Banking deposit lockers and safety deposit boxes with multiple lock types for valuables.",
+        ),
+        "security-doors": (
+            "أبواب أمنية", "Security Doors",
+            "أبواب مقاومة للحريق والرصاص لغرف الصرافين والصراف الآلي وغرف الطوارئ، معتمدة وفق UL 10C.",
+            "Fire- and bullet-resistant doors for teller rooms, ATMs, and emergency exits, UL 10C listed.",
+        ),
     }
-    if is_en:
-        return (
-            division_card(f"{b}banner-safes.jpg", "Security Safes and Vault Doors",
-                "Safes & Vault Doors", "Heavy Commercial & Banking Safes",
-                "Reinforced bank safes, vault doors, and deposit boxes engineered and tested against burglary and fire to SAMA-compliant standards.",
-                cat_href["vault-doors"], "Explore Safes Catalog", "Division 1: Safes & Vaults"),
-            division_card(f"{b}banner-safes.jpg", "Fireproof Filing Cabinets and Deposit Lockers",
-                "Fireproof Filing & Deposit", "Fireproof Filing Cabinets & Deposit Lockers",
-                "Fire and burglary-resistant filing cabinets and deposit lockers with electronic, combination, and dual-key locking, protecting documents and valuables for banks and institutions.",
-                cat_href["filing-cabinets"], "Explore Products", "Division 2: Filing & Deposit Lockers"),
-        )
-    return (
-        division_card(f"{b}banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
-            "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية المحصنة",
-            "خزائن مصرفية ثقيلة، أبواب غرف محصنة، وخزائن أمانات مصممة ومختبرة لمقاومة السطو والحرائق وفق أعلى المعايير المعتمدة لكبرى البنوك والمؤسسات.",
-            cat_href["vault-doors"], "استعراض منتجات الخزائن", "Division 1: Safes & Vaults"),
-        division_card(f"{b}banner-safes.jpg", "دواليب الملفات وخزائن الإيداع المحصنة",
-            "دواليب وخزائن إيداع", "دواليب الملفات وخزائن الإيداع المحصنة",
-            "دواليب ملفات وخزائن إيداع مقاومة للحريق والسرقة، بأقفال إلكترونية ومركبة وثنائية المفتاح، لحماية المستندات والأصول الثمينة لدى البنوك والمؤسسات.",
-            cat_href["filing-cabinets"], "استعراض المنتجات", "Division 2: Filing & Deposit Lockers"),
-    )
+
+    cards = []
+    for key, slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES:
+        tag_ar, tag_en, desc_ar, desc_en = copy[key]
+        title = name_en if is_en else name_ar
+        cards.append(division_card(
+            f"{img_dir}{key}.jpg", title,
+            tag_en if is_en else tag_ar, title,
+            desc_en if is_en else desc_ar,
+            f"{cat_rel}product-category/{slug}/index.html", btn,
+        ))
+    return cards
 
 
 def get_divisions_section(is_en=False, rel=""):
     tag = "أبرز قطاعاتنا الأمنية" if not is_en else "Specialized Divisions"
-    h2 = ("حلول الأمان المصرفي وخزائن الإيداع المحصنة" if not is_en
-          else "Banking Security Solutions & Fireproof Deposit Storage")
     sub = ("نوفر تجهيزات متكاملة تلبي أعلى اشتراطات الأمان المعتمدة في المملكة" if not is_en
            else "Delivering turnkey installations meeting the highest national security and compliance standards")
     # homepage sits at its language root: category links are same-dir relative
-    c1, c2 = _division_cards(is_en, rel, "")
+    cards = _category_division_cards(is_en, rel, "")
     return f"""    <!-- Flagship Security Divisions -->
     <section class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">{tag}</span>
-          <h2 class="section-title">{h2}</h2>
           <p class="section-subtitle">{sub}</p>
         </div>
 
         <div class="divisions-grid">
-{c1}
-
-{c2}
+{chr(10).join(cards)}
         </div>
       </div>
     </section>"""
@@ -735,34 +747,15 @@ def get_contact_wa_cta(is_en=False):
 def get_about_showcase(is_en=False):
     assets = "../../" if is_en else "../"
     cat = "../"
-    cat_href = {
-        key: f"{cat}product-category/{slug}/index.html"
-        for key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES
-    }
+    cards = _category_division_cards(is_en, assets, cat)
     if is_en:
         p_tag, p_h2 = "Accredited by Top Financial Institutions", "Trusted Security Partner for Saudi Banking"
         banner_alt = "Banking Accreditations - Top Banks in Saudi Arabia"
         d_tag, d_h2 = "Core Expertise", "Integrated Security Divisions"
-        c1 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "Security Safes and Vault Doors",
-            "Safes & Vault Doors", "Commercial & Banking Safes",
-            "Turnkey fitting of financial institutions with heavy certified vaults meeting SAMA security standards.",
-            cat_href["vault-doors"], "Explore Products")
-        c2 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "Fireproof Filing Cabinets and Deposit Lockers",
-            "Fireproof Filing & Deposit", "Fireproof Filing Cabinets & Deposit Lockers",
-            "Fire and burglary-resistant filing cabinets and deposit lockers for documents and valuables.",
-            cat_href["filing-cabinets"], "Explore Products")
     else:
         p_tag, p_h2 = "اعتمادات كبرى المصارف", "شريك الأمان المعتمد لدى البنوك السعودية"
         banner_alt = "اعتمادات مصرفية - كبرى البنوك والمصارف"
         d_tag, d_h2 = "مجالات التميز والتخصص", "أقسامنا وحلولنا المتكاملة"
-        c1 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "الخزائن والأبواب الأمنية المحصنة",
-            "خزائن وأبواب محصنة", "الخزائن والأبواب المصرفية",
-            "تجهيز كامل لغرف البنوك والمصارف بخزائن ثقيلة وأبواب محصنة مطابقة لمعايير SAMA العالمية.",
-            cat_href["vault-doors"], "استعراض المنتجات")
-        c2 = division_card(f"{assets}assets/img/banners/banner-safes.jpg", "دواليب الملفات وخزائن الإيداع المحصنة",
-            "دواليب وخزائن إيداع", "دواليب الملفات وخزائن الإيداع المحصنة",
-            "دواليب ملفات وخزائن إيداع مقاومة للحريق والسرقة لحماية المستندات والأصول الثمينة.",
-            cat_href["filing-cabinets"], "استعراض المنتجات")
     return f"""        <!-- Banking Partners & Trust Showcase -->
         <div class="section-header" style="margin-top: 50px; margin-bottom: 25px;">
           <span class="section-tag">{p_tag}</span>
@@ -778,8 +771,7 @@ def get_about_showcase(is_en=False):
           <h2 class="section-title">{d_h2}</h2>
         </div>
         <div class="divisions-grid" style="margin-bottom: 50px;">
-{c1}
-{c2}
+{chr(10).join(cards)}
         </div>"""
 
 
