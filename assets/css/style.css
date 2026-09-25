@@ -1380,10 +1380,22 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-block: 2px;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-tab {
+  flex-shrink: 0;
+  white-space: nowrap;
   padding: 9px 18px;
   border-radius: var(--radius-pill);
   font-size: 0.9rem;
