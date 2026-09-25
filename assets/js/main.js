@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initProductCatalog();
   initQuoteModal();
   initForms();
+  initScrollReveal();
 });
 
 /* Helper: exact relative root path */
@@ -112,6 +113,34 @@ function initHeader() {
       ticking = false;
     });
   }, { passive: true });
+}
+
+/* Reveal section headers and content blocks as they scroll into view.
+   The hero animates on load instead (pure CSS, see style.css) so it's
+   excluded here to avoid a double entrance. */
+function initScrollReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  const targets = document.querySelectorAll(
+    '.section-header, .form-card, .division-card, .service-item, ' +
+    '.coverage-hq, .coverage-regions, .cta-whatsapp-card, .clients-grid, .brand-wall'
+  );
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-on-scroll', 'is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  targets.forEach(function (el) {
+    el.classList.add('reveal-on-scroll');
+    observer.observe(el);
+  });
 }
 
 /* 2. Mobile Drawer Navigation */
