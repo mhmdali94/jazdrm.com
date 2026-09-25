@@ -154,7 +154,7 @@ def get_header(is_en=False, depth=0):
         "tech_support": "الدعم الفني" if not is_en else "Tech Support",
         "careers": "التوظيف" if not is_en else "Careers",
         "brand_title": "أحلام الجزيرة" if not is_en else "Aljazeera Dreams",
-        "brand_sub": "للمقاولات والصيانة والأمن" if not is_en else "Contracting, Maintenance & Security",
+        "brand_sub": "للمقاولات والصيانة" if not is_en else "Contracting & Maintenance",
         "home": "الرئيسية" if not is_en else "Home",
         "services": "خدماتنا" if not is_en else "Our Services",
         "products": "منتجاتنا" if not is_en else "Products",
@@ -311,13 +311,13 @@ def get_footer(is_en=False, depth=0):
     ]
 
     t = {
-        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة والأمن: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting, Maintenance & Security: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
+        "about_p": "شركة أحلام الجزيرة للمقاولات والصيانة: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting & Maintenance: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
         "nav_title": "روابط سريعة" if not is_en else "Quick Links",
         "cats_title": "التصنيفات" if not is_en else "Categories",
         "contact_title": "تواصل معنا" if not is_en else "Contact Us",
         "address": "الرياض (الفرع الرئيسي)، حي الروابي، شارع طاهر الدباغ" if not is_en else "Riyadh (Main HQ), Al-Rawabi, Taher Al-Dabbagh St.",
         "branches": "فروعنا: الرياض، جدة، الدمام، المدينة المنورة، بريدة، تبوك، الطائف" if not is_en else "Branches: Riyadh, Jeddah, Dammam, Medina, Buraydah, Tabuk, Taif",
-        "copyright": "جميع الحقوق محفوظة © 2026 · شركة أحلام الجزيرة للمقاولات والصيانة والأمن" if not is_en else "All Rights Reserved © 2026 · Aljazeera Dreams Co.",
+        "copyright": "جميع الحقوق محفوظة © 2026 · شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "All Rights Reserved © 2026 · Aljazeera Dreams Co.",
         "privacy": "سياسة الخصوصية" if not is_en else "Privacy Policy",
         "terms": "الشروط والأحكام" if not is_en else "Terms & Conditions",
     }
@@ -461,7 +461,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | {'شركة أحلام الجزيرة' if not is_en else 'Aljazeera Dreams Co.'}</title>
-  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة والأمن: حلول الخزائن والأبواب الأمنية، دواليب الملفات المقاومة للحريق، والأقفال الذكية' if not is_en else 'Aljazeera Dreams Contracting, Maintenance & Security: premium security safes, vault doors, fireproof filing cabinets, and smart locks in Saudi Arabia'}">
+  <meta name="description" content="{'شركة أحلام الجزيرة للمقاولات والصيانة: حلول الخزائن والأبواب الأمنية، دواليب الملفات المقاومة للحريق، والأقفال الذكية' if not is_en else 'Aljazeera Dreams Contracting & Maintenance: premium security safes, vault doors, fireproof filing cabinets, and smart locks in Saudi Arabia'}">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-32x32.png" sizes="32x32">
   <link rel="icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="{rel}wp-content/uploads/2025/06/cropped-favicon-180x180.png">
@@ -1117,7 +1117,7 @@ def build_services_page(is_en=False):
 def build_about_page(is_en=False):
     t = {
         "tag": "من نحن" if not is_en else "About Us",
-        "h1": "شركة أحلام الجزيرة للمقاولات والصيانة والأمن" if not is_en else "Aljazeera Dreams Contracting, Maintenance & Security",
+        "h1": "شركة أحلام الجزيرة للمقاولات والصيانة" if not is_en else "Aljazeera Dreams Contracting & Maintenance",
         "sub": "أكثر من 15 عاماً من الخبرة والتميز في تزويد وتركيب أحدث تقنيات الخزائن والأبواب الأمنية والحلول المصرفية في المملكة العربية السعودية." if not is_en else "Over 15 years of excellence delivering high-security safes, vault doors, and smart banking solutions across Saudi Arabia.",
         "overview": (
             "شركة أحلام الجزيرة للمقاولات هي شركة سعودية رائدة متخصصة في تصميم وتصنيع وتوريد وتركيب الحلول الأمنية المتكاملة، "
@@ -1749,8 +1749,8 @@ def build_legal_pages():
             "updated": ("آخر تحديث: 2026", "Last updated: 2026"),
             "blocks": [
                 (("مقدمة", "Introduction"),
-                 ("نلتزم في شركة أحلام الجزيرة للمقاولات والصيانة والأمن بحماية خصوصية بيانات عملائنا وزوّار موقعنا، وفق الأنظمة المعمول بها في المملكة العربية السعودية.",
-                  "Aljazeera Dreams Contracting, Maintenance & Security is committed to protecting the privacy of our clients and website visitors, in line with the regulations in force in Saudi Arabia.")),
+                 ("نلتزم في شركة أحلام الجزيرة للمقاولات والصيانة بحماية خصوصية بيانات عملائنا وزوّار موقعنا، وفق الأنظمة المعمول بها في المملكة العربية السعودية.",
+                  "Aljazeera Dreams Contracting & Maintenance is committed to protecting the privacy of our clients and website visitors, in line with the regulations in force in Saudi Arabia.")),
                 (("جمع البيانات واستخدامها", "Collection and use of data"),
                  ("تُستخدم البيانات المُدخلة في نماذج طلب عرض السعر والتواصل وطلب الخدمة لغرض الرد على الطلب والتنسيق مع العميل فقط، ولا تتم مشاركتها مع أي طرف ثالث لأغراض تسويقية.",
                   "Information you enter in the quotation, contact, and service-request forms is used only to respond to your request and coordinate with you. It is not shared with third parties for marketing purposes.")),
