@@ -1160,26 +1160,32 @@ def build_about_page(is_en=False):
         "cert_sub": "حاصلون على شهادات الأيزو المعتمدة دولياً في إدارة الجودة والبيئة والصحة والسلامة المهنية، الصادرة عن QRO Certification." if not is_en else "Certified to internationally accredited ISO standards for quality, environmental, and occupational health & safety management, issued by QRO Certification.",
     }
 
+    rel = "../../" if is_en else "../"
+
+    cert_no_label = "رقم الشهادة" if not is_en else "Certificate No."
+    cert_valid_label = "سارية حتى 3 نوفمبر 2028" if not is_en else "Valid until 3 Nov 2028"
+    cert_view_label = "عرض الشهادة كاملة" if not is_en else "View full certificate"
     certs = [
-        ("ISO 9001:2015", "نظام إدارة الجودة" if not is_en else "Quality Management System"),
-        ("ISO 14001:2015", "نظام الإدارة البيئية" if not is_en else "Environmental Management System"),
-        ("ISO 45001:2018", "نظام إدارة الصحة والسلامة المهنية" if not is_en else "Occupational Health & Safety Management System"),
+        ("ISO 9001:2015", "نظام إدارة الجودة" if not is_en else "Quality Management System", "305025110470Q", "iso-9001"),
+        ("ISO 14001:2015", "نظام الإدارة البيئية" if not is_en else "Environmental Management System", "305025110476E", "iso-14001"),
+        ("ISO 45001:2018", "نظام إدارة الصحة والسلامة المهنية" if not is_en else "Occupational Health & Safety Management System", "305025110473HS", "iso-45001"),
     ]
     cert_cards = "\n".join(f"""          <div class="form-card" style="margin: 0; max-width: 100%; text-align: center;">
-            <div class="service-icon-box" style="margin-left: auto; margin-right: auto;">
-              <svg viewBox="0 0 24 24"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z"/></svg>
-            </div>
+            <a href="{rel}assets/img/certificates/{img}.jpg" target="_blank" rel="noopener" style="display: block; margin-bottom: 18px;" aria-label="{cert_view_label}: {code}">
+              <img src="{rel}assets/img/certificates/{img}.jpg" alt="{code} - {label}" width="700" height="1029" loading="lazy" style="width: 100%; height: auto; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            </a>
             <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px;">{code}</h3>
-            <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.92rem;">{label}</p>
-          </div>""" for code, label in certs)
+            <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.92rem; margin-bottom: 14px;">{label}</p>
+            <p style="color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 12px; margin: 0;">
+              {cert_no_label}: <bdi>{number}</bdi><br>{cert_valid_label}
+            </p>
+          </div>""" for code, label, number, img in certs)
 
     values_list = "\n".join(
         f'<li style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; color: var(--text-body); font-weight: 600;">'
         f'<span style="color: var(--primary); font-weight: 800;">✓</span> {v}</li>'
         for v in t["values"]
     )
-
-    rel = "../../" if is_en else "../"
 
     body = f"""
     <section class="section" style="padding-top: 50px;">
