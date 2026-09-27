@@ -636,8 +636,9 @@ def get_clients_banner(is_en=False, rel="", style=""):
             f'        </div>')
 
 
-def division_card(img, alt, tag, title, desc, href, btn, comment="", highlights=None):
+def division_card(img, alt, tag, title, desc, href, btn, comment="", highlights=None, extra_style=""):
     cmt = f"          <!-- {comment} -->\n" if comment else ""
+    style_attr = f' style="{extra_style}"' if extra_style else ""
     highlights_html = ""
     if highlights:
         items = "\n".join(
@@ -649,7 +650,7 @@ def division_card(img, alt, tag, title, desc, href, btn, comment="", highlights=
 {items}
               </ul>
 """
-    return f"""{cmt}          <article class="division-card">
+    return f"""{cmt}          <article class="division-card"{style_attr}>
             <div class="division-media">
               <img src="{img}" alt="{alt}" width="1024" height="426" loading="lazy">
             </div>
@@ -1126,8 +1127,11 @@ def build_services_page(is_en=False):
     ]
 
     cards = "\n\n".join(
-        division_card(src, alt, tag, title, desc, href, quote_btn, highlights=highlights)
-        for src, alt, tag, title, desc, href, highlights in services
+        division_card(
+            src, alt, tag, title, desc, href, quote_btn, highlights=highlights,
+            extra_style="grid-column: 1 / -1; justify-self: center; width: 100%; max-width: 420px;" if len(services) % 3 == 1 and i == len(services) - 1 else "",
+        )
+        for i, (src, alt, tag, title, desc, href, highlights) in enumerate(services)
     )
 
     breakdown = [
