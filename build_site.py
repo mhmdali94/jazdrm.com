@@ -1162,9 +1162,9 @@ def build_services_page(is_en=False):
         if not is_en else
         "From dismantling the old unit to commissioning the new one, one team handles the full cycle: safe transport, precise installation, and periodic maintenance contracts that keep it ready around the clock."
     )
-    featured_card = f"""          <article class="division-card" style="grid-column: 1 / -1;">
+    featured_card = f"""          <article class="division-card featured-service-card" style="grid-column: 1 / -1;">
             <div class="division-media">
-              <img src="{img}installation-maintenance.jpg" alt="Dismantling, Transport, Installation & Maintenance" width="1695" height="681" loading="lazy">
+              <img src="{img}installation-maintenance.jpg" alt="Dismantling, Transport, Installation & Maintenance" width="900" height="1155" loading="lazy">
             </div>
             <div class="division-body">
               <span class="division-tag">{featured_tag}</span>
