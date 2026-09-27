@@ -1190,7 +1190,7 @@ html[dir="ltr"] .hero-floating-pill {
   }
 
   .featured-service-card .division-media {
-    width: 46%;
+    width: 34%;
     flex-shrink: 0;
     border-radius: var(--radius-lg);
     background: none;
@@ -1203,7 +1203,7 @@ html[dir="ltr"] .hero-floating-pill {
   }
 
   .featured-service-card .division-body {
-    width: 54%;
+    width: 66%;
     padding: 0;
   }
 }
