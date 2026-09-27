@@ -636,8 +636,19 @@ def get_clients_banner(is_en=False, rel="", style=""):
             f'        </div>')
 
 
-def division_card(img, alt, tag, title, desc, href, btn, comment=""):
+def division_card(img, alt, tag, title, desc, href, btn, comment="", highlights=None):
     cmt = f"          <!-- {comment} -->\n" if comment else ""
+    highlights_html = ""
+    if highlights:
+        items = "\n".join(
+            f'                <li style="display: flex; align-items: baseline; gap: 8px; font-size: 0.875rem; color: var(--text-body);">'
+            f'<span style="color: var(--primary); font-weight: 800;">&check;</span> {h}</li>'
+            for h in highlights
+        )
+        highlights_html = f"""              <ul style="list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 8px;">
+{items}
+              </ul>
+"""
     return f"""{cmt}          <article class="division-card">
             <div class="division-media">
               <img src="{img}" alt="{alt}" width="1024" height="426" loading="lazy">
@@ -646,7 +657,7 @@ def division_card(img, alt, tag, title, desc, href, btn, comment=""):
               <span class="division-tag">{tag}</span>
               <h3 class="division-title">{title}</h3>
               <p class="division-desc">{desc}</p>
-              <a href="{href}" class="division-btn">
+{highlights_html}              <a href="{href}" class="division-btn">
                 <span>{btn}</span>
                 {_ARROW_SVG}
               </a>
@@ -1036,6 +1047,9 @@ def build_services_page(is_en=False):
             if not is_en else
             "Supply and installation of reinforced vault and bunker room doors, certified to American UL and European EN standards, in sizes and designs suited to banks, data centers, and financial institutions.",
             service_req_href,
+            ["معتمدة UL أمريكياً وEN أوروبياً", "مقاسات وتصاميم مخصصة", "مناسبة للبنوك ومراكز البيانات"]
+            if not is_en else
+            ["Certified to American UL and European EN", "Custom sizes and designs", "Suited to banks and data centers"],
         ),
         (
             f"{img}fireproof-safes.jpg", "Fireproof & Burglary-Resistant Safes",
@@ -1045,6 +1059,9 @@ def build_services_page(is_en=False):
             if not is_en else
             "Supply and installation of fire and burglary-resistant steel safes in all types and sizes, including banking and commercial safes with electronic and mechanical locking.",
             service_req_href,
+            ["مقاومة للحريق والسطو معاً", "جميع الأحجام والمقاسات", "أقفال إلكترونية وميكانيكية"]
+            if not is_en else
+            ["Both fire- and burglary-resistant", "Every size and specification", "Electronic and mechanical locking"],
         ),
         (
             f"{img}filing-cabinets.jpg", "Fireproof Filing Cabinets",
@@ -1054,6 +1071,9 @@ def build_services_page(is_en=False):
             if not is_en else
             "Supply and installation of fireproof steel filing cabinets from 2 up to 5 drawers, with a range of mechanical and electronic locks, for safeguarding important documents and records.",
             service_req_href,
+            ["من درجين حتى خمسة أدراج", "أقفال ميكانيكية وإلكترونية", "لحفظ المستندات والسجلات الهامة"]
+            if not is_en else
+            ["From 2 up to 5 drawers", "Mechanical and electronic locks", "For important documents and records"],
         ),
         (
             f"{img}security-doors.jpg", "Teller, ATM, Data Room & Emergency Doors",
@@ -1063,6 +1083,9 @@ def build_services_page(is_en=False):
             if not is_en else
             "Manufacturing, supply, and installation of fire- and bullet-resistant doors, including teller cabinet doors, emergency exits, ATM room doors, and data room doors, Intertek listed to UL 10C for fire resistance.",
             service_req_href,
+            ["مقاومة للحريق ومقاومة للرصاص", "شهادة Intertek وفق UL 10C", "لغرف الصرافين والصراف الآلي والبيانات"]
+            if not is_en else
+            ["Fire- and bullet-resistant", "Intertek listed to UL 10C", "For teller, ATM, and data rooms"],
         ),
         (
             f"{img}locks.jpg", "Digital & Manual Locks",
@@ -1072,6 +1095,9 @@ def build_services_page(is_en=False):
             if not is_en else
             "Supply and installation of all types of certified digital and manual locks with security keys and digital combinations, plus lock reprogramming and replacement service.",
             service_req_href,
+            ["أقفال رقمية ويدوية معتمدة", "شهادات اختبار دولية", "خدمة إعادة برمجة وتغيير الأقفال"]
+            if not is_en else
+            ["Certified digital and manual locks", "International test certifications", "Reprogramming and replacement service"],
         ),
         (
             f"{img}deposit-lockers.jpg", "Deposit Lockers & Safety Deposit Boxes",
@@ -1081,6 +1107,9 @@ def build_services_page(is_en=False):
             if not is_en else
             "Supply and installation of all types of safety deposit boxes, banking deposit lockers, and their locks, plus re-keying and re-coding of locks and dials for older models.",
             service_req_href,
+            ["صناديق أمانات وخزائن إيداع مصرفية", "خدمة ترهيم للموديلات القديمة", "حلول متكاملة للبنوك والمؤسسات"]
+            if not is_en else
+            ["Safety deposit boxes and bank lockers", "Re-keying service for older models", "Integrated solutions for banks and institutions"],
         ),
         (
             f"{img}atm-booths.jpg", "ATM Booth Execution & Site Setup",
@@ -1090,12 +1119,15 @@ def build_services_page(is_en=False):
             if not is_en else
             "End-to-end execution and setup of ATM booths and roadside locations, from civil works and foundations to final installation, lighting, and canopy, delivering a secure site ready for round-the-clock operation.",
             service_req_href,
+            ["من الأعمال المدنية إلى التشغيل الكامل", "تركيب وإضاءة وتغطية متكاملة", "جاهزية تشغيل على مدار الساعة"]
+            if not is_en else
+            ["From civil works to full operation", "Integrated installation, lighting, canopy", "Ready for round-the-clock operation"],
         ),
     ]
 
     cards = "\n\n".join(
-        division_card(src, alt, tag, title, desc, href, quote_btn)
-        for src, alt, tag, title, desc, href in services
+        division_card(src, alt, tag, title, desc, href, quote_btn, highlights=highlights)
+        for src, alt, tag, title, desc, href, highlights in services
     )
 
     breakdown = [
