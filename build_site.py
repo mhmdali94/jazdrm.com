@@ -771,7 +771,9 @@ def build_homepage(is_en=False):
         "srv5_title": "الأقفال الرقمية واليدوية" if not is_en else "Digital & Manual Locks",
         "srv5_desc": "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية المعتمدة." if not is_en else "Supply and installation of all types of certified digital and manual locks, security keys, and digital combinations.",
         "srv6_title": "الفك والنقل والتركيب والصيانة" if not is_en else "Dismantling, Transport, Installation & Maintenance",
-        "srv6_desc": "فك ونقل وتركيب الخزائن والأبواب المحصنة بمعدات متخصصة، وعقود صيانة دورية وطارئة على مدار الساعة." if not is_en else "Dismantling, transporting, and reinstalling vaults and fortified doors with specialized equipment, backed by 24/7 periodic and emergency maintenance contracts.",
+        "srv6_desc": "فك ونقل وتركيب الخزائن وأبواب الغرف المحصنة بسيارات مجهزة ومعدات رفع متخصصة، وتركيب احترافي مع ضبط دقيق واختبار شامل، إلى جانب عقود صيانة دورية تشمل الفحص الشامل وإصلاح الأعطال وتحديث الأنظمة." if not is_en else "Dismantling, transporting, and reinstalling vaults and fortified room doors with fully equipped vehicles and specialized lifting gear, professional installation with precise calibration and comprehensive testing, plus periodic maintenance covering full inspection, fault repair, and system updates.",
+        "srv7_title": "تنفيذ وتجهيز غرف ومواقع الصراف الآلي" if not is_en else "ATM Booth Execution & Site Setup",
+        "srv7_desc": "تنفيذ وتجهيز غرف الصراف الآلي ومواقعها على الطرق العامة، من الأعمال المدنية والتأسيس إلى التركيب النهائي، بما يضمن موقعاً آمناً وجاهزاً للتشغيل على مدار الساعة." if not is_en else "End-to-end execution and setup of ATM booths and roadside locations, from civil works and foundations to final installation, delivering a secure site ready for round-the-clock operation.",
         "srv_lead": "من توريد وتركيب أبواب الخزائن المحصنة إلى عقود الصيانة والنقل طويلة الأمد، نغطّي دورة حياة المنشأة الأمنية بالكامل تحت سقف واحد." if not is_en else "From supplying and installing fortified vault doors to long-term maintenance and relocation contracts, we cover the full lifecycle of a secure facility under one roof.",
         "srv_cta": "تحدث إلى مهندس" if not is_en else "Talk to an Engineer",
         "partners_tag": "شركاء النجاح" if not is_en else "Partners of Success",
@@ -897,6 +899,13 @@ def build_homepage(is_en=False):
               <div class="service-item-body">
                 <h3>{t['srv6_title']}</h3>
                 <p>{t['srv6_desc']}</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <span class="service-num">07</span>
+              <div class="service-item-body">
+                <h3>{t['srv7_title']}</h3>
+                <p>{t['srv7_desc']}</p>
               </div>
             </li>
           </ol>
@@ -1080,6 +1089,15 @@ def build_services_page(is_en=False):
             "فك ونقل وتركيب أبواب الغرف المحصنة وأبواب الطوارئ والصرافين، والخزائن الحديدية وأعمدة الأمانات ودواليب الملفات المقاومة للحريق، بمعدات نقل متخصصة وفرق تركيب معتمدة، إلى جانب عقود صيانة دورية وطارئة تشمل الفحص الشامل وإصلاح الأعطال وتحديث الأنظمة على مدار الساعة."
             if not is_en else
             "Dismantling, transporting, and reinstalling vault room doors, emergency and teller doors, steel safes, deposit lockers, and fireproof filing cabinets with specialized transport equipment and certified installation teams, backed by 24/7 periodic and emergency maintenance contracts covering full inspection, fault repair, and system updates.",
+            service_req_href,
+        ),
+        (
+            f"{img}atm-booths.jpg", "ATM Booth Execution & Site Setup",
+            "الصراف الآلي" if not is_en else "ATM Booths",
+            "تنفيذ وتجهيز غرف ومواقع الصراف الآلي" if not is_en else "ATM Booth Execution & Site Setup",
+            "تنفيذ وتجهيز غرف الصراف الآلي ومواقعها على الطرق العامة، من الأعمال المدنية والتأسيس إلى التركيب النهائي والإضاءة والتغطية، بما يضمن موقعاً آمناً وجاهزاً للتشغيل على مدار الساعة."
+            if not is_en else
+            "End-to-end execution and setup of ATM booths and roadside locations, from civil works and foundations to final installation, lighting, and canopy, delivering a secure site ready for round-the-clock operation.",
             service_req_href,
         ),
     ]
