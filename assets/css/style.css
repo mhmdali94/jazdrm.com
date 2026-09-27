@@ -1135,6 +1135,7 @@ html[dir="ltr"] .hero-floating-pill {
 .divisions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  align-items: start;
   gap: 30px;
   margin-top: 35px;
 }
