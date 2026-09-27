@@ -1035,6 +1035,7 @@ def build_services_page(is_en=False):
         "h1": "خدمات التوريد والتركيب والصيانة الأمنية" if not is_en else "Security Supply, Installation & Maintenance Services",
         "sub": "من أبواب الخزائن المحصنة إلى الصيانة الدورية، نغطي دورة حياة المنشأة الأمنية بالكامل بفرق هندسية متخصصة ومعدات نقل وتركيب مخصصة." if not is_en else "From fortified vault doors to periodic maintenance, we cover the full lifecycle of a secure facility with specialized engineering teams and dedicated transport and installation equipment.",
         "btn": "اطلب هذه الخدمة" if not is_en else "Request This Service",
+        "scroll_cue": "اكتشف جميع خدماتنا بالأسفل" if not is_en else "Discover all our services below",
     }
 
     quote_btn = t["btn"]
@@ -1191,6 +1192,11 @@ def build_services_page(is_en=False):
           <span class="section-tag">{t['tag']}</span>
           <h1 class="section-title">{t['h1']}</h1>
           <p class="section-subtitle">{t['sub']}</p>
+        </div>
+
+        <div class="scroll-cue">
+          <span>{t['scroll_cue']}</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </div>
 
         <div class="divisions-grid">

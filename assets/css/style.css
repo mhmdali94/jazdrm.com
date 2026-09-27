@@ -196,6 +196,31 @@ button {
     opacity: 1;
     transform: translateY(0);
   }
+
+  @keyframes scroll-cue-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+  .scroll-cue svg {
+    animation: scroll-cue-bounce 1.6s ease-in-out infinite;
+  }
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 30px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.scroll-cue svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
 }
 
 /* ==========================================================================
