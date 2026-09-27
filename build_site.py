@@ -1083,15 +1083,6 @@ def build_services_page(is_en=False):
             service_req_href,
         ),
         (
-            f"{img}installation-maintenance.jpg", "Dismantling, Transport, Installation & Maintenance",
-            "الصيانة والنقل" if not is_en else "Maintenance & Transport",
-            "الفك والنقل والتركيب والصيانة الدورية" if not is_en else "Dismantling, Transport, Installation & Maintenance",
-            "فك ونقل وتركيب أبواب الغرف المحصنة وأبواب الطوارئ والصرافين، والخزائن الحديدية وأعمدة الأمانات ودواليب الملفات المقاومة للحريق، بمعدات نقل متخصصة وفرق تركيب معتمدة، إلى جانب عقود صيانة دورية وطارئة تشمل الفحص الشامل وإصلاح الأعطال وتحديث الأنظمة على مدار الساعة."
-            if not is_en else
-            "Dismantling, transporting, and reinstalling vault room doors, emergency and teller doors, steel safes, deposit lockers, and fireproof filing cabinets with specialized transport equipment and certified installation teams, backed by 24/7 periodic and emergency maintenance contracts covering full inspection, fault repair, and system updates.",
-            service_req_href,
-        ),
-        (
             f"{img}atm-booths.jpg", "ATM Booth Execution & Site Setup",
             "الصراف الآلي" if not is_en else "ATM Booths",
             "تنفيذ وتجهيز غرف ومواقع الصراف الآلي" if not is_en else "ATM Booth Execution & Site Setup",
@@ -1107,6 +1098,56 @@ def build_services_page(is_en=False):
         for src, alt, tag, title, desc, href in services
     )
 
+    breakdown = [
+        (
+            "الصيانة" if not is_en else "Maintenance",
+            "فحص شامل وصيانة احترافية دورية تشمل إصلاح الأعطال وتحديث الأنظمة، لضمان أعلى مستويات الأمان."
+            if not is_en else
+            "Comprehensive inspection and professional periodic maintenance, including fault repair and system updates, to ensure the highest levels of security.",
+        ),
+        (
+            "النقل" if not is_en else "Transport",
+            "نقل آمن ومخصص لمنشآتك بإرشاد وعمليات متخصصة وسيارات مجهزة بأعلى المستويات، مع تغليف دقيق وحماية متكاملة لتجهيزاتك الثمينة."
+            if not is_en else
+            "Safe, dedicated transport for your facilities with specialized guidance and top-standard equipped vehicles, plus precise packaging and comprehensive protection for your valuable equipment.",
+        ),
+        (
+            "التركيب" if not is_en else "Installation",
+            "تركيب احترافي ودقيق وفق أعلى معايير الأمان والمواصفات، مع ضبط دقيق واختبار شامل لكل وحدة."
+            if not is_en else
+            "Professional, precise installation to the highest safety standards and specifications, with precise calibration and comprehensive testing for every unit.",
+        ),
+    ]
+    breakdown_html = "\n".join(f"""              <div>
+                <h4 style="font-size: 1rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px;">{label}</h4>
+                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin: 0;">{desc}</p>
+              </div>""" for label, desc in breakdown)
+
+    featured_tag = "خدمتنا الشاملة" if not is_en else "Our Full-Lifecycle Service"
+    featured_title = "الفك والنقل والتركيب والصيانة الدورية" if not is_en else "Dismantling, Transport, Installation & Periodic Maintenance"
+    featured_lead = (
+        "من فك الوحدة القديمة إلى تشغيل الجديدة، فريق واحد يتولى دورة العملية بالكامل: نقل آمن، تركيب دقيق، وعقود صيانة دورية تبقيها جاهزة على مدار الساعة."
+        if not is_en else
+        "From dismantling the old unit to commissioning the new one, one team handles the full cycle: safe transport, precise installation, and periodic maintenance contracts that keep it ready around the clock."
+    )
+    featured_card = f"""          <article class="division-card" style="grid-column: span 2;">
+            <div class="division-media">
+              <img src="{img}installation-maintenance.jpg" alt="Dismantling, Transport, Installation & Maintenance" width="1024" height="426" loading="lazy">
+            </div>
+            <div class="division-body">
+              <span class="division-tag">{featured_tag}</span>
+              <h2 class="division-title" style="font-size: 1.5rem;">{featured_title}</h2>
+              <p class="division-desc">{featured_lead}</p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 24px;">
+{breakdown_html}
+              </div>
+              <a href="{service_req_href}" class="division-btn">
+                <span>{quote_btn}</span>
+                {_ARROW_SVG}
+              </a>
+            </div>
+          </article>"""
+
     body = f"""
     <section class="section" style="padding-top: 50px;">
       <div class="container">
@@ -1117,6 +1158,8 @@ def build_services_page(is_en=False):
         </div>
 
         <div class="divisions-grid">
+{featured_card}
+
 {cards}
         </div>
 {get_contact_wa_cta(is_en)}
