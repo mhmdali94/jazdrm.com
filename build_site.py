@@ -1164,7 +1164,7 @@ def build_services_page(is_en=False):
     )
     featured_card = f"""          <article class="division-card featured-service-card" style="grid-column: 1 / -1;">
             <div class="division-media">
-              <img src="{img}installation-maintenance.jpg" alt="Dismantling, Transport, Installation & Maintenance" width="900" height="1155" loading="lazy">
+              <img src="{img}installation-maintenance.jpg" alt="Dismantling, Transport, Installation & Maintenance" width="1695" height="681" loading="lazy">
             </div>
             <div class="division-body">
               <span class="division-tag">{featured_tag}</span>
