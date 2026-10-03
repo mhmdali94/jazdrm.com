@@ -18,9 +18,9 @@ with open(ROOT_DIR / "assets" / "data" / "products.json", "r", encoding="utf-8")
 # (category_key, url_slug, name_ar, name_en, banner_img | None)
 PRODUCT_CATEGORIES = [
     ("vault-doors", "أبواب-الخزائن-المحصنة",
-     "أبواب الخزائن المحصنة", "Vault & Bunker Room Doors", "banner-safes.jpg"),
+     "أبواب غرف الخزائن المحصنة", "Vault & Bunker Room Doors", "banner-safes.jpg"),
     ("fireproof-safes", "الخزائن-المقاومة-للحريق",
-     "الخزائن الحديدية المقاومة للحريق والسطو", "Fireproof & Burglary-Resistant Safes", "banner-safes.jpg"),
+     "خزائن حديدية", "Steel Safes", "banner-safes.jpg"),
     ("filing-cabinets", "دواليب-الملفات",
      "دواليب الملفات المقاومة للحريق", "Fireproof Filing Cabinets", None),
     ("deposit-lockers", "خزائن-الإيداع",
@@ -153,7 +153,7 @@ def get_header(is_en=False, depth=0):
         "service_req": "طلب خدمة" if not is_en else "Request Service",
         "tech_support": "الدعم الفني" if not is_en else "Tech Support",
         "careers": "التوظيف" if not is_en else "Careers",
-        "brand_title": "أحلام الجزيرة" if not is_en else "Aljazeera Dreams",
+        "brand_title": "شركة أحلام الجزيرة" if not is_en else "Aljazeera Dreams",
         "brand_sub": "للمقاولات" if not is_en else "Contracting",
         "home": "الرئيسية" if not is_en else "Home",
         "services": "خدماتنا" if not is_en else "Our Services",
@@ -211,7 +211,7 @@ def get_header(is_en=False, depth=0):
     <div class="container">
       <div class="main-navbar">
         <a href="{home_url}" class="brand-logo">
-          <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="{t['brand_title']}" width="468" height="374">
+          <img src="{rel}assets/img/brand-icon.png" alt="{t['brand_title']}" width="500" height="500">
           <div class="brand-text">
             <span class="brand-title">{t['brand_title']}</span>
             <span class="brand-subtitle">{t['brand_sub']}</span>
@@ -269,7 +269,7 @@ def get_header(is_en=False, depth=0):
   <div class="mobile-drawer" id="mobile-drawer" aria-label="{t['nav_drawer']}" aria-hidden="true">
     <div class="mobile-drawer-header">
       <div class="brand-logo">
-        <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="{t['brand_title']}" width="468" height="374" style="height: 38px;">
+        <img src="{rel}assets/img/brand-icon.png" alt="{t['brand_title']}" width="500" height="500" style="height: 38px;">
         <span class="brand-title" style="font-size: 1.1rem;">{t['brand_title']}</span>
       </div>
       <button type="button" class="drawer-close-btn" aria-label="{t['close']}">&times;</button>
@@ -329,8 +329,8 @@ def get_footer(is_en=False, depth=0):
       <div class="footer-grid">
         <div class="footer-about">
           <div class="brand-logo" style="margin-bottom: 12px;">
-            <img src="{rel}wp-content/uploads/2025/06/Asset-5.png" alt="أحلام الجزيرة" width="468" height="374" style="height: 48px;">
-            <span class="brand-title" style="color: #fff; font-size: 1.2rem;">{'أحلام الجزيرة' if not is_en else 'Aljazeera Dreams'}</span>
+            <img src="{rel}assets/img/brand-icon.png" alt="شركة أحلام الجزيرة" width="500" height="500" style="height: 48px;">
+            <span class="brand-title" style="color: #fff; font-size: 1.2rem;">{'شركة أحلام الجزيرة' if not is_en else 'Aljazeera Dreams'}</span>
           </div>
           <p>{t['about_p']}</p>
         </div>
@@ -598,6 +598,9 @@ def get_clients(is_en=False, rel=""):
         ("emirates-nbd", "بنك الإمارات دبي الوطني", "Emirates NBD"),
         ("omlah", "شركة عملة للصرافة", "Omlah Exchange Co."),
         ("sab", "البنك السعودي الأول", "Saudi Awwal Bank (SAB)"),
+        ("enjaz", "بنك انجاز", "Enjaz Bank"),
+        ("mahmal", "شركة المحمل لخدمات المرافق", "Mahmal Facilities Services"),
+        ("masdar", "شركة مصدر", "Masdar"),
     ]
     return "\n".join(
         f'          <li class="client-logo">'
@@ -852,7 +855,7 @@ def build_homepage(is_en=False):
           <span class="section-tag">{'ثقة مؤسسية' if not is_en else 'Institutional trust'}</span>
           <h2 class="section-title">{'شركاؤنا في النجاح' if not is_en else 'Partners in Success'}</h2>
           <p class="section-subtitle">{'تعتمد كبرى البنوك والمصارف والمؤسسات في المملكة والخليج على أنظمة أحلام الجزيرة الأمنية.' if not is_en else 'Leading banks and institutions across Saudi Arabia and the Gulf rely on Aljazeera Dreams security systems.'}</p>
-          <p class="clients-count"><strong>+17</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
+          <p class="clients-count"><strong>+20</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
         </div>
         <ul class="clients-grid">
 {get_clients(is_en, rel)}
