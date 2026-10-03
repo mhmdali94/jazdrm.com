@@ -1817,7 +1817,7 @@ def build_category_pages():
             <section class="section" style="padding-top: 50px;">
               <div class="container">
                 <div class="section-header">
-                  <span class="section-tag">{'تصنيف المنتجات' if not is_en else 'Product Category'}</span>
+                  <span class="section-tag">{'منتجات شركة أحلام الجزيرة' if not is_en else 'Aljazeera Dreams Company Products'}</span>
                   <h1 class="section-title">{title}</h1>
                   <p class="section-subtitle">{'تصفح أفضل منتجاتنا وحلولنا في هذا التصنيف' if not is_en else 'Browse our specialized product range in this category'}</p>
                 </div>{banner}
