@@ -1619,10 +1619,9 @@ html[dir="ltr"] .product-badge {
   margin: 0 0 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-name {
