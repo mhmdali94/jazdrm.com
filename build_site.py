@@ -969,7 +969,7 @@ def build_homepage(is_en=False):
 
 def build_products_page(is_en=False):
     t = {
-        "tag": "كتالوج المنتجات شركة أحلام الجزيرة" if not is_en else "Aljazeera Dreams Company Product Catalog",
+        "tag": "منتجات شركة أحلام الجزيرة" if not is_en else "Aljazeera Dreams Company Products",
         "h1": "جميع الخزائن وأنظمة الأمان" if not is_en else "All Security Safes & Vaults",
         "sub": "تصفح تشكيلتنا الشاملة من أبواب الخزائن المحصنة، الخزائن المقاومة للحريق والسطو، دواليب الملفات، خزائن الإيداع، والأبواب الأمنية." if not is_en else "Explore our full catalog of vault doors, fireproof safes, filing cabinets, deposit lockers, and security doors.",
         "tab_all": "الكل" if not is_en else "All",
