@@ -967,6 +967,18 @@ def build_homepage(is_en=False):
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html, encoding="utf-8")
 
+def build_filter_tabs(active_key, is_en, all_label):
+    """Full category tab row (shared by the Products page and every category
+    page), so switching categories never requires leaving the page you're on."""
+    buttons = [
+        f'<button class="filter-tab{" active" if active_key == "all" else ""}" data-category="all">{all_label}</button>'
+    ]
+    for key, _slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES:
+        label = name_en if is_en else name_ar
+        active = " active" if key == active_key else ""
+        buttons.append(f'<button class="filter-tab{active}" data-category="{key}">{label}</button>')
+    return "\n            ".join(buttons)
+
 def build_products_page(is_en=False):
     t = {
         "tag": "منتجات شركة أحلام الجزيرة" if not is_en else "Aljazeera Dreams Company Products",
@@ -976,17 +988,7 @@ def build_products_page(is_en=False):
         "search_ph": "ابحث عن موديل أو منتج..." if not is_en else "Search model or product name...",
     }
 
-    tab_labels = {
-        "vault-doors": ("أبواب الخزائن", "Vault Doors"),
-        "fireproof-safes": ("الخزائن الحديدية", "Fireproof Safes"),
-        "filing-cabinets": ("دواليب الملفات", "Filing Cabinets"),
-        "deposit-lockers": ("خزائن الإيداع", "Deposit Lockers"),
-        "security-doors": ("الأبواب الأمنية", "Security Doors"),
-    }
-    tabs = "\n            ".join(
-        f'<button class="filter-tab" data-category="{key}">{tab_labels[key][1] if is_en else tab_labels[key][0]}</button>'
-        for key, _slug, _name_ar, _name_en, _banner in PRODUCT_CATEGORIES
-    )
+    tabs = build_filter_tabs("all", is_en, t['tab_all'])
 
     body = f"""
     <section class="section" style="padding-top: 50px;">
@@ -999,7 +1001,6 @@ def build_products_page(is_en=False):
 
         <div class="catalog-controls">
           <div class="filter-tabs">
-            <button class="filter-tab active" data-category="all">{t['tab_all']}</button>
             {tabs}
           </div>
           <div class="search-box">
@@ -1813,6 +1814,8 @@ def build_category_pages():
                           f'alt="{alt_en if is_en else alt_ar}" class="category-banner-img" loading="lazy">\n'
                           f'                </div>')
 
+            tabs = build_filter_tabs(cat_key, is_en, "الكل" if not is_en else "All")
+
             body = f"""
             <section class="section" style="padding-top: 50px;">
               <div class="container">
@@ -1824,7 +1827,7 @@ def build_category_pages():
 
                 <div class="catalog-controls">
                   <div class="filter-tabs">
-                    <button class="filter-tab active" data-category="{cat_key}">{title}</button>
+                    {tabs}
                   </div>
                   <div class="search-box">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
