@@ -267,7 +267,6 @@ function initProductCatalog() {
             <img src="${imgSrc}" alt="${title}" loading="lazy" width="270" height="240" onerror="this.onerror=null; this.src='${fallbackImg}';">
           </a>
           <div class="product-info">
-            <div class="product-cat">${category}</div>
             <h3 class="product-name"><a href="${detailLink}">${title}</a></h3>
             <div class="product-actions">
               <button type="button" class="btn-card-primary open-quote-btn" data-product="${title}" aria-label="${quoteLabel}: ${title}">

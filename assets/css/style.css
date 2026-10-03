@@ -1611,13 +1611,6 @@ html[dir="ltr"] .product-badge {
   flex-grow: 1;
 }
 
-.product-cat {
-  font-size: 0.8rem;
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
 .product-name {
   font-size: 1.1rem;
   font-weight: 700;
