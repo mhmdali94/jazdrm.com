@@ -253,8 +253,7 @@ function initProductCatalog() {
     container.innerHTML = shown.map(function (p) {
       const title = isEn ? (p.title_en || p.title_ar) : p.title_ar;
       const category = isEn ? p.category_en : p.category_ar;
-      const fullDesc = isEn ? (p.short_desc_en || '') : (p.short_desc_ar || '');
-      const shortDesc = fullDesc.split(/[,،]/)[0].trim();
+      const shortDesc = isEn ? (p.card_tagline_en || '') : (p.card_tagline_ar || '');
       const rawImg = p.image || 'wp-content/uploads/2025/06/Asset-5.png';
       const imgSrc = `${rootPrefix}${rawImg}`;
       const detailLink = `${rootPrefix}${isEn ? 'en/' : ''}product/${p.slug}/index.html`;
