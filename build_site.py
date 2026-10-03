@@ -76,7 +76,7 @@ _SPEC_LABELS_AR = {
     "Weight": "الوزن", "Weight(kg)": "الوزن (كجم)", "Capacity": "السعة",
     "Shelf": "الأرفف", "Shelves": "الأرفف", "Boxes": "الأدراج", "Drawers": "الأدراج",
     "Locking": "نظام الإغلاق", "Lock": "القفل", "EMD": "فتحة الطوارئ (EMD)",
-    "Fire Class": "مقاومة الحريق", "Fire Rating": "تصنيف الحريق",
+    "Fire Class": "مقاومة الحريق", "Fire Rating": "مدة مقاومة الحريق",
     "Lock System": "نظام القفل", "Lock Type": "نوع القفل الإختياري",
     "Certification": "الشهادة", "Burglary Resistance": "مقاومة السطو",
     "Colour": "اللون", "Color": "اللون", "Material": "الخامة",
