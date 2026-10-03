@@ -18,9 +18,9 @@ with open(ROOT_DIR / "assets" / "data" / "products.json", "r", encoding="utf-8")
 # (category_key, url_slug, name_ar, name_en, banner_img | None)
 PRODUCT_CATEGORIES = [
     ("vault-doors", "أبواب-الخزائن-المحصنة",
-     "أبواب غرف الخزائن المحصنة", "Vault & Bunker Room Doors", "banner-safes.jpg"),
+     "أبواب غرف الخزائن المحصنة", "Vault & Bunker Room Doors", None),
     ("fireproof-safes", "الخزائن-المقاومة-للحريق",
-     "خزائن حديدية", "Steel Safes", "banner-safes.jpg"),
+     "خزائن حديدية", "Steel Safes", None),
     ("filing-cabinets", "دواليب-الملفات",
      "دواليب الملفات المقاومة للحريق", "Fireproof Filing Cabinets", None),
     ("deposit-lockers", "خزائن-الإيداع",
