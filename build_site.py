@@ -704,18 +704,16 @@ def get_about_showcase(is_en=False):
     assets = "../../" if is_en else "../"
     if is_en:
         p_tag, p_h2 = "Accredited by Top Financial Institutions", "Trusted Security Partner for Saudi Banking"
-        banner_alt = "Banking Accreditations - Top Banks in Saudi Arabia"
     else:
         p_tag, p_h2 = "اعتمادات كبرى المصارف", "شريك الأمان المعتمد لدى البنوك السعودية"
-        banner_alt = "اعتمادات مصرفية - كبرى البنوك والمصارف"
     return f"""        <!-- Banking Partners & Trust Showcase -->
         <div class="section-header" style="margin-top: 50px; margin-bottom: 25px;">
           <span class="section-tag">{p_tag}</span>
           <h2 class="section-title">{p_h2}</h2>
         </div>
-        <div class="clients-banner-wrapper" style="margin-bottom: 50px;">
-          <img src="{assets}assets/img/banners/banner-clients.jpg" alt="{banner_alt}" width="1200" height="338" loading="lazy">
-        </div>"""
+        <ul class="clients-grid" style="margin-bottom: 50px;">
+{get_clients(is_en, assets)}
+        </ul>"""
 
 
 def get_whatsapp_cta(is_en=False, rel=""):
