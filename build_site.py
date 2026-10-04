@@ -1753,6 +1753,7 @@ def build_single_product_pages():
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; align-items: start; background: var(--bg-surface); padding: 40px; border-radius: var(--radius-xl); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
                   <div style="background: var(--bg-page); padding: 30px; border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--border-color);">
                     <img src="{img}" alt="{title}" width="420" height="420" onerror="this.onerror=null; this.src='{rel}wp-content/uploads/2025/06/Asset-5.png';" style="max-height: 420px; margin: 0 auto; object-fit: contain;">
+                    <button type="button" class="img-enlarge-btn open-image-lightbox" data-img="{img}" data-alt="{title}">{'تكبير صورة المنتج' if not is_en else 'Enlarge product image'}</button>
                   </div>
                   <div>
                     <span class="product-badge" style="position: static; display: inline-block; margin-bottom: 12px;">{cat}</span>
@@ -1781,6 +1782,13 @@ def build_single_product_pages():
                       </a>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div class="modal-overlay image-lightbox" id="image-lightbox">
+                <div class="image-lightbox-content" role="dialog" aria-modal="true" aria-label="{title}">
+                  <button type="button" class="modal-close image-lightbox-close" aria-label="{'إغلاق' if not is_en else 'Close'}">&times;</button>
+                  <img src="" alt="">
                 </div>
               </div>
             </section>

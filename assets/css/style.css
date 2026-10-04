@@ -2301,6 +2301,62 @@ html[dir="ltr"] .product-badge {
   padding: 25px;
 }
 
+.img-enlarge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  min-height: 44px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: transparent;
+  border: 1px solid var(--primary-light);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.img-enlarge-btn:hover {
+  background: var(--primary-tint);
+  border-color: var(--primary);
+}
+
+.image-lightbox-content {
+  position: relative;
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  transform: scale(0.96);
+  transition: transform var(--transition-normal);
+}
+
+.image-lightbox.active .image-lightbox-content {
+  transform: scale(1);
+}
+
+.image-lightbox-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  background: #fff;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  inset-block-start: -44px;
+  inset-inline-end: 0;
+  color: #fff;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.image-lightbox-close:hover {
+  color: #fff;
+  background: rgba(15, 23, 42, 0.65);
+}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */

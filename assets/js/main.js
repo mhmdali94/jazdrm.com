@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initMobileDrawer();
   initProductCatalog();
   initQuoteModal();
+  initImageLightbox();
   initForms();
   initScrollReveal();
 });
@@ -380,6 +381,62 @@ function initQuoteModal() {
   if (closeBtn) closeBtn.addEventListener('click', closeQuoteModal);
   modal.addEventListener('click', function (e) {
     if (e.target === modal) closeQuoteModal();
+  });
+}
+
+/* 4b. Product image lightbox */
+function initImageLightbox() {
+  const modal = document.getElementById('image-lightbox');
+  if (!modal) return;
+
+  const dialog = modal.querySelector('.image-lightbox-content');
+  const img = dialog.querySelector('img');
+  const closeBtn = modal.querySelector('.image-lightbox-close');
+  const openBtns = document.querySelectorAll('.open-image-lightbox');
+
+  let lastFocused = null;
+  setInert(modal, true);
+
+  function open(src, alt) {
+    lastFocused = document.activeElement;
+    img.src = src;
+    img.alt = alt || '';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    setInert(modal, false);
+    document.addEventListener('keydown', onKeydown);
+    window.requestAnimationFrame(function () {
+      closeBtn.focus();
+    });
+  }
+
+  function close() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    setInert(modal, true);
+    img.src = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') {
+      close();
+    } else {
+      trapFocus(dialog, e);
+    }
+  }
+
+  openBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      open(btn.getAttribute('data-img'), btn.getAttribute('data-alt'));
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) close();
   });
 }
 
