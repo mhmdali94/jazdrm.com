@@ -11,7 +11,7 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب غرفة محصنة (فولت) بمقاسات كبيرة، معتمد وفق شهادة UL 608 فئة 2، بخيار أقفال يدوية أو رقمية أو مركبة.",
     "short_desc_en": "Large-format vault room door, UL 608 Listed / Class 2, with handle, key, combination, or digital lock options.",
     "full_desc_ar": "X Young AnnDimension:Outside: 2154 x 1386 x 421 (mm)Weight: 1568 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: UL 608 Listed / Class 2",
-    "card_tagline_ar": "باب غرفة محصنة X Young Ann معتمدة UL 608",
+    "card_tagline_ar": "باب غرفة محصنة X Young Ann، معتمدة UL 608",
     "card_tagline_en": "X Young Ann vault room door, UL 608 certified"
   },
   {
@@ -26,7 +26,7 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب غرفة محصنة من Godrej معتمد وفق المعيار الأوروبي EN-1143-1، بأنظمة قفل S&G-Kaba.",
     "short_desc_en": "Godrej vault room door certified to EN-1143-1, with S&G-Kaba locking systems.",
     "full_desc_ar": "Godrej GR-VIIIDimension:Outside: 2272 x 1354 x 320 (mm)Weight: 1105 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-VIII",
-    "card_tagline_ar": "باب غرفة محصنة من Godrej معتمد EN-1143",
+    "card_tagline_ar": "باب غرفة محصنة من Godrej، معتمد EN-1143",
     "card_tagline_en": "Godrej vault room door, EN-1143 certified"
   },
   {
@@ -41,7 +41,7 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب غرفة محصنة من Godrej معتمد وفق المعيار الأوروبي EN-1143-1.",
     "short_desc_en": "Godrej vault room door certified to EN-1143-1.",
     "full_desc_ar": "Godrej GR-V EXDimension:Outside: 2222 x 1354 x 420 (mm)Weight: 1105 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-V EX",
-    "card_tagline_ar": "باب غرفة محصنة من Godrej معتمد EN-1143",
+    "card_tagline_ar": "باب غرفة محصنة من Godrej، معتمد EN-1143",
     "card_tagline_en": "Godrej vault room door, EN-1143 certified"
   },
   {
