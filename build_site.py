@@ -1924,6 +1924,46 @@ def build_legal_pages():
             (out_dir / "index.html").write_text(html, encoding="utf-8")
 
 
+def build_sitemap():
+    """sitemap.xml with AR/EN hreflang alternates for every real page. Regenerated
+    on every build so it can never drift from the actual page list."""
+    from urllib.parse import quote
+
+    BASE = "https://jazdrm.com"
+
+    paths = [""]
+    paths += [
+        "about-us/", "services/", "products/", "contact-us/",
+        "service-request/", "technical-support/", "job-application/",
+        "privacy-policy/", "terms-and-conditions/",
+    ]
+    paths += [f"product-category/{slug}/" for _key, slug, _ar, _en, _banner in PRODUCT_CATEGORIES]
+    paths += [f"product/{p['slug']}/" for p in PRODUCTS]
+
+    def url(path, is_en):
+        prefix = "en/" if is_en else ""
+        return f"{BASE}/{quote(prefix + path, safe='/')}"
+
+    entries = []
+    for path in paths:
+        ar_url, en_url = url(path, False), url(path, True)
+        for loc, alt in ((ar_url, en_url), (en_url, ar_url)):
+            entries.append(f"""  <url>
+    <loc>{loc}</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="{ar_url}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{en_url}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{ar_url}"/>
+  </url>""")
+
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{chr(10).join(entries)}
+</urlset>
+"""
+    (ROOT_DIR / "sitemap.xml").write_text(xml, encoding="utf-8")
+
+
 def write_products_data_js():
     """assets/js/products-data.js drives the client-side catalog grid (main.js
     renderProducts()). It must stay in lockstep with assets/data/products.json -
@@ -1964,6 +2004,7 @@ def main():
     build_single_product_pages()
     build_category_pages()
     build_legal_pages()
+    build_sitemap()
 
     print("All pages built successfully!")
 
