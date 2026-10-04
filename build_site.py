@@ -73,14 +73,41 @@ _SPEC_LABELS_AR = {
     "Dimension": "الأبعاد", "Dimensions": "الأبعاد", "Overall": "الأبعاد الكلية",
     "Outside": "الأبعاد الخارجية", "Inside": "الأبعاد الداخلية",
     "Outside(mm)": "الأبعاد الخارجية (مم)", "Inside(mm)": "الأبعاد الداخلية (مم)",
-    "Weight": "الوزن", "Weight(kg)": "الوزن (كجم)", "Capacity": "السعة",
-    "Shelf": "الأرفف", "Shelves": "الأرفف", "Boxes": "الأدراج", "Drawers": "الأدراج",
+    "Weight": "الوزن", "Weight(kg)": "الوزن (كجم)", "Capacity": "حجم الخزانة",
+    "Shelf": "الأرفف", "Shelves": "الأرفف", "Boxes": "الأدراج", "Drawers": "عدد الرفوف",
     "Locking": "نظام الإغلاق", "Lock": "القفل", "EMD": "فتحة الطوارئ (EMD)",
     "Fire Class": "مقاومة الحريق", "Fire Rating": "مدة مقاومة الحريق",
     "Lock System": "نظام القفل", "Lock Type": "نوع القفل الإختياري",
     "Certification": "الشهادة", "Burglary Resistance": "مقاومة السطو",
     "Colour": "اللون", "Color": "اللون", "Material": "الخامة",
     "Body": "الهيكل", "Door": "الباب",
+}
+
+_ICON_BOX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7.5L12 3 3 7.5v9L12 21l9-4.5v-9z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg>'
+_ICON_WEIGHT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7a3 3 0 0 1 6 0"/><path d="M6.5 7h11l1.5 13h-14L6.5 7z"/></svg>'
+_ICON_LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>'
+_ICON_KEY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2L20 3M20 3v4.5M20 3h-4.5"/></svg>'
+_ICON_GRID = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg>'
+_ICON_FLAME = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-1.5 3-5 5-5 10a5 5 0 0 0 10 0c0-1.5-.5-2.5-1.5-3.5 0 2-1 3-2 2.5 1.5-3.5-.5-6.5-1.5-9z"/></svg>'
+_ICON_CERT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5.5"/><path d="M9 13.5L7 21l5-3 5 3-2-7.5"/></svg>'
+_ICON_SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7.5 3v5.5c0 5-3.2 7.8-7.5 9-4.3-1.2-7.5-4-7.5-9V6L12 3z"/></svg>'
+_ICON_PALETTE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg>'
+_ICON_LAYERS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>'
+_ICON_WINDOW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg>'
+
+_SPEC_ICONS = {
+    "Dimension": _ICON_BOX, "Dimensions": _ICON_BOX, "Overall": _ICON_BOX,
+    "Outside": _ICON_BOX, "Inside": _ICON_BOX, "Outside(mm)": _ICON_BOX, "Inside(mm)": _ICON_BOX,
+    "Weight": _ICON_WEIGHT, "Weight(kg)": _ICON_WEIGHT,
+    "Locking": _ICON_LOCK, "Lock": _ICON_LOCK, "Lock System": _ICON_LOCK, "Lock Type": _ICON_LOCK,
+    "Capacity": _ICON_KEY,
+    "Shelf": _ICON_GRID, "Shelves": _ICON_GRID, "Boxes": _ICON_GRID, "Drawers": _ICON_GRID,
+    "Shelf(pc.)": _ICON_GRID, "Shelf(pc)": _ICON_GRID, "Shelves(pc.)": _ICON_GRID,
+    "Fire Class": _ICON_FLAME, "Fire Rating": _ICON_FLAME,
+    "Certification": _ICON_CERT, "Burglary Resistance": _ICON_SHIELD,
+    "Colour": _ICON_PALETTE, "Color": _ICON_PALETTE,
+    "Material": _ICON_LAYERS, "Body": _ICON_LAYERS, "Door": _ICON_LAYERS,
+    "EMD": _ICON_WINDOW,
 }
 
 
@@ -107,7 +134,7 @@ def parse_specs(p, is_en):
             continue
         seen.add(key)
         disp = canon if is_en else _SPEC_LABELS_AR.get(canon, canon)
-        rows.append((disp, val))
+        rows.append((disp, val, canon))
     return rows if len(rows) >= 2 else []
 
 
@@ -1730,9 +1757,14 @@ def build_single_product_pages():
             if spec_rows:
                 spec_table = (
                     f'<div class="product-specs">'
-                    f'<h2 class="product-specs-title">{"المواصفات الفنية" if not is_en else "Technical Specifications"}</h2>'
+                    f'<div class="product-specs-model">{title}</div>'
+                    f'<h2 class="product-specs-title">{"المواصفات" if not is_en else "Specifications"}</h2>'
                     f'<dl class="spec-list">'
-                    + "".join(f'<div class="spec-row"><dt>{k}</dt><dd>{v}</dd></div>' for k, v in spec_rows)
+                    + "".join(
+                        f'<div class="spec-row"><dt>{k}</dt><dd>{v}</dd>'
+                        f'<span class="spec-icon" aria-hidden="true">{_SPEC_ICONS.get(canon, _ICON_BOX)}</span></div>'
+                        for k, v, canon in spec_rows
+                    )
                     + "</dl></div>"
                 )
 
