@@ -8,8 +8,8 @@ window.JAZDRM_PRODUCTS = [
     "category_ar": "أبواب غرف الخزائن المحصنة",
     "category_en": "Vault Room Doors",
     "image": "assets/img/products/x-young-ann.jpg",
-    "short_desc_ar": "باب غرفة محصنة (فولت) بمقاسات كبيرة، معتمد وفق شهادة UL 608 فئة 2، بخيار أقفال يدوية أو رقمية أو مركبة.",
-    "short_desc_en": "Large-format vault room door, UL 608 Listed / Class 2, with handle, key, combination, or digital lock options.",
+    "short_desc_ar": "باب غرفة محصنة، معتمد وفق شهادة UL 608 فئة 2، بخيار أقفال يدوية أو رقمية أو مركبة.",
+    "short_desc_en": "Vault room door, UL 608 Listed / Class 2, with handle, key, combination, or digital lock options.",
     "full_desc_ar": "X Young AnnDimension:Outside: 2154 x 1386 x 421 (mm)Weight: 1568 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: UL 608 Listed / Class 2",
     "card_tagline_ar": "باب غرفة محصنة X Young Ann، معتمدة UL 608",
     "card_tagline_en": "X Young Ann vault room door, UL 608 certified"
