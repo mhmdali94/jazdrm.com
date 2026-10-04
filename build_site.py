@@ -1165,9 +1165,9 @@ def build_services_page(is_en=False):
     featured_tag = "خدمتنا الشاملة" if not is_en else "Our Full-Lifecycle Service"
     featured_title = "الفك والنقل والتركيب والصيانة الدورية" if not is_en else "Dismantling, Transport, Installation & Periodic Maintenance"
     featured_lead = (
-        "من فك الوحدة القديمة إلى تشغيل الجديدة، فريق واحد يتولى دورة العملية بالكامل: نقل آمن، تركيب دقيق، وعقود صيانة دورية تبقيها جاهزة على مدار الساعة."
+        "فك ونقل جميع أنواع أبواب الغرف المحصنة ونقل جميع أنواع الخزن والدواليب والقيام بجميع أنواع الصيانة وترهيم الاقفال. وصيانة جميع الاقفال الأمنية بالإضافة الي عقود الصيانة الدورية لجميع أنواع المنتجات من أبواب الغرف المحصنة والابواب المعدنية والخزن الأمنية في جميع انحاء المملكة العربية السعودية."
         if not is_en else
-        "From dismantling the old unit to commissioning the new one, one team handles the full cycle: safe transport, precise installation, and periodic maintenance contracts that keep it ready around the clock."
+        "Dismantling and transporting all types of vault room doors, safes, and cabinets, performing all types of maintenance and lock re-keying, and servicing all security locks, in addition to periodic maintenance contracts for all vault room doors, metal cabinets, and security safes, across the Kingdom of Saudi Arabia."
     )
     featured_card = f"""          <article class="division-card featured-service-card" style="grid-column: 1 / -1;">
             <div class="division-media">

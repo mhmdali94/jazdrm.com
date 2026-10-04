@@ -11,8 +11,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب غرفة محصنة (فولت) بمقاسات كبيرة، معتمد وفق شهادة UL 608 فئة 2، بخيار أقفال يدوية أو رقمية أو مركبة.",
     "short_desc_en": "Large-format vault room door, UL 608 Listed / Class 2, with handle, key, combination, or digital lock options.",
     "full_desc_ar": "X Young AnnDimension:Outside: 2154 x 1386 x 421 (mm)Weight: 1568 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: UL 608 Listed / Class 2",
-    "card_tagline_ar": "باب غرفة محصنة (فولت) بمقاسات كبيرة",
-    "card_tagline_en": "Large-format vault room door"
+    "card_tagline_ar": "باب غرفة محصنة X Young Ann معتمدة UL 608",
+    "card_tagline_en": "X Young Ann vault room door, UL 608 certified"
   },
   {
     "id": 2,
@@ -26,8 +26,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب غرفة محصنة من Godrej معتمد وفق المعيار الأوروبي EN-1143-1، بأنظمة قفل S&G-Kaba.",
     "short_desc_en": "Godrej vault room door certified to EN-1143-1, with S&G-Kaba locking systems.",
     "full_desc_ar": "Godrej GR-VIIIDimension:Outside: 2272 x 1354 x 320 (mm)Weight: 1105 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-VIII",
-    "card_tagline_ar": "باب غرفة محصنة من Godrej",
-    "card_tagline_en": "Godrej vault room door"
+    "card_tagline_ar": "باب غرفة محصنة من Godrej معتمد EN-1143",
+    "card_tagline_en": "Godrej vault room door, EN-1143 certified"
   },
   {
     "id": 3,
@@ -41,8 +41,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب غرفة محصنة من Godrej معتمد وفق المعيار الأوروبي EN-1143-1.",
     "short_desc_en": "Godrej vault room door certified to EN-1143-1.",
     "full_desc_ar": "Godrej GR-V EXDimension:Outside: 2222 x 1354 x 420 (mm)Weight: 1105 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-V EX",
-    "card_tagline_ar": "باب غرفة محصنة من Godrej",
-    "card_tagline_en": "Godrej vault room door"
+    "card_tagline_ar": "باب غرفة محصنة من Godrej معتمد EN-1143",
+    "card_tagline_en": "Godrej vault room door, EN-1143 certified"
   },
   {
     "id": 4,
@@ -71,8 +71,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب خزانة SSM130 القياسي المعتمد من SIRIM QAS بأنظمة قفل S&G-Kaba.",
     "short_desc_en": "Standard SSM130 vault door, SIRIM QAS certified, with S&G-Kaba locking systems.",
     "full_desc_ar": "SSM130Dimension:Outside: 2180 x 1304 x 430 (mm)Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
-    "card_tagline_ar": "باب خزانة SSM130 القياسي",
-    "card_tagline_en": "SSM130 standard vault door"
+    "card_tagline_ar": "باب خزانة SSM130",
+    "card_tagline_en": "SSM130 vault door"
   },
   {
     "id": 6,
@@ -101,8 +101,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب خزانة SSM100 القياسي المعتمد من SIRIM QAS.",
     "short_desc_en": "Standard SSM100 vault door, SIRIM QAS certified.",
     "full_desc_ar": "SSM100Dimension:Outside: 2180 x 1304 x 330 (mm)Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
-    "card_tagline_ar": "باب خزانة SSM100 القياسي",
-    "card_tagline_en": "SSM100 standard vault door"
+    "card_tagline_ar": "باب خزانة SSM100",
+    "card_tagline_en": "SSM100 vault door"
   },
   {
     "id": 8,
@@ -131,8 +131,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "باب خزانة SSM50 القياسي المعتمد من SIRIM QAS.",
     "short_desc_en": "Standard SSM50 vault door, SIRIM QAS certified.",
     "full_desc_ar": "SSM50Dimension:Outside: 2046 x 1100 x 230 (mm)Weight: 750 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
-    "card_tagline_ar": "باب خزانة SSM50 القياسي",
-    "card_tagline_en": "SSM50 standard vault door"
+    "card_tagline_ar": "باب خزانة SSM50",
+    "card_tagline_en": "SSM50 vault door"
   },
   {
     "id": 10,
@@ -143,11 +143,11 @@ window.JAZDRM_PRODUCTS = [
     "category_ar": "أبواب غرف الخزائن المحصنة",
     "category_en": "Vault Room Doors",
     "image": "assets/img/products/emd-50.jpg",
-    "short_desc_ar": "فتحة طوارئ EMD-50 مدمجة لتوفير الهواء والتواصل الصوتي في حالات الطوارئ.",
+    "short_desc_ar": "شباك طوارئ EMD-50 يستخدم عند تعطل باب الغرفة المحصنة.",
     "short_desc_en": "EMD-50 emergency ventilator door, integrated for fresh air and two-way communication in emergencies.",
     "full_desc_ar": "EMD 50Dimension:Outside: 661 x 761 x 190 (mm)Weight: 300 Kg.Lock System: S&G-Kaba.Certification: SIRIM QAS",
-    "card_tagline_ar": "فتحة طوارئ مدمجة للهواء والصوت",
-    "card_tagline_en": "Compact air & voice emergency vent"
+    "card_tagline_ar": "شباك طوارئ EMD-50 يستخدم عند تعطل باب الغرفة المحصنة",
+    "card_tagline_en": "EMD-50 emergency window, used when the vault room door malfunctions"
   },
   {
     "id": 11,
@@ -173,11 +173,11 @@ window.JAZDRM_PRODUCTS = [
     "category_ar": "أبواب غرف الخزائن المحصنة",
     "category_en": "Vault Room Doors",
     "image": "assets/img/products/emd-100.jpg",
-    "short_desc_ar": "فتحة طوارئ EMD-100 مدمجة لتوفير الهواء والتواصل الصوتي في حالات الطوارئ.",
+    "short_desc_ar": "شباك طوارئ EMD-100 يستخدم عند تعطل باب الغرفة المحصنة.",
     "short_desc_en": "EMD-100 emergency ventilator door, integrated for fresh air and two-way communication in emergencies.",
     "full_desc_ar": "EMD – 100Dimension:Outside: 1015 x 815 x 250 (mm)Weight: 500 Kg.Lock System: S&G-Kaba.Certification: SIRIM QAS",
-    "card_tagline_ar": "فتحة طوارئ مدمجة للهواء والصوت",
-    "card_tagline_en": "Compact air & voice emergency vent"
+    "card_tagline_ar": "شباك طوارئ EMD-100 يستخدم عند تعطل باب الغرفة المحصنة",
+    "card_tagline_en": "EMD-100 emergency window, used when the vault room door malfunctions"
   },
   {
     "id": 13,
@@ -191,8 +191,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Godrej-F63 المقاومة للحريق والسرقة، معتمدة EN 1143-1 الفئة الرابعة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Godrej-F63 fire and burglary-resistant safe, EN 1143-1 Grade IV, 60-minute fire rating.",
     "full_desc_ar": "Godrej-F63Dimension:Outside: 1730 x 800 x 693 (mm)Inside: 1600 x 670 x 470 (mm)Weight: 1091 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Burglary Resistance: EN 1143-1 Grade IV.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Godrej مقاومة للحريق والسرقة",
-    "card_tagline_en": "Godrej fire & burglary safe"
+    "card_tagline_ar": "مقاومة للحريق والسطو",
+    "card_tagline_en": "Fire & burglary resistant"
   },
   {
     "id": 14,
@@ -206,8 +206,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Godrej-3016-12 المقاومة للحريق والسرقة، معتمدة EN 1143-1 الفئة الرابعة.",
     "short_desc_en": "Godrej-3016-12 fire and burglary-resistant safe, EN 1143-1 Grade IV.",
     "full_desc_ar": "Godrej-3016-12Dimension:Outside: 895 x 536 x 510 (mm)Inside: 762 x 406 x 305 (mm)Weight: 507 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Burglary Resistance: EN 1143-1 Grade IV.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Godrej مقاومة للحريق والسرقة",
-    "card_tagline_en": "Godrej fire & burglary safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 15,
@@ -221,8 +221,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Godrej-2414-12 المقاومة للحريق والسرقة، معتمدة EN 1143-1 الفئة الرابعة.",
     "short_desc_en": "Godrej-2414-12 fire and burglary-resistant safe, EN 1143-1 Grade IV.",
     "full_desc_ar": "Godrej-2414-12Dimension:Outside: 740 x 486 x 510 (mm)Inside: 610 x 356 x 305 (mm)Weight: 407 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Burglary Resistance: EN 1143-1 Grade IV.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Godrej مقاومة للحريق والسرقة",
-    "card_tagline_en": "Godrej fire & burglary safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 16,
@@ -236,14 +236,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Godrej-1212-11 المدمجة المقاومة للحريق والسرقة، معتمدة EN 1143-1 الفئة الرابعة.",
     "short_desc_en": "Compact Godrej-1212-11 fire and burglary-resistant safe, EN 1143-1 Grade IV.",
     "full_desc_ar": "Godrej-1212-11Dimension:Outside: 435 x 435 x 485 (mm)Inside: 305 x 305 x 280 (mm)Weight: 242 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Burglary Resistance: EN 1143-1 Grade IV.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Godrej مدمجة مقاومة للحريق",
-    "card_tagline_en": "Compact Godrej fireproof safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 17,
     "slug": "eh-100",
-    "title_ar": "خزنة EH-100 مقاومة للحريق",
-    "title_en": "EH-100 Fireproof Safe",
+    "title_ar": "خزنة Diplomat EH-100",
+    "title_en": "Diplomat EH-100",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -251,14 +251,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة EH-100 المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "EH-100 home and office safe, 60-minute fire rating.",
     "full_desc_ar": "EH-100Dimension:Outside: 1020 x 655 x 560 (mm)Inside: 780 x 475 x 350 (mm)Weight: 201 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة منزلية ومكتبية",
-    "card_tagline_en": "Home & office safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 18,
     "slug": "diplomat-eh-120",
-    "title_ar": "خزنة Diplomat EH-120 مقاومة للحريق",
-    "title_en": "Diplomat EH-120 Fireproof Safe",
+    "title_ar": "خزنة Diplomat EH-120",
+    "title_en": "Diplomat EH-120",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -266,8 +266,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة EH-120 من Diplomat المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Diplomat EH-120 home and office safe, 60-minute fire rating.",
     "full_desc_ar": "EH-120Dimension:Outside: 1220 x 655 x 560 (mm)Inside: 980 x 475 x 350 (mm)Weight: 228 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة منزلية ومكتبية",
-    "card_tagline_en": "Home & office safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 19,
@@ -287,8 +287,8 @@ window.JAZDRM_PRODUCTS = [
   {
     "id": 20,
     "slug": "l-300",
-    "title_ar": "خزنة L-300 مقاومة للحريق",
-    "title_en": "L-300 Fireproof Safe",
+    "title_ar": "خزنة Diplomat L-300",
+    "title_en": "Diplomat L-300",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -296,14 +296,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة L-300 كبيرة الحجم بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "L-300 large-capacity safe, 60-minute fire rating.",
     "full_desc_ar": "L-300Dimension:Outside: 1745 x 1126 x 700 (mm)Inside: 1505 x 946 x 490 (mm)Weight: 540 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة كبيرة الحجم",
-    "card_tagline_en": "Large-capacity safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 21,
     "slug": "eh-006",
-    "title_ar": "خزنة Diplomat EH-006 مقاومة للحريق",
-    "title_en": "Diplomat EH-006 Fireproof Safe",
+    "title_ar": "خزنة Diplomat EH-006",
+    "title_en": "Diplomat EH-006",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -311,8 +311,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Diplomat EH-006 المدمجة بمقاومة حريق 60 دقيقة وسعة 49.",
     "short_desc_en": "Compact Diplomat EH-006 safe, 60-minute fire rating, capacity 49.",
     "full_desc_ar": "EH-006Dimension:Outside: 538 x 450 x 460 (mm)Inside: 430 x 350 x 328 (mm)Weight: 64 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelf: 1.Capacity: 49.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة مدمجة",
-    "card_tagline_en": "Compact safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 22,
@@ -332,8 +332,8 @@ window.JAZDRM_PRODUCTS = [
   {
     "id": 23,
     "slug": "jb-100",
-    "title_ar": "خزنة JB-100 مقاومة للحريق",
-    "title_en": "JB-100 Fireproof Safe",
+    "title_ar": "خزنة JB-100",
+    "title_en": "JB-100",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -341,14 +341,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-100 بمقاومة حريق 60 دقيقة وسعة 129.",
     "short_desc_en": "JB-100 safe, 60-minute fire rating, capacity 129.",
     "full_desc_ar": "JB-100Dimension:Outside: 1020 x 655 x 560 (mm)Inside: 780 x 475 x 350 (mm)Weight: 210 Kg.Lock Type: Handle/Key/Combination Lock.Shelves: 2.Capacity: 129.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة بسعة 129",
-    "card_tagline_en": "129-unit capacity"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 24,
     "slug": "jb-130",
-    "title_ar": "خزنة JB-130 مقاومة للحريق",
-    "title_en": "JB-130 Fireproof Safe",
+    "title_ar": "خزنة JB-130",
+    "title_en": "JB-130",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -356,14 +356,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-130 بمقاومة حريق 60 دقيقة وسعة 165.",
     "short_desc_en": "JB-130 safe, 60-minute fire rating, capacity 165.",
     "full_desc_ar": "JB-130Dimension:Outside: 1440 x 780 x 650 (mm)Inside: 1250 x 700 x 560 (mm)Weight: 275 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Capacity: 165.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة بسعة 165",
-    "card_tagline_en": "165-unit capacity"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 25,
     "slug": "jb-200",
-    "title_ar": "خزنة JB-200 مقاومة للحريق",
-    "title_en": "JB-200 Fireproof Safe",
+    "title_ar": "خزنة JB-200",
+    "title_en": "JB-200",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -371,14 +371,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-200 بمقاومة حريق 60 دقيقة وسعة 375.",
     "short_desc_en": "JB-200 safe, 60-minute fire rating, capacity 375.",
     "full_desc_ar": "JB-200Dimension:Outside: 1680 x 780 x 650 (mm)Inside: 1450 x 595 x 440 (mm)Weight: 388 Kg.Lock Type: Handle/Key/Combination Lock.Shelves: 3.Capacity: 375.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة بسعة 375",
-    "card_tagline_en": "375-unit capacity"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 26,
     "slug": "jb-001",
-    "title_ar": "خزنة JB-001 مقاومة للحريق",
-    "title_en": "JB-001 Fireproof Safe",
+    "title_ar": "خزنة JB-001",
+    "title_en": "JB-001",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -386,14 +386,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-001 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact JB-001 safe, 60-minute fire rating.",
     "full_desc_ar": "JB-001Dimension:Outside: 300 x 400 x 450 (mm)Inside: 220 x 320 x 220 (mm)Weight: 25 Kg.Lock: Key Lock / Digital Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة مدمجة",
-    "card_tagline_en": "Compact safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 27,
     "slug": "eh-119",
-    "title_ar": "خزنة Jiabao EH-119 مقاومة للحريق",
-    "title_en": "Jiabao EH-119 Fireproof Safe",
+    "title_ar": "خزنة Jiabao EH-119",
+    "title_en": "Jiabao EH-119",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -401,14 +401,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Jiabao EH-119 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact Jiabao EH-119 safe, 60-minute fire rating.",
     "full_desc_ar": "EH-119Dimension:Outside: 360 x 412 x 363 (mm)Inside: 260 x 320 x 234 (mm)Weight: 30 Kg.Lock: Key Lock / Digital Lock.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة مدمجة",
-    "card_tagline_en": "Compact safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 28,
     "slug": "jb-050",
-    "title_ar": "خزنة Jiabao JB-050 مقاومة للحريق",
-    "title_en": "Jiabao JB-050 Fireproof Safe",
+    "title_ar": "خزنة Jiabao JB-050",
+    "title_en": "Jiabao JB-050",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -416,8 +416,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Jiabao JB-050 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact Jiabao JB-050 safe, 60-minute fire rating.",
     "full_desc_ar": "JB-050Dimension:Outside: 520 x 360 x 360 (mm)Inside: 330 x 300 x 250 (mm)Weight: 25 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة مدمجة",
-    "card_tagline_en": "Compact safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 29,
@@ -467,8 +467,8 @@ window.JAZDRM_PRODUCTS = [
   {
     "id": 32,
     "slug": "booil-safes-1700",
-    "title_ar": "خزنة Booil Safes-1700 مقاومة للحريق",
-    "title_en": "Booil Safes-1700 Fireproof Safe",
+    "title_ar": "خزنة Booil Safes-1700",
+    "title_en": "Booil Safes-1700",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -476,14 +476,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Booil Safes-1700 كبيرة الحجم.",
     "short_desc_en": "Booil Safes-1700 large-capacity safe.",
     "full_desc_ar": "Booil Safes-1700Dimension:Outside: 1685 x 800 x 630 (mm)Inside: 1445 x 630 x 460 (mm)Weight: 485 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة كبيرة الحجم",
-    "card_tagline_en": "Large-capacity safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 33,
     "slug": "booil-safes-1400",
-    "title_ar": "خزنة Booil Safes-1400 مقاومة للحريق",
-    "title_en": "Booil Safes-1400 Fireproof Safe",
+    "title_ar": "خزنة Booil Safes-1400",
+    "title_en": "Booil Safes-1400",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -491,8 +491,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Booil Safes-1400 كبيرة الحجم.",
     "short_desc_en": "Booil Safes-1400 large-capacity safe.",
     "full_desc_ar": "Booil Safes-1400Dimension:Outside: 1385 x 700 x 630 (mm)Inside: 1145 x 530 x 460 (mm)Weight: 335 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة كبيرة الحجم",
-    "card_tagline_en": "Large-capacity safe"
+    "card_tagline_ar": "مقاومة للحريق",
+    "card_tagline_en": "Fireproof"
   },
   {
     "id": 34,
@@ -566,8 +566,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Legend 1 من Falcon، بأنظمة قفل S&G-Kaba ومقاومة حريق 60 دقيقة.",
     "short_desc_en": "Falcon Legend 1 safe, S&G-Kaba locking, 60-minute fire rating.",
     "full_desc_ar": "Legend 1Dimension:Outside: 711 x 605 x 660 (mm)Inside: 500 x 400 x 500 (mm)Weight: 500 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Legend من Falcon",
-    "card_tagline_en": "Falcon Legend safe"
+    "card_tagline_ar": "مقاومة للحريق والسطو",
+    "card_tagline_en": "Fire & burglary resistant"
   },
   {
     "id": 39,
@@ -581,8 +581,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Legend 2 من Falcon، بأنظمة قفل S&G-Kaba ومقاومة حريق 60 دقيقة.",
     "short_desc_en": "Falcon Legend 2 safe, S&G-Kaba locking, 60-minute fire rating.",
     "full_desc_ar": "Legend 2Dimension:Outside: 890 x 685 x 735 (mm)Inside: 680 x 475 x 575 (mm)Weight: 650 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Legend من Falcon",
-    "card_tagline_en": "Falcon Legend safe"
+    "card_tagline_ar": "مقاومة للحريق والسطو",
+    "card_tagline_en": "Fire & burglary resistant"
   },
   {
     "id": 40,
@@ -596,8 +596,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Legend 3 من Falcon، بأنظمة قفل S&G-Kaba ومقاومة حريق 60 دقيقة.",
     "short_desc_en": "Falcon Legend 3 safe, S&G-Kaba locking, 60-minute fire rating.",
     "full_desc_ar": "Legend 3Dimension:Outside: 1095 x 760 x 815 (mm)Inside: 865 x 535 x 650 (mm)Weight: 820 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة Legend من Falcon",
-    "card_tagline_en": "Falcon Legend safe"
+    "card_tagline_ar": "مقاومة للحريق والسطو",
+    "card_tagline_en": "Fire & burglary resistant"
   },
   {
     "id": 41,
@@ -611,8 +611,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة BS-2000 كبيرة الحجم من Falcon بأنظمة قفل S&G-Kaba ومقاومة حريق 60 دقيقة.",
     "short_desc_en": "Falcon BS-2000 large-capacity safe, S&G-Kaba locking, 60-minute fire rating.",
     "full_desc_ar": "BS-2000Dimension:Outside: 1800 x 800 x 800 (mm)Inside: 1600 x 650 x 650 (mm)Weight: 1690 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelves: 3.Fire Rating: 60 MIN",
-    "card_tagline_ar": "خزنة BS-2000 كبيرة الحجم",
-    "card_tagline_en": "Large-capacity BS-2000 safe"
+    "card_tagline_ar": "مقاومة للحريق والسطو",
+    "card_tagline_en": "Fire & burglary resistant"
   },
   {
     "id": 42,
@@ -626,8 +626,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزانة إيداع FCDL-V2000 بـ10 أدراج بمقاسات متعددة وقفلين (العميل والمدير).",
     "short_desc_en": "FCDL-V2000 deposit locker, 10 drawers in multiple sizes, 2-key (customer & master) system.",
     "full_desc_ar": "FCDL-V2000Dimension:Outside: 2000 x 305 x 435 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer and Master).Drawers: 10.Capacity: 100x1, 150x6, 200x2, 450x1",
-    "card_tagline_ar": "خزانة إيداع بـ10 أدراج",
-    "card_tagline_en": "10-drawer deposit locker unit"
+    "card_tagline_ar": "عامود امانات 10 صندوق",
+    "card_tagline_en": "10-box deposit column"
   },
   {
     "id": 43,
@@ -641,8 +641,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزانة إيداع Godrej-V2000 بـ16 درجاً بمقاسات متعددة وقفلين (العميل والمدير).",
     "short_desc_en": "Godrej-V2000 deposit locker, 16 drawers in multiple sizes, 2-key (customer & master) system.",
     "full_desc_ar": "Godrej-V2000Dimension:Outside: 1140 x 920 x 570 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer and Master).Drawers: 16.Capacity: H150xW200x8, H200xW280x6, H280xW430x2",
-    "card_tagline_ar": "خزانة إيداع بـ16 درجاً",
-    "card_tagline_en": "16-drawer deposit locker unit"
+    "card_tagline_ar": "خزنة امانات مكونة من 16 صندوق",
+    "card_tagline_en": "16-box deposit safe"
   },
   {
     "id": 44,
@@ -656,8 +656,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزانة إيداع FCDL-V1750 بـ10 أدراج بمقاسات متعددة وقفلين (العميل والمدير).",
     "short_desc_en": "FCDL-V1750 deposit locker, 10 drawers in multiple sizes, 2-key (customer & master) system.",
     "full_desc_ar": "FCDL-V1750Dimension:Outside: 2000 x 305 x 435 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer and Master).Drawers: 10.Capacity: 800x4, 150x4, 300x1, 480x1",
-    "card_tagline_ar": "خزانة إيداع بـ10 أدراج",
-    "card_tagline_en": "10-drawer deposit locker unit"
+    "card_tagline_ar": "عامود امانات 10 صندوق",
+    "card_tagline_en": "10-box deposit column"
   },
   {
     "id": 45,
@@ -716,8 +716,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "صندوق بريد حائطي T-102 بقفلين.",
     "short_desc_en": "T-102 wall-mounted mailbox, 2-key lock.",
     "full_desc_ar": "T-102Dimension:Outside: 430 x 360 x 80 (mm)Lock System: 2 KL",
-    "card_tagline_ar": "صندوق بريد حائطي بقفلين",
-    "card_tagline_en": "Wall mailbox with 2 locks"
+    "card_tagline_ar": "صندوق فئات للنقود",
+    "card_tagline_en": "Cash denomination box"
   },
   {
     "id": 49,
@@ -830,8 +830,8 @@ window.JAZDRM_PRODUCTS = [
     "title_ar": "باب لوفر",
     "title_en": "Louver Door",
     "category_key": "security-doors",
-    "category_ar": "باب مقاوم للحريق",
-    "category_en": "Fire-Resistant Doors",
+    "category_ar": "باب لوفر",
+    "category_en": "Louver Door",
     "image": "assets/img/products/louver-door.jpg",
     "short_desc_ar": "باب مزدوج ذو فتحات تهوية (Louver Door) لغرف الأجهزة والتهوية.",
     "short_desc_en": "Double-leaf ventilated Louver Door for plant and equipment rooms.",
@@ -845,8 +845,8 @@ window.JAZDRM_PRODUCTS = [
     "title_ar": "باب خشب",
     "title_en": "Wood Door",
     "category_key": "security-doors",
-    "category_ar": "باب مقاوم للحريق",
-    "category_en": "Fire-Resistant Doors",
+    "category_ar": "باب خشب",
+    "category_en": "Wood Door",
     "image": "assets/img/products/wood-door.jpg",
     "short_desc_ar": "باب خشبي (Wood Door) متوفر بتشطيبات وأشكال مفردة أو مزدوجة متعددة.",
     "short_desc_en": "Wood Door, available in multiple finishes, single or double-leaf.",
