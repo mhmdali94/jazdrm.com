@@ -242,8 +242,8 @@ window.JAZDRM_PRODUCTS = [
   {
     "id": 17,
     "slug": "eh-100",
-    "title_ar": "خزنة Diplomat EH-100",
-    "title_en": "Diplomat EH-100",
+    "title_ar": "خزنة Diplomat EH-100 مقاومة للحريق",
+    "title_en": "Diplomat EH-100 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -251,14 +251,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة EH-100 المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "EH-100 home and office safe, 60-minute fire rating.",
     "full_desc_ar": "EH-100Dimension:Outside: 1020 x 655 x 560 (mm)Inside: 780 x 475 x 350 (mm)Weight: 201 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 18,
     "slug": "diplomat-eh-120",
-    "title_ar": "خزنة Diplomat EH-120",
-    "title_en": "Diplomat EH-120",
+    "title_ar": "خزنة Diplomat EH-120 مقاومة للحريق",
+    "title_en": "Diplomat EH-120 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -266,14 +266,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة EH-120 من Diplomat المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Diplomat EH-120 home and office safe, 60-minute fire rating.",
     "full_desc_ar": "EH-120Dimension:Outside: 1220 x 655 x 560 (mm)Inside: 980 x 475 x 350 (mm)Weight: 228 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 19,
     "slug": "n-200",
-    "title_ar": "خزنة Diplomat N-200",
-    "title_en": "Diplomat N-200",
+    "title_ar": "خزنة Diplomat N-200 مقاومة للحريق",
+    "title_en": "Diplomat N-200 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -281,14 +281,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة N-200 المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "N-200 home and office safe, 60-minute fire rating.",
     "full_desc_ar": "N-200Dimension:Outside: 1690 x 655 x 560 (mm)Inside: 1450 x 475 x 350 (mm)Weight: 320 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 20,
     "slug": "l-300",
-    "title_ar": "خزنة Diplomat L-300",
-    "title_en": "Diplomat L-300",
+    "title_ar": "خزنة Diplomat L-300 مقاومة للحريق",
+    "title_en": "Diplomat L-300 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -296,14 +296,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة L-300 كبيرة الحجم بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "L-300 large-capacity safe, 60-minute fire rating.",
     "full_desc_ar": "L-300Dimension:Outside: 1745 x 1126 x 700 (mm)Inside: 1505 x 946 x 490 (mm)Weight: 540 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 21,
     "slug": "eh-006",
-    "title_ar": "خزنة Diplomat EH-006",
-    "title_en": "Diplomat EH-006",
+    "title_ar": "خزنة Diplomat EH-006 مقاومة للحريق",
+    "title_en": "Diplomat EH-006 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -311,8 +311,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Diplomat EH-006 المدمجة بمقاومة حريق 60 دقيقة وسعة 49.",
     "short_desc_en": "Compact Diplomat EH-006 safe, 60-minute fire rating, capacity 49.",
     "full_desc_ar": "EH-006Dimension:Outside: 538 x 450 x 460 (mm)Inside: 430 x 350 x 328 (mm)Weight: 64 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelf: 1.Capacity: 49.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 22,
@@ -332,8 +332,8 @@ window.JAZDRM_PRODUCTS = [
   {
     "id": 23,
     "slug": "jb-100",
-    "title_ar": "خزنة JB-100",
-    "title_en": "JB-100",
+    "title_ar": "خزنة JB-100 مقاومة للحريق",
+    "title_en": "JB-100 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -341,14 +341,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-100 بمقاومة حريق 60 دقيقة وسعة 129.",
     "short_desc_en": "JB-100 safe, 60-minute fire rating, capacity 129.",
     "full_desc_ar": "JB-100Dimension:Outside: 1020 x 655 x 560 (mm)Inside: 780 x 475 x 350 (mm)Weight: 210 Kg.Lock Type: Handle/Key/Combination Lock.Shelves: 2.Capacity: 129.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 24,
     "slug": "jb-130",
-    "title_ar": "خزنة JB-130",
-    "title_en": "JB-130",
+    "title_ar": "خزنة JB-130 مقاومة للحريق",
+    "title_en": "JB-130 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -356,14 +356,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-130 بمقاومة حريق 60 دقيقة وسعة 165.",
     "short_desc_en": "JB-130 safe, 60-minute fire rating, capacity 165.",
     "full_desc_ar": "JB-130Dimension:Outside: 1440 x 780 x 650 (mm)Inside: 1250 x 700 x 560 (mm)Weight: 275 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Capacity: 165.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 25,
     "slug": "jb-200",
-    "title_ar": "خزنة JB-200",
-    "title_en": "JB-200",
+    "title_ar": "خزنة JB-200 مقاومة للحريق",
+    "title_en": "JB-200 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -371,14 +371,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-200 بمقاومة حريق 60 دقيقة وسعة 375.",
     "short_desc_en": "JB-200 safe, 60-minute fire rating, capacity 375.",
     "full_desc_ar": "JB-200Dimension:Outside: 1680 x 780 x 650 (mm)Inside: 1450 x 595 x 440 (mm)Weight: 388 Kg.Lock Type: Handle/Key/Combination Lock.Shelves: 3.Capacity: 375.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 26,
     "slug": "jb-001",
-    "title_ar": "خزنة JB-001",
-    "title_en": "JB-001",
+    "title_ar": "خزنة JB-001 مقاومة للحريق",
+    "title_en": "JB-001 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -386,14 +386,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة JB-001 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact JB-001 safe, 60-minute fire rating.",
     "full_desc_ar": "JB-001Dimension:Outside: 300 x 400 x 450 (mm)Inside: 220 x 320 x 220 (mm)Weight: 25 Kg.Lock: Key Lock / Digital Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 27,
     "slug": "eh-119",
-    "title_ar": "خزنة Jiabao EH-119",
-    "title_en": "Jiabao EH-119",
+    "title_ar": "خزنة Jiabao EH-119 مقاومة للحريق",
+    "title_en": "Jiabao EH-119 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -401,14 +401,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Jiabao EH-119 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact Jiabao EH-119 safe, 60-minute fire rating.",
     "full_desc_ar": "EH-119Dimension:Outside: 360 x 412 x 363 (mm)Inside: 260 x 320 x 234 (mm)Weight: 30 Kg.Lock: Key Lock / Digital Lock.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 28,
     "slug": "jb-050",
-    "title_ar": "خزنة Jiabao JB-050",
-    "title_en": "Jiabao JB-050",
+    "title_ar": "خزنة Jiabao JB-050 مقاومة للحريق",
+    "title_en": "Jiabao JB-050 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -416,8 +416,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Jiabao JB-050 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact Jiabao JB-050 safe, 60-minute fire rating.",
     "full_desc_ar": "JB-050Dimension:Outside: 520 x 360 x 360 (mm)Inside: 330 x 300 x 250 (mm)Weight: 25 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 29,
@@ -467,8 +467,8 @@ window.JAZDRM_PRODUCTS = [
   {
     "id": 32,
     "slug": "booil-safes-1700",
-    "title_ar": "خزنة Booil Safes-1700",
-    "title_en": "Booil Safes-1700",
+    "title_ar": "خزنة Booil Safes-1700 مقاومة للحريق",
+    "title_en": "Booil Safes-1700 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -476,14 +476,14 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Booil Safes-1700 كبيرة الحجم.",
     "short_desc_en": "Booil Safes-1700 large-capacity safe.",
     "full_desc_ar": "Booil Safes-1700Dimension:Outside: 1685 x 800 x 630 (mm)Inside: 1445 x 630 x 460 (mm)Weight: 485 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 33,
     "slug": "booil-safes-1400",
-    "title_ar": "خزنة Booil Safes-1400",
-    "title_en": "Booil Safes-1400",
+    "title_ar": "خزنة Booil Safes-1400 مقاومة للحريق",
+    "title_en": "Booil Safes-1400 Fireproof",
     "category_key": "fireproof-safes",
     "category_ar": "خزائن حديدية",
     "category_en": "Steel Safes",
@@ -491,8 +491,8 @@ window.JAZDRM_PRODUCTS = [
     "short_desc_ar": "خزنة Booil Safes-1400 كبيرة الحجم.",
     "short_desc_en": "Booil Safes-1400 large-capacity safe.",
     "full_desc_ar": "Booil Safes-1400Dimension:Outside: 1385 x 700 x 630 (mm)Inside: 1145 x 530 x 460 (mm)Weight: 335 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
-    "card_tagline_ar": "مقاومة للحريق",
-    "card_tagline_en": "Fireproof"
+    "card_tagline_ar": "",
+    "card_tagline_en": ""
   },
   {
     "id": 34,
