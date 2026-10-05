@@ -628,6 +628,7 @@ def get_clients(is_en=False, rel=""):
         ("enjaz", "بنك انجاز", "Enjaz Bank"),
         ("mahmal", "شركة المحمل لخدمات المرافق", "Mahmal Facilities Services"),
         ("masdar", "شركة مصدر", "Masdar"),
+        ("el-seif", "السيف مهندسون مقاولون", "El Seif Engineering Contracting"),
     ]
     return "\n".join(
         f'          <li class="client-logo">'
@@ -880,7 +881,7 @@ def build_homepage(is_en=False):
           <span class="section-tag">{'ثقة مؤسسية' if not is_en else 'Institutional trust'}</span>
           <h2 class="section-title">{'شركاؤنا في النجاح' if not is_en else 'Partners in Success'}</h2>
           <p class="section-subtitle">{'تعتمد كبرى البنوك والمصارف والمؤسسات في المملكة والخليج على أنظمة أحلام الجزيرة الأمنية.' if not is_en else 'Leading banks and institutions across Saudi Arabia and the Gulf rely on Aljazeera Dreams security systems.'}</p>
-          <p class="clients-count"><strong>+20</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
+          <p class="clients-count"><strong>+21</strong> {'جهة مصرفية ومؤسسية' if not is_en else 'banking &amp; institutional clients'}</p>
         </div>
         <ul class="clients-grid">
 {get_clients(is_en, rel)}
