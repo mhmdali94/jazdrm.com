@@ -1635,7 +1635,7 @@ html[dir="ltr"] .product-badge {
 }
 
 .product-name a {
-  color: var(--text-main);
+  color: var(--primary-dark);
 }
 
 .product-card:hover .product-name a {
