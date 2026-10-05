@@ -865,4 +865,28 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://jazdrm.com/en/product/wood-door/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jazdrm.com/product/wood-door/"/>
   </url>
+  <url>
+    <loc>https://jazdrm.com/product/wood-door-white/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://jazdrm.com/product/wood-door-white/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazdrm.com/en/product/wood-door-white/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazdrm.com/product/wood-door-white/"/>
+  </url>
+  <url>
+    <loc>https://jazdrm.com/en/product/wood-door-white/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://jazdrm.com/product/wood-door-white/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazdrm.com/en/product/wood-door-white/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazdrm.com/product/wood-door-white/"/>
+  </url>
+  <url>
+    <loc>https://jazdrm.com/product/wood-door-double/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://jazdrm.com/product/wood-door-double/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazdrm.com/en/product/wood-door-double/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazdrm.com/product/wood-door-double/"/>
+  </url>
+  <url>
+    <loc>https://jazdrm.com/en/product/wood-door-double/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://jazdrm.com/product/wood-door-double/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazdrm.com/en/product/wood-door-double/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazdrm.com/product/wood-door-double/"/>
+  </url>
 </urlset>

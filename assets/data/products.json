@@ -853,5 +853,35 @@
     "full_desc_ar": "Wood DoorDimension:Outside: 220 x 100 x 23 (mm)Lock System: 1 KL",
     "card_tagline_ar": "باب خشبي بتشطيبات متعددة",
     "card_tagline_en": "Wood door, multiple finishes"
+  },
+  {
+    "id": 58,
+    "slug": "wood-door-white",
+    "title_ar": "باب خشب أبيض",
+    "title_en": "Wood Door (White)",
+    "category_key": "security-doors",
+    "category_ar": "باب خشب",
+    "category_en": "Wood Door",
+    "image": "assets/img/products/wood-door-white.jpg",
+    "short_desc_ar": "باب خشبي (Wood Door) بتشطيب أبيض مع مقبض ذهبي.",
+    "short_desc_en": "Wood Door in a white finish with a gold handle.",
+    "full_desc_ar": "Wood DoorDimension:Outside: 220 x 100 x 23 (mm)Lock System: 1 KL",
+    "card_tagline_ar": "باب خشبي بتشطيب أبيض",
+    "card_tagline_en": "Wood door, white finish"
+  },
+  {
+    "id": 59,
+    "slug": "wood-door-double",
+    "title_ar": "باب خشب مزدوج",
+    "title_en": "Wood Door (Double Leaf)",
+    "category_key": "security-doors",
+    "category_ar": "باب خشب",
+    "category_en": "Wood Door",
+    "image": "assets/img/products/wood-door-double.jpg",
+    "short_desc_ar": "باب خشبي (Wood Door) مزدوج الدفة بتشطيب خشبي فاتح.",
+    "short_desc_en": "Double-leaf Wood Door in a light wood finish.",
+    "full_desc_ar": "Wood DoorDimension:Outside: 220 x 100 x 23 (mm)Lock System: 1 KL",
+    "card_tagline_ar": "باب خشبي مزدوج",
+    "card_tagline_en": "Wood door, double-leaf"
   }
 ]
