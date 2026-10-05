@@ -254,7 +254,18 @@ function initProductCatalog() {
     container.innerHTML = shown.map(function (p) {
       const title = isEn ? (p.title_en || p.title_ar) : p.title_ar;
       const category = isEn ? p.category_en : p.category_ar;
-      const shortDesc = isEn ? (p.card_tagline_en || '') : (p.card_tagline_ar || '');
+      let cardTitle = title;
+      let shortDesc = isEn ? (p.card_tagline_en || '') : (p.card_tagline_ar || '');
+      if (!shortDesc) {
+        // Titles merged with a trailing "Fireproof" / "مقاومة للحريق" read as one
+        // run-on sentence on the card; split it back into a title + small tagline
+        // to match products that already have a separate card_tagline.
+        const suffix = isEn ? ' Fireproof' : ' مقاومة للحريق';
+        if (title.endsWith(suffix)) {
+          cardTitle = title.slice(0, -suffix.length);
+          shortDesc = suffix.trim();
+        }
+      }
       const rawImg = p.image || 'wp-content/uploads/2025/06/Asset-5.png';
       const imgSrc = `${rootPrefix}${rawImg}`;
       const detailLink = `${rootPrefix}${isEn ? 'en/' : ''}product/${p.slug}/index.html`;
@@ -269,7 +280,7 @@ function initProductCatalog() {
             <img src="${imgSrc}" alt="${title}" loading="lazy" width="270" height="240" onerror="this.onerror=null; this.src='${fallbackImg}';">
           </a>
           <div class="product-info">
-            <h3 class="product-name"><a href="${detailLink}">${title}</a></h3>
+            <h3 class="product-name"><a href="${detailLink}">${cardTitle}</a></h3>
             ${shortDesc ? `<p class="product-desc">${shortDesc}</p>` : ''}
             <div class="product-actions">
               <button type="button" class="btn-card-primary open-quote-btn" data-product="${title}" aria-label="${quoteLabel}: ${title}">
