@@ -30,3 +30,9 @@
   ExpiresByType image/svg+xml "access plus 1 hour"
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
+
+# Block dev/source files that live in the repo but must not be public.
+RewriteEngine On
+RewriteRule (^|/)\.git - [F]
+RewriteRule \.(py|md|xlsx|zip)$ - [F]
+RewriteRule ^(package\.json|screenshots/|updates1?/) - [F]
