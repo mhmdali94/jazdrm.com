@@ -55,7 +55,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/ssm-130-door-in-door.jpg",
     "short_desc_ar": "باب خزانة SSM130 بنظام الباب داخل الباب (2 في 1)، بسماكة إجمالية 255مم ومزلاج بقطر 38مم لأقصى درجات المقاومة.",
     "short_desc_en": "SSM130 door-in-door (2-in-1) vault door, 255mm overall thickness with 38mm heavy-duty bolts for maximum resistance.",
-    "full_desc_ar": "SSM130-1*2Dimension:Outside: 2175 x 1284 x 450 (mm)Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
+    "full_desc_ar": "SSM130-1*2Dimension:Outside: 2175 x 1284 x 450 (mm)EMD: 697 x 536 (mm).Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
     "card_tagline_ar": "باب خزانة بنظام الباب داخل الباب",
     "card_tagline_en": "Door-in-door vault door system"
   },
@@ -85,7 +85,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/ssm-100-door-in-door.jpg",
     "short_desc_ar": "باب خزانة SSM100 بنظام الباب داخل الباب (2 في 1)، معتمد من SIRIM QAS.",
     "short_desc_en": "SSM100 door-in-door (2-in-1) vault door, SIRIM QAS certified.",
-    "full_desc_ar": "SSM100-1*2Dimension:Outside: 2173 x 1286 x 330 (mm)Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
+    "full_desc_ar": "SSM100-1*2Dimension:Outside: 2173 x 1286 x 330 (mm)EMD: 697 x 536 (mm).Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
     "card_tagline_ar": "باب خزانة بنظام الباب داخل الباب",
     "card_tagline_en": "Door-in-door vault door system"
   },
@@ -115,7 +115,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/ssm-50-21.jpg",
     "short_desc_ar": "باب خزانة SSM50 بنظام الباب داخل الباب (2 في 1)، معتمد من SIRIM QAS.",
     "short_desc_en": "SSM50 door-in-door (2-in-1) vault door, SIRIM QAS certified.",
-    "full_desc_ar": "SSM50-1*2Dimension:Outside: 2125 x 1180 x 220 (mm)Weight: 760 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
+    "full_desc_ar": "SSM50-1*2Dimension:Outside: 2125 x 1180 x 220 (mm)EMD: 700 x 536 (mm).Weight: 760 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
     "card_tagline_ar": "باب خزانة بنظام الباب داخل الباب",
     "card_tagline_en": "Door-in-door vault door system"
   },
