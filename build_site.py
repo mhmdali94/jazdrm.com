@@ -27,6 +27,8 @@ PRODUCT_CATEGORIES = [
      "خزائن الإيداع وصناديق الأمانات", "Deposit Lockers & Safety Deposit Boxes", None),
     ("security-doors", "الأبواب-الأمنية-ومقاومة-الحريق",
      "باب مقاوم للحريق", "Fire-Resistant Doors", None),
+    ("bulletproof-doors", "أبواب-مقاومة-للرصاص",
+     "أبواب مقاومة للرصاص", "Bullet-Resistant Doors", None),
 ]
 
 
