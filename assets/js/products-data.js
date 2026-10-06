@@ -145,7 +145,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/emd-50.jpg",
     "short_desc_ar": "شباك طوارئ EMD-50 يستخدم عند تعطل باب الغرفة المحصنة.",
     "short_desc_en": "EMD-50 emergency ventilator door, integrated for fresh air and two-way communication in emergencies.",
-    "full_desc_ar": "EMD 50Dimension:Outside: 661 x 761 x 190 (mm)Weight: 300 Kg.Lock System: S&G-Kaba.Certification: SIRIM QAS",
+    "full_desc_ar": "EMD 50Dimension:Outside: 1015 x 815 x 250 (mm)Weight: 600 Kg.Lock System: S&G-Kaba.Certification: SIRIM QAS",
     "card_tagline_ar": "شباك طوارئ EMD-50 يستخدم عند تعطل باب الغرفة المحصنة",
     "card_tagline_en": "EMD-50 emergency window, used when the vault room door malfunctions"
   },
@@ -175,7 +175,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/emd-100.jpg",
     "short_desc_ar": "شباك طوارئ EMD-100 يستخدم عند تعطل باب الغرفة المحصنة.",
     "short_desc_en": "EMD-100 emergency ventilator door, integrated for fresh air and two-way communication in emergencies.",
-    "full_desc_ar": "EMD – 100Dimension:Outside: 1015 x 815 x 250 (mm)Weight: 500 Kg.Lock System: S&G-Kaba.Certification: SIRIM QAS",
+    "full_desc_ar": "EMD – 100Dimension:Outside: 600 x 600 (mm)Weight: 500 Kg.Lock System: S&G-Kaba.Certification: SIRIM QAS",
     "card_tagline_ar": "شباك طوارئ EMD-100 يستخدم عند تعطل باب الغرفة المحصنة",
     "card_tagline_en": "EMD-100 emergency window, used when the vault room door malfunctions"
   },
