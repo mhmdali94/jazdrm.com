@@ -475,7 +475,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/booil-safes-1700.jpg",
     "short_desc_ar": "خزنة Booil Safes-1700 كبيرة الحجم.",
     "short_desc_en": "Booil Safes-1700 large-capacity safe.",
-    "full_desc_ar": "Booil Safes-1700Dimension:Outside: 1685 x 800 x 630 (mm)Inside: 1445 x 630 x 460 (mm)Weight: 485 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
+    "full_desc_ar": "Booil Safes-1700Dimension:Outside: 1685 x 800 x 630 (mm)Inside: 1445 x 630 x 460 (mm)Weight: 485 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 3",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -490,7 +490,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/booil-safes-1400.jpg",
     "short_desc_ar": "خزنة Booil Safes-1400 كبيرة الحجم.",
     "short_desc_en": "Booil Safes-1400 large-capacity safe.",
-    "full_desc_ar": "Booil Safes-1400Dimension:Outside: 1385 x 700 x 630 (mm)Inside: 1145 x 530 x 460 (mm)Weight: 335 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
+    "full_desc_ar": "Booil Safes-1400Dimension:Outside: 1385 x 700 x 630 (mm)Inside: 1145 x 530 x 460 (mm)Weight: 335 Kg.Lock Type: Handle/Key/Combination Lock.Shelf: 3",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -595,7 +595,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/legend-3.jpg",
     "short_desc_ar": "خزنة Legend 3 من Falcon، بأنظمة قفل S&G-Kaba مقاومة السطو ومقاومة حريق 60 دقيقة.",
     "short_desc_en": "Falcon Legend 3 safe, S&G-Kaba locking, burglary-resistant, 60-minute fire rating.",
-    "full_desc_ar": "Legend 3Dimension:Outside: 1095 x 760 x 815 (mm)Inside: 865 x 535 x 650 (mm)Weight: 959 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
+    "full_desc_ar": "Legend 3Dimension:Outside: 1095 x 760 x 815 (mm)Inside: 865 x 535 x 535 (mm)Weight: 959 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
     "card_tagline_ar": "مقاومة للحريق والسطو",
     "card_tagline_en": "Fire & burglary resistant"
   },
