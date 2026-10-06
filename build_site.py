@@ -797,7 +797,7 @@ def build_homepage(is_en=False):
     t = {
         "badge": "الريادة في حلول الأمن والمقاولات منذ أكثر من 25 عاماً" if not is_en else "Leading Security & Contracting in Saudi Arabia for 25+ Years",
         "h1": "حلول متكاملة في <span>الخزائن المحصنة</span> وأنظمة الأمان الذكية" if not is_en else "Integrated Solutions for <span>Vault Doors</span> & Smart Security Systems",
-        "sub": "نقدم خدمات التوريد والتركيب والصيانة الدورية للخزائن والأبواب المصرفية المحصنة، دواليب الملفات المقاومة للحريق، والأقفال الرقمية المتطورة لكبرى البنوك والمؤسسات في كافة أنحاء المملكة." if not is_en else "Supplying, installing, and maintaining fortified bank vault doors, fireproof safes, fireproof filing cabinets, and biometric locks for enterprises across Saudi Arabia.",
+        "sub": "نقدم خدمات التوريد والتركيب والصيانة الدورية للخزائن والأبواب المصرفية المحصنة، دواليب الملفات المقاومة للحريق، والأقفال الرقمية المتطورة الحاصلة على شهادات الاعتماد الأمريكية والأوروبية لكبرى البنوك والمؤسسات والشركات في كافة أنحاء المملكة." if not is_en else "Supplying, installing, and maintaining fortified bank vault doors, fireproof safes, fireproof filing cabinets, and advanced digital locks certified to American and European accreditation standards for major banks, institutions, and companies across Saudi Arabia.",
         "explore_btn": "استكشف المنتجات" if not is_en else "Explore Products",
         "explore_services_btn": "اكتشف الخدمات" if not is_en else "Explore Services",
         "quote_btn": "طلب عرض سعر" if not is_en else "Request Quote",
