@@ -25,7 +25,7 @@
     "image": "assets/img/products/godrej-gr-viii.jpg",
     "short_desc_ar": "باب غرفة محصنة من Godrej معتمد وفق المعيار الأوروبي EN-1143-1، بأنظمة قفل S&G-Kaba.",
     "short_desc_en": "Godrej vault room door certified to EN-1143-1, with S&G-Kaba locking systems.",
-    "full_desc_ar": "Godrej GR-VIIIDimension:Outside: 2272 x 1354 x 320 (mm)Weight: 1105 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-VIII",
+    "full_desc_ar": "Godrej GR-VIIIDimension:Outside: 2272 x 1354 x 320 (mm)Weight: 1480 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-VIII",
     "card_tagline_ar": "باب غرفة محصنة من Godrej، معتمد EN-1143",
     "card_tagline_en": "Godrej vault room door, EN-1143 certified"
   },
@@ -40,7 +40,7 @@
     "image": "assets/img/products/godrej-gr-v-ex.jpg",
     "short_desc_ar": "باب غرفة محصنة من Godrej معتمد وفق المعيار الأوروبي EN-1143-1.",
     "short_desc_en": "Godrej vault room door certified to EN-1143-1.",
-    "full_desc_ar": "Godrej GR-V EXDimension:Outside: 2222 x 1354 x 420 (mm)Weight: 1105 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-V EX",
+    "full_desc_ar": "Godrej GR-V EXDimension:Outside: 2222 x 1354 x 420 (mm)Weight: 1215 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: EN-1143-1 / GR-V EX",
     "card_tagline_ar": "باب غرفة محصنة من Godrej، معتمد EN-1143",
     "card_tagline_en": "Godrej vault room door, EN-1143 certified"
   },
@@ -100,7 +100,7 @@
     "image": "assets/img/products/ssm-100-normal.jpg",
     "short_desc_ar": "باب خزانة SSM100 القياسي المعتمد من SIRIM QAS.",
     "short_desc_en": "Standard SSM100 vault door, SIRIM QAS certified.",
-    "full_desc_ar": "SSM100Dimension:Outside: 2180 x 1304 x 330 (mm)Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
+    "full_desc_ar": "SSM100Dimension:Outside: 2180 x 1304 x 430 (mm)Weight: 1100 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination/Digital Lock.Certification: SIRIM QAS",
     "card_tagline_ar": "باب خزانة SSM100",
     "card_tagline_en": "SSM100 vault door"
   },
@@ -565,7 +565,7 @@
     "image": "assets/img/products/legend-1.jpg",
     "short_desc_ar": "خزنة Legend 1 من Falcon، بأنظمة قفل S&G-Kaba ومقاومة حريق 60 دقيقة.",
     "short_desc_en": "Falcon Legend 1 safe, S&G-Kaba locking, 60-minute fire rating.",
-    "full_desc_ar": "Legend 1Dimension:Outside: 711 x 605 x 660 (mm)Inside: 500 x 400 x 500 (mm)Weight: 500 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
+    "full_desc_ar": "Legend 1Dimension:Outside: 711 x 685 x 660 (mm)Inside: 500 x 400 x 500 (mm)Weight: 538 Kg.Lock System: S&G-Kaba.Lock Type: Handle/Key/Combination Lock.Shelf: 1.Fire Rating: 60 MIN",
     "card_tagline_ar": "مقاومة للحريق",
     "card_tagline_en": "Fireproof"
   },
@@ -880,7 +880,7 @@
     "image": "assets/img/products/wood-door-double.jpg",
     "short_desc_ar": "باب خشبي (Wood Door) مزدوج الدفة بتشطيب خشبي فاتح.",
     "short_desc_en": "Double-leaf Wood Door in a light wood finish.",
-    "full_desc_ar": "Wood DoorDimension:Outside: 220 x 100 x 23 (mm)Lock System: 1 KL",
+    "full_desc_ar": "Wood DoorDimension:Outside: 220 x 200 x 23 (mm)Lock System: 1 KL",
     "card_tagline_ar": "باب خشبي مزدوج",
     "card_tagline_en": "Wood door, double-leaf"
   }

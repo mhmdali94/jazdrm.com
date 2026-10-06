@@ -1703,6 +1703,25 @@ html[dir="ltr"] .product-badge {
   unicode-bidi: plaintext;
 }
 
+.spec-value-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.spec-value-list li {
+  unicode-bidi: plaintext;
+}
+
+.spec-value-list li::before {
+  content: "\2022";
+  color: var(--primary);
+  font-weight: 700;
+  margin-inline-end: 6px;
+}
+
 .spec-icon {
   display: flex;
   align-items: center;

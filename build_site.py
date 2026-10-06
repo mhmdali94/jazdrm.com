@@ -111,6 +111,15 @@ _SPEC_ICONS = {
 }
 
 
+def _format_spec_value(v, canon):
+    """Capacity rows that list multiple box sizes (e.g. "800x4, 150x4, 300x1")
+    read better as a bulleted list, one size per line, instead of a run-on string."""
+    if canon == "Capacity" and "," in v:
+        items = "".join(f"<li>{item.strip()}</li>" for item in v.split(",") if item.strip())
+        return f'<ul class="spec-value-list">{items}</ul>'
+    return v
+
+
 def parse_specs(p, is_en):
     """Turn the run-together spec text in full_desc_ar into [(label, value)] rows.
     This is factual product data (dimensions, weight, lock type) reformatted for reading."""
@@ -384,11 +393,10 @@ def get_footer(is_en=False, depth=0):
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">{t['address']}</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 12px;">{t['branches']}</p>
-            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">+966920028440</a>
-            <a href="tel:+966114718033" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">+966 11 471 8033</a>
-            <a href="https://wa.me/966554890900" target="_blank" style="color: #25d366; font-weight: 600;">+966 55 489 0900 (WhatsApp)</a>
+            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">920028440</a>
             <a href="mailto:info@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">info@jazdrm.com</a>
             <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
+            <a href="mailto:jazdrm@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">jazdrm@jazdrm.com</a>
           </div>
         </div>
       </div>
@@ -420,19 +428,21 @@ def get_footer(is_en=False, depth=0):
         <button type="button" class="modal-close" aria-label="{'إغلاق' if not is_en else 'Close'}">&times;</button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="{rel}send-form.php">
+          <input type="hidden" name="form_id" value="quote">
+          <input type="hidden" name="return_to" id="qm-return-to" value="/{'en/' if is_en else ''}">
           <div class="form-group">
             <label class="form-label">{'الاسم الكامل' if not is_en else 'Full Name'} *</label>
-            <input type="text" class="form-control" required placeholder="{'مثال: محمد علي' if not is_en else 'e.g. John Doe'}">
+            <input type="text" name="name" class="form-control" required placeholder="{'مثال: محمد علي' if not is_en else 'e.g. John Doe'}">
           </div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">{'رقم الجوال' if not is_en else 'Phone Number'} *</label>
-              <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+              <input type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
             </div>
             <div class="form-group">
               <label class="form-label">{'المدينة / الفرع' if not is_en else 'City / Branch'} *</label>
-              <select class="form-control" required>
+              <select name="city" class="form-control" required>
                 <option value="riyadh">{'الرياض (الفرع الرئيسي)' if not is_en else 'Riyadh (Main HQ)'}</option>
                 <option value="jeddah">{'جدة' if not is_en else 'Jeddah'}</option>
                 <option value="dammam">{'الدمام' if not is_en else 'Dammam'}</option>
@@ -445,11 +455,11 @@ def get_footer(is_en=False, depth=0):
           </div>
           <div class="form-group">
             <label class="form-label">{'المنتج أو الخدمة المطلوبة' if not is_en else 'Required Product / Service'}</label>
-            <input type="text" id="modal-product-name" class="form-control" placeholder="{'أدخل اسم المنتج أو نوع الخدمة' if not is_en else 'Enter product name or service'}">
+            <input type="text" id="modal-product-name" name="product" class="form-control" placeholder="{'أدخل اسم المنتج أو نوع الخدمة' if not is_en else 'Enter product name or service'}">
           </div>
           <div class="form-group">
             <label class="form-label">{'تفاصيل إضافية أو متطلبات خاصة' if not is_en else 'Additional Notes'}</label>
-            <textarea class="form-control" rows="3" placeholder="{'اكتب تفاصيل طلبك هنا...' if not is_en else 'Write your requirements here...'}"></textarea>
+            <textarea class="form-control" name="message" rows="3" placeholder="{'اكتب تفاصيل طلبك هنا...' if not is_en else 'Write your requirements here...'}"></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             {'إرسال الطلب الآن' if not is_en else 'Submit Request Now'}
@@ -785,13 +795,13 @@ def get_whatsapp_cta(is_en=False, rel=""):
 def build_homepage(is_en=False):
     rel = "../" if is_en else ""
     t = {
-        "badge": "الريادة في حلول الأمن والمقاولات منذ أكثر من 15 عاماً" if not is_en else "Leading Security & Contracting in Saudi Arabia for 15+ Years",
+        "badge": "الريادة في حلول الأمن والمقاولات منذ أكثر من 25 عاماً" if not is_en else "Leading Security & Contracting in Saudi Arabia for 25+ Years",
         "h1": "حلول متكاملة في <span>الخزائن المحصنة</span> وأنظمة الأمان الذكية" if not is_en else "Integrated Solutions for <span>Vault Doors</span> & Smart Security Systems",
         "sub": "نقدم خدمات التوريد والتركيب والصيانة الدورية للخزائن والأبواب المصرفية المحصنة، دواليب الملفات المقاومة للحريق، والأقفال الرقمية المتطورة لكبرى البنوك والمؤسسات في كافة أنحاء المملكة." if not is_en else "Supplying, installing, and maintaining fortified bank vault doors, fireproof safes, fireproof filing cabinets, and biometric locks for enterprises across Saudi Arabia.",
         "explore_btn": "استكشف المنتجات" if not is_en else "Explore Products",
         "explore_services_btn": "اكتشف الخدمات" if not is_en else "Explore Services",
         "quote_btn": "طلب عرض سعر" if not is_en else "Request Quote",
-        "stat_years": "+15" if not is_en else "15+",
+        "stat_years": "+25" if not is_en else "25+",
         "stat_years_lbl": "عاماً من الخبرة" if not is_en else "Years Experience",
         "stat_proj": "+500" if not is_en else "500+",
         "stat_proj_lbl": "مشروع مصرفي وتجاري" if not is_en else "Banking & Enterprise Projects",
@@ -1254,7 +1264,7 @@ def build_about_page(is_en=False):
     t = {
         "tag": "من نحن" if not is_en else "About Us",
         "h1": "شركة أحلام الجزيرة للمقاولات" if not is_en else "Aljazeera Dreams Contracting",
-        "sub": "أكثر من 15 عاماً من الخبرة والتميز في تزويد وتركيب أحدث تقنيات الخزائن والأبواب الأمنية والحلول المصرفية في المملكة العربية السعودية." if not is_en else "Over 15 years of excellence delivering high-security safes, vault doors, and smart banking solutions across Saudi Arabia.",
+        "sub": "أكثر من 25 عاماً من الخبرة والتميز في تزويد وتركيب أحدث تقنيات الخزائن والأبواب الأمنية والحلول المصرفية في المملكة العربية السعودية." if not is_en else "Over 25 years of excellence delivering high-security safes, vault doors, and smart banking solutions across Saudi Arabia.",
         "overview": (
             "شركة أحلام الجزيرة للمقاولات هي شركة سعودية رائدة متخصصة في تصميم وتصنيع وتوريد وتركيب الحلول الأمنية المتكاملة، "
             "حيث تقدم منتجات وخدمات تلبي أعلى معايير الجودة والأمان وفق المواصفات والاعتمادات الدولية. تمتلك الشركة خبرة واسعة "
@@ -1404,6 +1414,7 @@ def build_about_page(is_en=False):
     out_path.write_text(html, encoding="utf-8")
 
 def build_contact_page(is_en=False):
+    rel = "../../" if is_en else "../"
     t = {
         "tag": "تواصل معنا" if not is_en else "Contact Us",
         "h1": "يسعدنا دائماً استقبال استفساراتكم" if not is_en else "We Are Always Here to Assist You",
@@ -1453,25 +1464,27 @@ def build_contact_page(is_en=False):
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: start;">
         <div class="form-card" style="margin: 0; max-width: 100%;">
-          <form>
+          <form method="POST" action="{rel}send-form.php">
+            <input type="hidden" name="form_id" value="contact">
+            <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}contact-us/">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'الاسم بالكامل' if not is_en else 'Full Name'} *</label>
-                <input type="text" class="form-control" required placeholder="{'محمد علي' if not is_en else 'John Doe'}">
+                <input type="text" name="name" class="form-control" required placeholder="{'محمد علي' if not is_en else 'John Doe'}">
               </div>
               <div class="form-group">
                 <label class="form-label">{'رقم الجوال' if not is_en else 'Phone Number'} *</label>
-                <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <input type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'البريد الإلكتروني' if not is_en else 'Email Address'}</label>
-                <input type="email" class="form-control" placeholder="name@example.com">
+                <input type="email" name="email" class="form-control" placeholder="name@example.com">
               </div>
               <div class="form-group">
                 <label class="form-label">{'المدينة / الفرع' if not is_en else 'City / Branch'}</label>
-                <select class="form-control">
+                <select name="city" class="form-control">
                   <option value="riyadh">{'الرياض (الفرع الرئيسي)' if not is_en else 'Riyadh (Main HQ)'}</option>
                   <option value="jeddah">{'جدة' if not is_en else 'Jeddah'}</option>
                   <option value="dammam">{'الدمام' if not is_en else 'Dammam'}</option>
@@ -1484,7 +1497,7 @@ def build_contact_page(is_en=False):
             </div>
             <div class="form-group">
               <label class="form-label">{'نص الرسالة أو الاستفسار' if not is_en else 'Message'} *</label>
-              <textarea class="form-control" rows="4" required placeholder="{'اكتب استفسارك هنا...' if not is_en else 'Write your inquiry here...'}"></textarea>
+              <textarea class="form-control" name="message" rows="4" required placeholder="{'اكتب استفسارك هنا...' if not is_en else 'Write your inquiry here...'}"></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'إرسال الرسالة' if not is_en else 'Send Message'}
@@ -1510,6 +1523,7 @@ def build_contact_page(is_en=False):
     out_path.write_text(html, encoding="utf-8")
 
 def build_service_request_page(is_en=False):
+    rel = "../../" if is_en else "../"
     t = {
         "tag": "طلب خدمة" if not is_en else "Service Request",
         "h1": "طلب خدمة صيانة أو تجهيز أو نقل" if not is_en else "Request Maintenance, Setup, or Relocation",
@@ -1526,10 +1540,12 @@ def build_service_request_page(is_en=False):
         </div>
 
         <div class="form-card">
-          <form>
+          <form method="POST" action="{rel}send-form.php">
+            <input type="hidden" name="form_id" value="service-request">
+            <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}service-request/">
             <div class="form-group">
               <label class="form-label">{'نوع الخدمة المطلوبة' if not is_en else 'Service Type'} *</label>
-              <select class="form-control" required>
+              <select name="service_type" class="form-control" required>
                 <option value="atm">{'تجهيز غرف الصراف والبنوك' if not is_en else 'ATM & Vault Room Setup'}</option>
                 <option value="maintenance">{'صيانة دورية أو طارئة' if not is_en else 'Periodic / Emergency Maintenance'}</option>
                 <option value="relocation">{'نقل وتركيب خزائن ثقيلة' if not is_en else 'Heavy Safe Relocation & Installation'}</option>
@@ -1540,17 +1556,17 @@ def build_service_request_page(is_en=False):
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'اسم المنشأة أو العميل' if not is_en else 'Company / Customer Name'} *</label>
-                <input type="text" class="form-control" required>
+                <input type="text" name="name" class="form-control" required>
               </div>
               <div class="form-group">
                 <label class="form-label">{'رقم الجوال' if not is_en else 'Phone Number'} *</label>
-                <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <input type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'المدينة / الفرع الأقرب' if not is_en else 'City / Nearest Branch'}</label>
-                <select class="form-control">
+                <select name="city" class="form-control">
                   <option value="riyadh">{'الرياض' if not is_en else 'Riyadh'}</option>
                   <option value="jeddah">{'جدة' if not is_en else 'Jeddah'}</option>
                   <option value="dammam">{'الدمام' if not is_en else 'Dammam'}</option>
@@ -1562,12 +1578,12 @@ def build_service_request_page(is_en=False):
               </div>
               <div class="form-group">
                 <label class="form-label">{'الموعد المفضل للزيارة' if not is_en else 'Preferred Date'}</label>
-                <input type="date" class="form-control">
+                <input type="date" name="preferred_date" class="form-control">
               </div>
             </div>
             <div class="form-group">
               <label class="form-label">{'وصف المشكلة أو تفاصيل الطلب' if not is_en else 'Job Details'} *</label>
-              <textarea class="form-control" rows="4" required placeholder="{'اكتب تفاصيل الخدمة والموقع بدقة...' if not is_en else 'Provide details regarding location and requirements...'}"></textarea>
+              <textarea class="form-control" name="job_details" rows="4" required placeholder="{'اكتب تفاصيل الخدمة والموقع بدقة...' if not is_en else 'Provide details regarding location and requirements...'}"></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'تقديم طلب الخدمة' if not is_en else 'Submit Service Request'}
@@ -1590,6 +1606,7 @@ def build_service_request_page(is_en=False):
     out_path.write_text(html, encoding="utf-8")
 
 def build_tech_support_page(is_en=False):
+    rel = "../../" if is_en else "../"
     t = {
         "tag": "الدعم الفني" if not is_en else "Technical Support",
         "h1": "مركز الدعم الفني وخدمة العملاء" if not is_en else "Technical Support & Customer Care",
@@ -1626,20 +1643,22 @@ def build_tech_support_page(is_en=False):
 
         <div class="form-card">
           <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; text-align: center;">{'فتح تذكرة دعم فني' if not is_en else 'Open Support Ticket'}</h3>
-          <form>
+          <form method="POST" action="{rel}send-form.php">
+            <input type="hidden" name="form_id" value="technical-support">
+            <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}technical-support/">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'اسم العميل أو الجهة' if not is_en else 'Name / Company'} *</label>
-                <input type="text" class="form-control" required>
+                <input type="text" name="name" class="form-control" required>
               </div>
               <div class="form-group">
                 <label class="form-label">{'رقم الجوال' if not is_en else 'Phone Number'} *</label>
-                <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <input type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-group">
               <label class="form-label">{'نوع المشكلة الفنية' if not is_en else 'Issue Type'} *</label>
-              <select class="form-control" required>
+              <select name="issue_type" class="form-control" required>
                 <option value="lock">{'مشكلة في فتح قفل الخزنة أو الباب' if not is_en else 'Lock opening / password reset issue'}</option>
                 <option value="cabinet">{'عطل في دولاب ملفات أو خزانة إيداع' if not is_en else 'Filing cabinet / deposit locker fault'}</option>
                 <option value="door">{'صيانة أبواب الخزائن المحصنة' if not is_en else 'Vault door maintenance'}</option>
@@ -1648,7 +1667,7 @@ def build_tech_support_page(is_en=False):
             </div>
             <div class="form-group">
               <label class="form-label">{'شرح تفصيلي للمشكلة' if not is_en else 'Issue Description'} *</label>
-              <textarea class="form-control" rows="4" required></textarea>
+              <textarea class="form-control" name="issue_description" rows="4" required></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'إرسال التذكرة' if not is_en else 'Submit Support Ticket'}
@@ -1671,6 +1690,7 @@ def build_tech_support_page(is_en=False):
     out_path.write_text(html, encoding="utf-8")
 
 def build_careers_page(is_en=False):
+    rel = "../../" if is_en else "../"
     t = {
         "tag": "التوظيف والمهن" if not is_en else "Careers",
         "h1": "انضم إلى فريق أحلام الجزيرة" if not is_en else "Join Our Professional Team",
@@ -1687,25 +1707,27 @@ def build_careers_page(is_en=False):
         </div>
 
         <div class="form-card">
-          <form>
+          <form method="POST" action="{rel}send-form.php" enctype="multipart/form-data">
+            <input type="hidden" name="form_id" value="job-application">
+            <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}job-application/">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'الاسم الثلاثي' if not is_en else 'Full Name'} *</label>
-                <input type="text" class="form-control" required>
+                <input type="text" name="name" class="form-control" required>
               </div>
               <div class="form-group">
                 <label class="form-label">{'رقم الجوال' if not is_en else 'Phone Number'} *</label>
-                <input type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <input type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">{'البريد الإلكتروني' if not is_en else 'Email Address'} *</label>
-                <input type="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" required>
               </div>
               <div class="form-group">
                 <label class="form-label">{'الوظيفة المستهدفة' if not is_en else 'Target Position'} *</label>
-                <select class="form-control" required>
+                <select name="position" class="form-control" required>
                   <option value="tech">{'فني تركيب وصيانة خزائن' if not is_en else 'Security Safe Technician'}</option>
                   <option value="lock_eng">{'فني أقفال رقمية وأنظمة تحكم بالدخول' if not is_en else 'Digital Lock & Access Control Technician'}</option>
                   <option value="sales">{'مسؤول مبيعات ومشاريع' if not is_en else 'Sales & Project Executive'}</option>
@@ -1715,11 +1737,15 @@ def build_careers_page(is_en=False):
             </div>
             <div class="form-group">
               <label class="form-label">{'المدينة الحالية' if not is_en else 'Current City'}</label>
-              <input type="text" class="form-control" placeholder="{'الرياض، جدة...' if not is_en else 'Riyadh, Jeddah...'}">
+              <input type="text" name="city" class="form-control" placeholder="{'الرياض، جدة...' if not is_en else 'Riyadh, Jeddah...'}">
             </div>
             <div class="form-group">
               <label class="form-label">{'نبذة عن الخبرات والمهارات' if not is_en else 'Experience & Skills Summary'}</label>
-              <textarea class="form-control" rows="4" placeholder="{'اذكر سنوات الخبرة والشهادات...' if not is_en else 'Summarize your experience and certifications...'}"></textarea>
+              <textarea class="form-control" name="experience" rows="4" placeholder="{'اذكر سنوات الخبرة والشهادات...' if not is_en else 'Summarize your experience and certifications...'}"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">{'إرفاق السيرة الذاتية (PDF)' if not is_en else 'Attach Resume (PDF)'}</label>
+              <input type="file" name="resume" class="form-control" accept="application/pdf">
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'تقديم طلب التوظيف' if not is_en else 'Submit Application'}
@@ -1762,7 +1788,7 @@ def build_single_product_pages():
                     f'<h2 class="product-specs-title">{"المواصفات" if not is_en else "Specifications"}</h2>'
                     f'<dl class="spec-list">'
                     + "".join(
-                        f'<div class="spec-row"><dt>{k}</dt><dd>{v}</dd>'
+                        f'<div class="spec-row"><dt>{k}</dt><dd>{_format_spec_value(v, canon)}</dd>'
                         f'<span class="spec-icon" aria-hidden="true">{_SPEC_ICONS.get(canon, _ICON_BOX)}</span></div>'
                         for k, v, canon in spec_rows
                     )

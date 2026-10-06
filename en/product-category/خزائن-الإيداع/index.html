@@ -9,7 +9,7 @@
   <link rel="icon" href="../../../wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="../../../wp-content/uploads/2025/06/cropped-favicon-180x180.png">
   <link rel="preload" href="../../../assets/fonts/cairo-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../assets/css/style.css?v=37e12471">
+  <link rel="stylesheet" href="../../../assets/css/style.css?v=ff6c5fa8">
 </head>
 <body class="en-lang" data-root="../../../">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -199,11 +199,10 @@
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">Riyadh (Main HQ), Al-Rawabi, Taher Al-Dabbagh St.</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 12px;">Branches: Riyadh, Jeddah, Dammam, Medina, Buraydah, Tabuk, Taif</p>
-            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">+966920028440</a>
-            <a href="tel:+966114718033" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">+966 11 471 8033</a>
-            <a href="https://wa.me/966554890900" target="_blank" style="color: #25d366; font-weight: 600;">+966 55 489 0900 (WhatsApp)</a>
+            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">920028440</a>
             <a href="mailto:info@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">info@jazdrm.com</a>
             <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
+            <a href="mailto:jazdrm@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">jazdrm@jazdrm.com</a>
           </div>
         </div>
       </div>
@@ -235,19 +234,21 @@
         <button type="button" class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="../../../send-form.php">
+          <input type="hidden" name="form_id" value="quote">
+          <input type="hidden" name="return_to" id="qm-return-to" value="/en/">
           <div class="form-group">
             <label class="form-label" for="qm-1">Full Name *</label>
-            <input id="qm-1" aria-required="true" type="text" class="form-control" required placeholder="e.g. John Doe">
+            <input id="qm-1" aria-required="true" type="text" name="name" class="form-control" required placeholder="e.g. John Doe">
           </div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="qm-2">Phone Number *</label>
-              <input id="qm-2" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
+              <input id="qm-2" aria-required="true" type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
             </div>
             <div class="form-group">
               <label class="form-label" for="qm-3">City / Branch *</label>
-              <select id="qm-3" aria-required="true" class="form-control" required>
+              <select id="qm-3" aria-required="true" name="city" class="form-control" required>
                 <option value="riyadh">Riyadh (Main HQ)</option>
                 <option value="jeddah">Jeddah</option>
                 <option value="dammam">Dammam</option>
@@ -260,11 +261,11 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="modal-product-name">Required Product / Service</label>
-            <input type="text" id="modal-product-name" class="form-control" placeholder="Enter product name or service">
+            <input type="text" id="modal-product-name" name="product" class="form-control" placeholder="Enter product name or service">
           </div>
           <div class="form-group">
             <label class="form-label" for="qm-4">Additional Notes</label>
-            <textarea id="qm-4" class="form-control" rows="3" placeholder="Write your requirements here..."></textarea>
+            <textarea id="qm-4" class="form-control" name="message" rows="3" placeholder="Write your requirements here..."></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             Submit Request Now
@@ -275,7 +276,7 @@
   </div>
 
 
-  <script src="../../../assets/js/products-data.js?v=1f394108"></script>
-  <script src="../../../assets/js/main.js?v=757d31ea"></script>
+  <script src="../../../assets/js/products-data.js?v=2744c320"></script>
+  <script src="../../../assets/js/main.js?v=2b81de23"></script>
 </body>
 </html>

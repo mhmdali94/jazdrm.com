@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initImageLightbox();
   initForms();
   initScrollReveal();
+  showSentToast();
 });
 
 /* Helper: exact relative root path */
@@ -464,40 +465,57 @@ function initForms() {
     }
   });
 
-  document.querySelectorAll('form').forEach(function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  // The quote modal is a shared component on every page; point it back to
+  // wherever it was actually opened from instead of the hardcoded default.
+  const qmReturnTo = document.getElementById('qm-return-to');
+  if (qmReturnTo) {
+    qmReturnTo.value = window.location.pathname;
+  }
 
+  document.querySelectorAll('form[action]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
       const invalid = form.querySelector(':invalid');
       if (invalid) {
+        e.preventDefault();
         invalid.focus();
         return;
       }
 
       const submitBtn = form.querySelector('[type="submit"]');
       if (submitBtn) {
-        if (submitBtn.disabled) return;
+        if (submitBtn.disabled) {
+          e.preventDefault();
+          return;
+        }
         submitBtn.disabled = true;
         submitBtn.dataset.label = submitBtn.textContent.trim();
         submitBtn.textContent = isEnglish() ? 'Sending...' : 'جارٍ الإرسال...';
       }
-
-      // No backend on this static build: simulate acceptance
-      window.setTimeout(function () {
-        showToast(isEnglish()
-          ? 'Thank you. Your request has been received; our team will contact you shortly.'
-          : 'شكراً لكم. تم استلام طلبكم وسيتواصل معكم فريقنا في أقرب وقت.');
-        form.reset();
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = submitBtn.dataset.label || submitBtn.textContent;
-        }
-        if (typeof window.closeQuoteModal === 'function' && form.closest('#quote-modal')) {
-          window.closeQuoteModal();
-        }
-      }, 600);
+      // Real POST to send-form.php from here; the page navigates away and
+      // the server redirects back with ?sent=1/0, handled by showSentToast().
     });
   });
+}
+
+/* After send-form.php redirects back with ?sent=1 or ?sent=0, show the
+   result as a toast and strip the query param so a refresh doesn't repeat it. */
+function showSentToast() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.has('sent')) return;
+
+  const ok = params.get('sent') === '1';
+  showToast(ok
+    ? (isEnglish()
+        ? 'Thank you. Your request has been received; our team will contact you shortly.'
+        : 'شكراً لكم. تم استلام طلبكم وسيتواصل معكم فريقنا في أقرب وقت.')
+    : (isEnglish()
+        ? 'Something went wrong sending your request. Please try again or contact us by phone.'
+        : 'حدث خطأ أثناء إرسال طلبكم. يرجى المحاولة مرة أخرى أو التواصل معنا هاتفياً.'));
+
+  params.delete('sent');
+  const cleanQuery = params.toString();
+  const cleanUrl = window.location.pathname + (cleanQuery ? '?' + cleanQuery : '') + window.location.hash;
+  window.history.replaceState({}, '', cleanUrl);
 }
 
 /* Accessible toast (replaces alert) */

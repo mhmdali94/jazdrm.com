@@ -9,7 +9,7 @@
   <link rel="icon" href="../wp-content/uploads/2025/06/cropped-favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="../wp-content/uploads/2025/06/cropped-favicon-180x180.png">
   <link rel="preload" href="../assets/fonts/cairo-arabic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css?v=37e12471">
+  <link rel="stylesheet" href="../assets/css/style.css?v=ff6c5fa8">
 </head>
 <body class="ar-lang" data-root="../">
   <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
@@ -140,25 +140,27 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: start;">
         <div class="form-card" style="margin: 0; max-width: 100%;">
-          <form>
+          <form method="POST" action="../send-form.php">
+            <input type="hidden" name="form_id" value="contact">
+            <input type="hidden" name="return_to" value="/contact-us/">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="cf-1">الاسم بالكامل *</label>
-                <input id="cf-1" aria-required="true" type="text" class="form-control" required placeholder="محمد علي">
+                <input id="cf-1" aria-required="true" type="text" name="name" class="form-control" required placeholder="محمد علي">
               </div>
               <div class="form-group">
                 <label class="form-label" for="cf-2">رقم الجوال *</label>
-                <input id="cf-2" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
+                <input id="cf-2" aria-required="true" type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="cf-3">البريد الإلكتروني</label>
-                <input id="cf-3" type="email" class="form-control" placeholder="name@example.com">
+                <input id="cf-3" type="email" name="email" class="form-control" placeholder="name@example.com">
               </div>
               <div class="form-group">
                 <label class="form-label" for="cf-4">المدينة / الفرع</label>
-                <select id="cf-4" class="form-control">
+                <select id="cf-4" name="city" class="form-control">
                   <option value="riyadh">الرياض (الفرع الرئيسي)</option>
                   <option value="jeddah">جدة</option>
                   <option value="dammam">الدمام</option>
@@ -171,7 +173,7 @@
             </div>
             <div class="form-group">
               <label class="form-label" for="cf-5">نص الرسالة أو الاستفسار *</label>
-              <textarea id="cf-5" aria-required="true" class="form-control" rows="4" required placeholder="اكتب استفسارك هنا..."></textarea>
+              <textarea id="cf-5" aria-required="true" class="form-control" name="message" rows="4" required placeholder="اكتب استفسارك هنا..."></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               إرسال الرسالة
@@ -282,11 +284,10 @@
           <div class="footer-links">
             <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">الرياض (الفرع الرئيسي)، حي الروابي، شارع طاهر الدباغ</p>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 12px;">فروعنا: الرياض، جدة، الدمام، المدينة المنورة، بريدة، تبوك، الطائف</p>
-            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">+966920028440</a>
-            <a href="tel:+966114718033" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">+966 11 471 8033</a>
-            <a href="https://wa.me/966554890900" target="_blank" style="color: #25d366; font-weight: 600;">+966 55 489 0900 (WhatsApp)</a>
+            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">920028440</a>
             <a href="mailto:info@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">info@jazdrm.com</a>
             <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
+            <a href="mailto:jazdrm@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">jazdrm@jazdrm.com</a>
           </div>
         </div>
       </div>
@@ -318,19 +319,21 @@
         <button type="button" class="modal-close" aria-label="إغلاق">&times;</button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="../send-form.php">
+          <input type="hidden" name="form_id" value="quote">
+          <input type="hidden" name="return_to" id="qm-return-to" value="/">
           <div class="form-group">
             <label class="form-label" for="qm-1">الاسم الكامل *</label>
-            <input id="qm-1" aria-required="true" type="text" class="form-control" required placeholder="مثال: محمد علي">
+            <input id="qm-1" aria-required="true" type="text" name="name" class="form-control" required placeholder="مثال: محمد علي">
           </div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="qm-2">رقم الجوال *</label>
-              <input id="qm-2" aria-required="true" type="tel" class="form-control" required placeholder="05xxxxxxxx">
+              <input id="qm-2" aria-required="true" type="tel" name="phone" class="form-control" required placeholder="05xxxxxxxx">
             </div>
             <div class="form-group">
               <label class="form-label" for="qm-3">المدينة / الفرع *</label>
-              <select id="qm-3" aria-required="true" class="form-control" required>
+              <select id="qm-3" aria-required="true" name="city" class="form-control" required>
                 <option value="riyadh">الرياض (الفرع الرئيسي)</option>
                 <option value="jeddah">جدة</option>
                 <option value="dammam">الدمام</option>
@@ -343,11 +346,11 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="modal-product-name">المنتج أو الخدمة المطلوبة</label>
-            <input type="text" id="modal-product-name" class="form-control" placeholder="أدخل اسم المنتج أو نوع الخدمة">
+            <input type="text" id="modal-product-name" name="product" class="form-control" placeholder="أدخل اسم المنتج أو نوع الخدمة">
           </div>
           <div class="form-group">
             <label class="form-label" for="qm-4">تفاصيل إضافية أو متطلبات خاصة</label>
-            <textarea id="qm-4" class="form-control" rows="3" placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
+            <textarea id="qm-4" class="form-control" name="message" rows="3" placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             إرسال الطلب الآن
@@ -358,6 +361,6 @@
   </div>
 
 
-  <script src="../assets/js/main.js?v=757d31ea"></script>
+  <script src="../assets/js/main.js?v=2b81de23"></script>
 </body>
 </html>
