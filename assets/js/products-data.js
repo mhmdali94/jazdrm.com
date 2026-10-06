@@ -355,7 +355,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/jb-130.jpg",
     "short_desc_ar": "خزنة JB-130 بمقاومة حريق 60 دقيقة وسعة 165.",
     "short_desc_en": "JB-130 safe, 60-minute fire rating, capacity 165.",
-    "full_desc_ar": "JB-130Dimension:Outside: 1440 x 780 x 650 (mm)Inside: 1250 x 700 x 560 (mm)Weight: 275 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Capacity: 165.Fire Rating: 60 MIN",
+    "full_desc_ar": "JB-130Dimension:Outside: 1440 x 780 x 650 (mm)Inside: 1250 x 700 x 560 (mm)Weight: 275 Kg.Lock Type: Handle/Key/Combination Lock.Shelves: 2.Capacity: 165.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -400,7 +400,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/eh-119.jpg",
     "short_desc_ar": "خزنة Jiabao EH-119 المدمجة بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Compact Jiabao EH-119 safe, 60-minute fire rating.",
-    "full_desc_ar": "EH-119Dimension:Outside: 360 x 412 x 363 (mm)Inside: 260 x 320 x 234 (mm)Weight: 30 Kg.Lock: Key Lock / Digital Lock.Fire Rating: 60 MIN",
+    "full_desc_ar": "EH-119Dimension:Outside: 360 x 412 x 363 (mm)Inside: 260 x 320 x 234 (mm)Weight: 30 Kg.Lock: Key Lock / Digital Lock.Shelf: 1.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
