@@ -1165,6 +1165,18 @@ def build_services_page(is_en=False):
             if not is_en else
             ["From civil works to full operation", "Integrated installation, lighting, canopy", "Ready for round-the-clock operation"],
         ),
+        (
+            f"{img}vault-room-design.jpg", "Custom Vault Room Design & Construction",
+            "غرف محصنة مخصصة" if not is_en else "Custom Vault Rooms",
+            "تصميم وإنشاء الغرف المحصنة بمقاسات مختلفة حسب طلب العميل" if not is_en else "Custom Vault Room Design & Construction",
+            "تصميم وإنشاء الغرف المحصنة من الألواح الفولاذية المدرعة بمقاسات وتصاميم مختلفة حسب طلب العميل ومساحة الموقع، تشمل أبواب الخزائن والأقفال الرقمية وأنظمة التهوية، لتوفير حل متكامل يناسب الفروع المصرفية والمؤسسات."
+            if not is_en else
+            "Design and construction of fortified vault rooms from armored steel panels, in custom sizes and layouts according to the customer's request and site area, including vault doors, digital locks, and ventilation systems, for a complete solution suited to bank branches and institutions.",
+            service_req_href,
+            ["مقاسات وتصاميم حسب الطلب", "ألواح فولاذية مدرعة متكاملة", "حل شامل للفروع والمؤسسات"]
+            if not is_en else
+            ["Custom sizes and layouts", "Complete armored steel panels", "Full solution for branches and institutions"],
+        ),
     ]
 
     cards = "\n\n".join(
@@ -1193,6 +1205,12 @@ def build_services_page(is_en=False):
             "تركيب احترافي ودقيق وفق أعلى معايير الأمان والمواصفات، مع ضبط دقيق واختبار شامل لكل وحدة."
             if not is_en else
             "Professional, precise installation to the highest safety standards and specifications, with precise calibration and comprehensive testing for every unit.",
+        ),
+        (
+            "طوارئ 24 ساعة" if not is_en else "24-Hour Emergency",
+            "نقل وفتح وصيانة جميع أنواع الخزن على مدار 24 ساعة، لمواجهة أعطال الأقفال والحالات الطارئة في أي وقت."
+            if not is_en else
+            "Transport, opening, and maintenance for all types of safes around the clock, to handle lock failures and emergencies at any time.",
         ),
     ]
     breakdown_html = "\n".join(f"""              <div>
