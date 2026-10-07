@@ -250,7 +250,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/eh-100.jpg",
     "short_desc_ar": "خزنة EH-100 المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "EH-100 home and office safe, 60-minute fire rating.",
-    "full_desc_ar": "EH-100Dimension:Outside: 1020 x 655 x 560 (mm)Inside: 780 x 475 x 350 (mm)Weight: 201 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
+    "full_desc_ar": "EH-100Dimension:Outside: 1020 x 655 x 560 (mm)Inside: 780 x 475 x 350 (mm)Weight: 201 Kg.Lock Type: Handle/Key/Combination Lock/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -265,7 +265,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/diplomat-eh-120.jpg",
     "short_desc_ar": "خزنة EH-120 من Diplomat المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "Diplomat EH-120 home and office safe, 60-minute fire rating.",
-    "full_desc_ar": "EH-120Dimension:Outside: 1220 x 655 x 560 (mm)Inside: 980 x 475 x 350 (mm)Weight: 228 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
+    "full_desc_ar": "EH-120Dimension:Outside: 1220 x 655 x 560 (mm)Inside: 980 x 475 x 350 (mm)Weight: 228 Kg.Lock Type: Handle/Key/Combination Lock/Digital Lock.Shelves: 2.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -280,7 +280,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/eh-200.jpg",
     "short_desc_ar": "خزنة EH-200 المنزلية والمكتبية بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "EH-200 home and office safe, 60-minute fire rating.",
-    "full_desc_ar": "EH-200Dimension:Outside: 1690 x 655 x 560 (mm)Inside: 1450 x 475 x 350 (mm)Weight: 320 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
+    "full_desc_ar": "EH-200Dimension:Outside: 1690 x 655 x 560 (mm)Inside: 1450 x 475 x 350 (mm)Weight: 320 Kg.Lock Type: Handle/Key/Combination Lock/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -295,7 +295,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/l-300.jpg",
     "short_desc_ar": "خزنة L-300 كبيرة الحجم بمقاومة حريق 60 دقيقة.",
     "short_desc_en": "L-300 large-capacity safe, 60-minute fire rating.",
-    "full_desc_ar": "L-300Dimension:Outside: 1745 x 1126 x 700 (mm)Inside: 1505 x 946 x 490 (mm)Weight: 540 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
+    "full_desc_ar": "L-300Dimension:Outside: 1745 x 1126 x 700 (mm)Inside: 1505 x 946 x 490 (mm)Weight: 540 Kg.Lock Type: Handle/Key/Combination Lock/Digital Lock.Shelves: 3.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -310,7 +310,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/eh-006.jpg",
     "short_desc_ar": "خزنة Diplomat EH-006 المدمجة بمقاومة حريق 60 دقيقة وسعة 49.",
     "short_desc_en": "Compact Diplomat EH-006 safe, 60-minute fire rating, capacity 49.",
-    "full_desc_ar": "EH-006Dimension:Outside: 538 x 450 x 460 (mm)Inside: 430 x 350 x 328 (mm)Weight: 64 Kg.Lock Type: Handle/Key/Combination/Digital Lock.Shelf: 1.Capacity: 49.Fire Rating: 60 MIN",
+    "full_desc_ar": "EH-006Dimension:Outside: 538 x 450 x 460 (mm)Inside: 430 x 350 x 328 (mm)Weight: 64 Kg.Lock Type: Handle/Key/Combination Lock/Digital Lock.Shelf: 1.Capacity: 49.Fire Rating: 60 MIN",
     "card_tagline_ar": "",
     "card_tagline_en": ""
   },
@@ -625,7 +625,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/fsdl-v2000.jpg",
     "short_desc_ar": "خزانة إيداع FSDL-V2000 بـ10 أدراج بمقاسات متعددة وقفلين (العميل والمدير).",
     "short_desc_en": "FSDL-V2000 deposit locker, 10 drawers in multiple sizes, 2-key (customer & master) system.",
-    "full_desc_ar": "FSDL-V2000Dimension:Outside: 2000 x 305 x 435 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer and Master).Drawers: 10.Capacity: 100x1, 150x6, 200x2, 450x1",
+    "full_desc_ar": "FSDL-V2000Dimension:Outside: 2000 x 305 x 435 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer & Master).Drawers: 10.Capacity: 100x1, 150x6, 200x2, 450x1",
     "card_tagline_ar": "عامود امانات 10 صندوق",
     "card_tagline_en": "10-box deposit column"
   },
@@ -640,7 +640,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/godrej-v2000.jpg",
     "short_desc_ar": "خزانة إيداع Godrej-V2000 بـ16 درجاً بمقاسات متعددة وقفلين (العميل والمدير).",
     "short_desc_en": "Godrej-V2000 deposit locker, 16 drawers in multiple sizes, 2-key (customer & master) system.",
-    "full_desc_ar": "Godrej-V2000Dimension:Outside: 1140 x 920 x 570 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer and Master).Drawers: 16.Capacity: H150xW200x8, H200xW280x6, H280xW430x2",
+    "full_desc_ar": "Godrej-V2000Dimension:Outside: 1140 x 920 x 570 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer & Master).Drawers: 16.Capacity: H150xW200x8, H200xW280x6, H280xW430x2",
     "card_tagline_ar": "خزنة امانات مكونة من 16 صندوق",
     "card_tagline_en": "16-box deposit safe"
   },
@@ -655,7 +655,7 @@ window.JAZDRM_PRODUCTS = [
     "image": "assets/img/products/fsdl-v1750.jpg",
     "short_desc_ar": "خزانة إيداع FSDL-V1750 بـ10 أدراج بمقاسات متعددة وقفلين (العميل والمدير).",
     "short_desc_en": "FSDL-V1750 deposit locker, 10 drawers in multiple sizes, 2-key (customer & master) system.",
-    "full_desc_ar": "FSDL-V1750Dimension:Outside: 2000 x 305 x 435 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer and Master).Drawers: 10.Capacity: 800x4, 150x4, 300x1, 480x1",
+    "full_desc_ar": "FSDL-V1750Dimension:Outside: 2000 x 305 x 435 (mm)Weight: 200 Kg.Lock System: 2 KL (Customer & Master).Drawers: 10.Capacity: 800x4, 150x4, 300x1, 480x1",
     "card_tagline_ar": "عامود امانات 10 صندوق",
     "card_tagline_en": "10-box deposit column"
   },
