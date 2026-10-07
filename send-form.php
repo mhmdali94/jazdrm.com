@@ -12,7 +12,7 @@ $SMTP_CONFIG = require __DIR__ . '/mail-config.php';
 // TEST MODE: every form currently sends to this address instead of its real
 // recipient below, for testing before go-live. Set to null to restore the
 // normal per-form recipients in $FORMS.
-$TEST_OVERRIDE_TO = 'mhmdali94@gmail.com';
+$TEST_OVERRIDE_TO = 'mhmdali94@hotmail.com';
 
 // form_id => [recipient, email subject, friendly label, return path (ar), return path (en)]
 $FORMS = [
