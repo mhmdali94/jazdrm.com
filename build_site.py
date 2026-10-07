@@ -1167,18 +1167,6 @@ def build_services_page(is_en=False):
             if not is_en else
             ["From civil works to full operation", "Integrated installation, lighting, canopy", "Ready for round-the-clock operation"],
         ),
-        (
-            f"{img}vault-room-design.jpg", "Custom Vault Room Design & Construction",
-            "غرف محصنة مخصصة" if not is_en else "Custom Vault Rooms",
-            "تصميم وإنشاء الغرف المحصنة بمقاسات مختلفة حسب طلب العميل" if not is_en else "Custom Vault Room Design & Construction",
-            "تصميم وإنشاء الغرف المحصنة من الألواح الفولاذية المدرعة بمقاسات وتصاميم مختلفة حسب طلب العميل ومساحة الموقع، تشمل أبواب الخزائن والأقفال الرقمية وأنظمة التهوية، لتوفير حل متكامل يناسب الفروع المصرفية والمؤسسات."
-            if not is_en else
-            "Design and construction of fortified vault rooms from armored steel panels, in custom sizes and layouts according to the customer's request and site area, including vault doors, digital locks, and ventilation systems, for a complete solution suited to bank branches and institutions.",
-            service_req_href,
-            ["مقاسات وتصاميم حسب الطلب", "ألواح فولاذية مدرعة متكاملة", "حل شامل للفروع والمؤسسات"]
-            if not is_en else
-            ["Custom sizes and layouts", "Complete armored steel panels", "Full solution for branches and institutions"],
-        ),
     ]
 
     cards = "\n\n".join(
@@ -1245,6 +1233,42 @@ def build_services_page(is_en=False):
             </div>
           </article>"""
 
+    vault_tag = "تصميم حسب الطلب" if not is_en else "Custom Design"
+    vault_title = "تصميم وإنشاء الغرف المحصنة بمقاسات مختلفة حسب طلب العميل" if not is_en else "Custom Vault Room Design & Construction"
+    vault_desc = (
+        "تصميم وإنشاء الغرف المحصنة من الألواح الفولاذية المدرعة بمقاسات وتصاميم مختلفة حسب طلب العميل ومساحة الموقع، تشمل أبواب الخزائن والأقفال الرقمية وأنظمة التهوية، لتوفير حل متكامل يناسب الفروع المصرفية والمؤسسات."
+        if not is_en else
+        "Design and construction of fortified vault rooms from armored steel panels, in custom sizes and layouts according to the customer's request and site area, including vault doors, digital locks, and ventilation systems, for a complete solution suited to bank branches and institutions."
+    )
+    vault_highlights = (
+        ["مقاسات وتصاميم حسب الطلب", "ألواح فولاذية مدرعة متكاملة", "حل شامل للفروع والمؤسسات"]
+        if not is_en else
+        ["Custom sizes and layouts", "Complete armored steel panels", "Full solution for branches and institutions"]
+    )
+    vault_highlights_html = "\n".join(
+        f'                <li style="display: flex; align-items: baseline; gap: 8px; font-size: 0.875rem; color: var(--text-body);">'
+        f'<span style="color: var(--primary); font-weight: 800;">&check;</span> {h}</li>'
+        for h in vault_highlights
+    )
+    vault_featured_card = f"""          <article class="division-card featured-service-card dual-media" style="grid-column: 1 / -1;">
+            <div class="division-media">
+              <img src="{img}vault-room-design.jpg" alt="Custom Vault Room Exterior" width="700" height="913" loading="lazy">
+              <img src="{img}vault-room-design-2.jpg" alt="Custom Vault Room Interior with Safety Deposit Lockers" width="960" height="752" loading="lazy">
+            </div>
+            <div class="division-body">
+              <span class="division-tag">{vault_tag}</span>
+              <h2 class="division-title" style="font-size: 1.5rem;">{vault_title}</h2>
+              <p class="division-desc">{vault_desc}</p>
+              <ul style="list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 8px;">
+{vault_highlights_html}
+              </ul>
+              <a href="{service_req_href}" class="division-btn">
+                <span>{quote_btn}</span>
+                {_ARROW_SVG}
+              </a>
+            </div>
+          </article>"""
+
     body = f"""
     <section class="section" style="padding-top: 50px;">
       <div class="container">
@@ -1261,6 +1285,8 @@ def build_services_page(is_en=False):
 
         <div class="divisions-grid">
 {featured_card}
+
+{vault_featured_card}
 
 {cards}
         </div>

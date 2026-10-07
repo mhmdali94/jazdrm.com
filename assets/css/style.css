@@ -1230,6 +1230,25 @@ html[dir="ltr"] .hero-floating-pill {
     width: 66%;
     padding: 0;
   }
+
+  .featured-service-card.dual-media .division-media {
+    width: 46%;
+  }
+
+  .featured-service-card.dual-media .division-body {
+    width: 54%;
+  }
+}
+
+.featured-service-card.dual-media .division-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.featured-service-card.dual-media .division-media img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
 }
 
 .division-tag {
