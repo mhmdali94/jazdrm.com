@@ -1500,7 +1500,6 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
 .search-box {
   position: relative;
   width: 100%;
-  max-width: 420px;
 }
 
 .search-box input {
