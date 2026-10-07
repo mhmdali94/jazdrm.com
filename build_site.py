@@ -185,7 +185,7 @@ def get_header(is_en=False, depth=0):
 
     t = {
         "phone": "+966920028440",
-        "phone_display": "+966920028440",
+        "phone_display": "920028440",
         "hours": "الأحد - الخميس: 9:00 ص - 5:00 م" if not is_en else "Sun - Thu: 9:00 AM - 5:00 PM",
         "main_branch": "الرياض - المملكة العربية السعودية" if not is_en else "Riyadh - Kingdom of Saudi Arabia",
         "service_req": "طلب خدمة" if not is_en else "Request Service",
@@ -603,7 +603,7 @@ def get_coverage(is_en=False):
             <p class="coverage-hq-addr">{hq_addr}</p>
             <div class="coverage-hq-meta">
               <p class="coverage-hq-row">{clock_svg}<span>{hq_hours}</span></p>
-              <a href="tel:+966920028440" class="coverage-hq-row coverage-hq-phone">{phone_svg}<span>+966920028440</span></a>
+              <a href="tel:+966920028440" class="coverage-hq-row coverage-hq-phone">{phone_svg}<span>920028440</span></a>
               <a href="{maps_url}" target="_blank" rel="noopener" class="coverage-hq-row coverage-hq-map">{pin_svg}<span>{maps_label}</span></a>
             </div>
           </div>
@@ -1467,7 +1467,6 @@ def build_contact_page(is_en=False):
         "sub": "فريقنا الهندسي المتخصص جاهز لتقديم الاستشارات الفنية وعروض الأسعار في كافة مناطق المملكة." if not is_en else "Our engineering and sales team is ready to assist you across all regions in Saudi Arabia.",
         "info_title": "معلومات التواصل" if not is_en else "Contact Information",
         "unified_label": "الرقم الموحد" if not is_en else "Unified Number",
-        "phones_label": "أرقام الهاتف" if not is_en else "Phone Numbers",
         "email_label": "البريد الإلكتروني" if not is_en else "Email",
         "address_label": "العنوان والفروع" if not is_en else "Address & Branches",
         "address_text": "المقر الرئيسي: الرياض، حي الروابي، شارع طاهر الدباغ. فروعنا: جدة، الدمام، المدينة المنورة، بريدة، تبوك، الطائف." if not is_en else "HQ: Riyadh, Al-Rawabi District, Taher Al-Dabbagh St. Branches: Jeddah, Dammam, Medina, Buraydah, Tabuk, Taif.",
@@ -1494,8 +1493,7 @@ def build_contact_page(is_en=False):
     contact_info_card = f"""          <div class="form-card" style="margin: 0; max-width: 100%;">
             <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 24px;">{t['info_title']}</h3>
 {info_row(phone_svg, t['unified_label'], f'<a href="tel:+966920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">+966 92 002 8440</a>')}
-{info_row(phone_svg, t['phones_label'], f'<a href="tel:+966554890900" style="color: var(--text-main); font-weight: 700; display: block;">+966 55 489 0900</a><a href="tel:+966114718033" style="color: var(--text-main); font-weight: 700; display: block;">+966 11 471 8033</a>')}
-{info_row(mail_svg, t['email_label'], f'<a href="mailto:info@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">info@jazdrm.com</a><a href="mailto:wafi@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">wafi@jazdrm.com</a>')}
+{info_row(mail_svg, t['email_label'], f'<a href="mailto:wafi@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">wafi@jazdrm.com</a><a href="mailto:jazdrm@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">jazdrm@jazdrm.com</a>')}
 {info_row(pin_svg, t['address_label'], f'<p style="color: var(--text-body); line-height: 1.8; font-size: 0.92rem; margin: 0;">{t["address_text"]}</p>')}
           </div>"""
 
@@ -1674,7 +1672,7 @@ def build_tech_support_page(is_en=False):
               <svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 00-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2a5 5 0 00-5-5v2c1.66 0 3 1.34 3 3z"/></svg>
             </div>
             <h3 class="branch-name">{'الرقم الموحد للدعم' if not is_en else 'Unified Support Line'}</h3>
-            <p style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 10px 0;">+966920028440</p>
+            <p style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 10px 0;">920028440</p>
             <p style="color: var(--text-muted); font-size: 0.85rem;">{'متاح طوال أيام العمل' if not is_en else 'Available during business hours'}</p>
           </div>
           <div class="branch-card" style="text-align: center; padding: 30px;">
