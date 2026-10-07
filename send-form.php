@@ -6,6 +6,14 @@
  * trusted from client input, so a tampered field can't redirect mail elsewhere.
  */
 
+require __DIR__ . '/smtp-mailer.php';
+$SMTP_CONFIG = require __DIR__ . '/mail-config.php';
+
+// TEST MODE: every form currently sends to this address instead of its real
+// recipient below, for testing before go-live. Set to null to restore the
+// normal per-form recipients in $FORMS.
+$TEST_OVERRIDE_TO = 'mhmdali94@gmail.com';
+
 // form_id => [recipient, email subject, friendly label, return path (ar), return path (en)]
 $FORMS = [
     'quote' => [
@@ -72,6 +80,9 @@ if (!isset($FORMS[$form_id])) {
     reject('Unknown form.');
 }
 $form = $FORMS[$form_id];
+if ($TEST_OVERRIDE_TO) {
+    $form['to'] = $TEST_OVERRIDE_TO;
+}
 
 $return_to = $_POST['return_to'] ?? '/';
 // Only allow a same-site relative path back, never an absolute/external URL.
@@ -104,7 +115,7 @@ if (empty($lines)) {
 $body = implode("\n", $lines) . "\n\n— " . $form['label'] . " · jazdrm.com\n";
 
 $boundary = md5(uniqid((string) mt_rand(), true));
-$headers = "From: jazdrm.com <noreply@{$_SERVER['SERVER_NAME']}>\r\n";
+$headers = "";
 if ($reply_to) {
     $headers .= "Reply-To: {$reply_to}\r\n";
 }
@@ -144,7 +155,10 @@ if ($has_attachment) {
     $message = $body;
 }
 
-$sent = mail($form['to'], '=?UTF-8?B?' . base64_encode($form['subject']) . '?=', $message, $headers);
+$result = smtp_send_mail($form['to'], $form['subject'], $headers, $message, $SMTP_CONFIG);
+if (!$result['ok']) {
+    error_log('send-form.php SMTP error (' . $form_id . '): ' . $result['error']);
+}
 
-header('Location: ' . $return_to . (strpos($return_to, '?') === false ? '?' : '&') . 'sent=' . ($sent ? '1' : '0') . '#' . $form_id . '-form');
+header('Location: ' . $return_to . (strpos($return_to, '?') === false ? '?' : '&') . 'sent=' . ($result['ok'] ? '1' : '0') . '#' . $form_id . '-form');
 exit;

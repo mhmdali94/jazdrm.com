@@ -1,0 +1,3 @@
+# Mail credentials - never commit real SMTP secrets to this public repo.
+# Copy mail-config.sample.php to mail-config.php and fill in real values there.
+mail-config.php
