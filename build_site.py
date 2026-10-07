@@ -1834,8 +1834,13 @@ def build_single_product_pages():
                     f'<h2 class="product-specs-title">{"المواصفات" if not is_en else "Specifications"}</h2>'
                     f'<dl class="spec-list">'
                     + "".join(
-                        f'<div class="spec-row"><dt>{k}</dt><dd>{_format_spec_value(v, canon)}</dd>'
-                        f'<span class="spec-icon" aria-hidden="true">{_SPEC_ICONS.get(canon, _ICON_BOX)}</span></div>'
+                        f'<div class="spec-row">'
+                        f'<span class="spec-label-group">'
+                        f'<span class="spec-icon" aria-hidden="true">{_SPEC_ICONS.get(canon, _ICON_BOX)}</span>'
+                        f'<dt>{k}</dt>'
+                        f'</span>'
+                        f'<dd>{_format_spec_value(v, canon)}</dd>'
+                        f'</div>'
                         for k, v, canon in spec_rows
                     )
                     + "</dl></div>"
