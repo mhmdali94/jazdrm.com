@@ -1453,7 +1453,6 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
 .catalog-controls {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 16px;
   margin-bottom: 35px;
 }
@@ -1500,6 +1499,8 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
 .search-box {
   position: relative;
   width: 100%;
+  max-width: 360px;
+  align-self: flex-end;
 }
 
 .search-box input {
