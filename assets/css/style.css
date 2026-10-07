@@ -1452,18 +1452,15 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
    ========================================================================== */
 .catalog-controls {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 35px;
-  flex-wrap: wrap;
 }
 
 .filter-tabs {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1 1 auto;
   min-width: 0;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -1500,8 +1497,8 @@ html[dir="rtl"] .division-card:hover .division-btn svg {
 
 .search-box {
   position: relative;
-  min-width: 230px;
-  flex-shrink: 0;
+  width: 100%;
+  max-width: 420px;
 }
 
 .search-box input {
