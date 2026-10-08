@@ -900,7 +900,7 @@ def build_homepage(is_en=False):
               <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
               <div>
                 <strong style="display: block; font-size: 0.95rem;">{t['floating_cert']}</strong>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">SAMA & ISO Compliant</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">ISO Compliant</span>
               </div>
             </div>
           </div>
@@ -1258,14 +1258,14 @@ def build_services_page(is_en=False):
     vault_tag = "تصميم حسب الطلب" if not is_en else "Custom Design"
     vault_title = "تصميم وإنشاء الغرف المحصنة بمقاسات مختلفة حسب طلب العميل" if not is_en else "Custom Vault Room Design & Construction"
     vault_desc = (
-        "تصميم وإنشاء الغرف المحصنة من الألواح الفولاذية المدرعة بمقاسات وتصاميم مختلفة حسب طلب العميل ومساحة الموقع، تشمل أبواب الخزائن والأقفال الرقمية وأنظمة التهوية، لتوفير حل متكامل يناسب الفروع المصرفية والمؤسسات."
+        "تصميم وإنشاء الغرف المحصنة من الألواح الفولاذية المدرعة بمقاسات وتصاميم مختلفة حسب طلب العميل ومساحة الموقع، تشمل أبواب الخزائن والأقفال الرقمية وأنظمة التهوية، لتوفير حل متكامل يناسب الفروع المصرفية والمؤسسات التجارية ومحلات المجوهرات."
         if not is_en else
-        "Design and construction of fortified vault rooms from armored steel panels, in custom sizes and layouts according to the customer's request and site area, including vault doors, digital locks, and ventilation systems, for a complete solution suited to bank branches and institutions."
+        "Design and construction of fortified vault rooms from armored steel panels, in custom sizes and layouts according to the customer's request and site area, including vault doors, digital locks, and ventilation systems, for a complete solution suited to bank branches, commercial institutions, and jewelry stores."
     )
     vault_highlights = (
-        ["مقاسات وتصاميم حسب الطلب", "ألواح فولاذية مدرعة متكاملة", "حل شامل للفروع والمؤسسات"]
+        ["مقاسات وتصاميم حسب الطلب", "ألواح فولاذية مدرعة متكاملة", "حل شامل للفروع والمؤسسات التجارية ومحلات المجوهرات"]
         if not is_en else
-        ["Custom sizes and layouts", "Complete armored steel panels", "Full solution for branches and institutions"]
+        ["Custom sizes and layouts", "Complete armored steel panels", "Full solution for branches, businesses, and jewelry stores"]
     )
     vault_highlights_html = "\n".join(
         f'                <li style="display: flex; align-items: baseline; gap: 8px; font-size: 0.875rem; color: var(--text-body);">'
