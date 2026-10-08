@@ -481,6 +481,29 @@ def _asset_ver(rel_path):
     return hashlib.md5(full.read_bytes()).hexdigest()[:8]
 
 
+_IMG_REF = re.compile(
+    r'((?:assets/img|wp-content/uploads)/[^"\'?#()\s]+\.(?:jpe?g|png|webp|gif|svg))(?=["\'])',
+    re.IGNORECASE)
+_img_ver_cache = {}
+
+
+def _bust_images(text):
+    """Append ?v=<content hash> to every local image reference. Product photos
+    are often replaced under the same filename, and the server caches images
+    for days - without this, customers keep seeing the old photo after a deploy."""
+    from urllib.parse import unquote
+
+    def repl(m):
+        path = m.group(1)
+        if path not in _img_ver_cache:
+            full = ROOT_DIR / unquote(path)
+            _img_ver_cache[path] = _asset_ver(unquote(path)) if full.is_file() else None
+        v = _img_ver_cache[path]
+        return f"{path}?v={v}" if v else path
+
+    return _IMG_REF.sub(repl, text)
+
+
 def generate_base_html(title, body_content, is_en=False, depth=0, needs_products=False):
     rel = "../" * depth
     dir_attr = 'dir="ltr" lang="en"' if is_en else 'dir="rtl" lang="ar"'
@@ -496,7 +519,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0, needs_products
     header = get_header(is_en=is_en, depth=depth)
     footer = get_footer(is_en=is_en, depth=depth)
 
-    return f"""<!DOCTYPE html>
+    return _bust_images(f"""<!DOCTYPE html>
 <html {dir_attr}>
 <head>
   <meta charset="UTF-8">
@@ -520,7 +543,7 @@ def generate_base_html(title, body_content, is_en=False, depth=0, needs_products
   <script src="{rel}assets/js/main.js?v={v_main}"></script>
 </body>
 </html>
-"""
+""")
 
 def get_brand_wall(is_en=False, rel=""):
     """Monochrome wordmark wall for the globally-authorized product brands."""
@@ -2085,6 +2108,7 @@ def write_products_data_js():
     the two were allowed to drift before, which is why removed/renamed products
     kept showing up in the catalog grid after products.json was fixed."""
     js = "window.JAZDRM_PRODUCTS = " + json.dumps(PRODUCTS, ensure_ascii=False, indent=2) + ";\n"
+    js = _bust_images(js)
     (ROOT_DIR / "assets" / "js" / "products-data.js").write_text(js, encoding="utf-8")
 
 
