@@ -429,7 +429,7 @@ def get_footer(is_en=False, depth=0):
         <button type="button" class="modal-close" aria-label="{'إغلاق' if not is_en else 'Close'}">&times;</button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{rel}send-form.php">
+        <form method="POST" action="{rel}send-form.php" enctype="multipart/form-data">
           <input type="hidden" name="form_id" value="quote">
           <input type="hidden" name="return_to" id="qm-return-to" value="/{'en/' if is_en else ''}">
           <div class="form-group">
@@ -461,6 +461,10 @@ def get_footer(is_en=False, depth=0):
           <div class="form-group">
             <label class="form-label">{'تفاصيل إضافية أو متطلبات خاصة' if not is_en else 'Additional Notes'}</label>
             <textarea class="form-control" name="message" rows="3" placeholder="{'اكتب تفاصيل طلبك هنا...' if not is_en else 'Write your requirements here...'}"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">{'إرفاق ملف (اختياري)' if not is_en else 'Attach File (optional)'}</label>
+            <input type="file" name="attachment" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             {'إرسال الطلب الآن' if not is_en else 'Submit Request Now'}
@@ -1530,7 +1534,7 @@ def build_contact_page(is_en=False):
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: start;">
         <div class="form-card" style="margin: 0; max-width: 100%;">
-          <form method="POST" action="{rel}send-form.php">
+          <form method="POST" action="{rel}send-form.php" enctype="multipart/form-data">
             <input type="hidden" name="form_id" value="contact">
             <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}contact-us/">
             <div class="form-row">
@@ -1564,6 +1568,10 @@ def build_contact_page(is_en=False):
             <div class="form-group">
               <label class="form-label">{'نص الرسالة أو الاستفسار' if not is_en else 'Message'} *</label>
               <textarea class="form-control" name="message" rows="4" required placeholder="{'اكتب استفسارك هنا...' if not is_en else 'Write your inquiry here...'}"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">{'إرفاق ملف (اختياري)' if not is_en else 'Attach File (optional)'}</label>
+              <input type="file" name="attachment" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'إرسال الرسالة' if not is_en else 'Send Message'}
@@ -1606,7 +1614,7 @@ def build_service_request_page(is_en=False):
         </div>
 
         <div class="form-card">
-          <form method="POST" action="{rel}send-form.php">
+          <form method="POST" action="{rel}send-form.php" enctype="multipart/form-data">
             <input type="hidden" name="form_id" value="service-request">
             <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}service-request/">
             <div class="form-group">
@@ -1650,6 +1658,10 @@ def build_service_request_page(is_en=False):
             <div class="form-group">
               <label class="form-label">{'وصف المشكلة أو تفاصيل الطلب' if not is_en else 'Job Details'} *</label>
               <textarea class="form-control" name="job_details" rows="4" required placeholder="{'اكتب تفاصيل الخدمة والموقع بدقة...' if not is_en else 'Provide details regarding location and requirements...'}"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">{'إرفاق ملف (اختياري)' if not is_en else 'Attach File (optional)'}</label>
+              <input type="file" name="attachment" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'تقديم طلب الخدمة' if not is_en else 'Submit Service Request'}
@@ -1709,7 +1721,7 @@ def build_tech_support_page(is_en=False):
 
         <div class="form-card">
           <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; text-align: center;">{'فتح تذكرة دعم فني' if not is_en else 'Open Support Ticket'}</h3>
-          <form method="POST" action="{rel}send-form.php">
+          <form method="POST" action="{rel}send-form.php" enctype="multipart/form-data">
             <input type="hidden" name="form_id" value="technical-support">
             <input type="hidden" name="return_to" value="/{'en/' if is_en else ''}technical-support/">
             <div class="form-row">
@@ -1734,6 +1746,10 @@ def build_tech_support_page(is_en=False):
             <div class="form-group">
               <label class="form-label">{'شرح تفصيلي للمشكلة' if not is_en else 'Issue Description'} *</label>
               <textarea class="form-control" name="issue_description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">{'إرفاق ملف (اختياري)' if not is_en else 'Attach File (optional)'}</label>
+              <input type="file" name="attachment" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'إرسال التذكرة' if not is_en else 'Submit Support Ticket'}
@@ -1810,8 +1826,8 @@ def build_careers_page(is_en=False):
               <textarea class="form-control" name="experience" rows="4" placeholder="{'اذكر سنوات الخبرة والشهادات...' if not is_en else 'Summarize your experience and certifications...'}"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label">{'إرفاق السيرة الذاتية (PDF)' if not is_en else 'Attach Resume (PDF)'}</label>
-              <input type="file" name="resume" class="form-control" accept="application/pdf">
+              <label class="form-label">{'إرفاق السيرة الذاتية' if not is_en else 'Attach Resume'}</label>
+              <input type="file" name="resume" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               {'تقديم طلب التوظيف' if not is_en else 'Submit Application'}

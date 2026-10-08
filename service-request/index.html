@@ -141,7 +141,7 @@
         </div>
 
         <div class="form-card">
-          <form method="POST" action="../send-form.php">
+          <form method="POST" action="../send-form.php" enctype="multipart/form-data">
             <input type="hidden" name="form_id" value="service-request">
             <input type="hidden" name="return_to" value="/service-request/">
             <div class="form-group">
@@ -185,6 +185,10 @@
             <div class="form-group">
               <label class="form-label" for="sr-6">وصف المشكلة أو تفاصيل الطلب *</label>
               <textarea id="sr-6" aria-required="true" class="form-control" name="job_details" rows="4" required placeholder="اكتب تفاصيل الخدمة والموقع بدقة..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sr-7">إرفاق ملف (اختياري)</label>
+              <input id="sr-7" type="file" name="attachment" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
             </div>
             <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
               تقديم طلب الخدمة
@@ -269,7 +273,7 @@
         <button type="button" class="modal-close" aria-label="إغلاق">&times;</button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="../send-form.php">
+        <form method="POST" action="../send-form.php" enctype="multipart/form-data">
           <input type="hidden" name="form_id" value="quote">
           <input type="hidden" name="return_to" id="qm-return-to" value="/">
           <div class="form-group">
@@ -301,6 +305,10 @@
           <div class="form-group">
             <label class="form-label" for="qm-4">تفاصيل إضافية أو متطلبات خاصة</label>
             <textarea id="qm-4" class="form-control" name="message" rows="3" placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qm-5">إرفاق ملف (اختياري)</label>
+            <input id="qm-5" type="file" name="attachment" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
             إرسال الطلب الآن

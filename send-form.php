@@ -2,22 +2,24 @@
 /**
  * Single handler for every form on the site (quote modal, contact, service
  * request, technical support, job application). Each form POSTs a hidden
- * form_id; the destination inbox is looked up server-side from that id, never
- * trusted from client input, so a tampered field can't redirect mail elsewhere.
+ * form_id; the destination inbox(es) are looked up server-side from that id,
+ * never trusted from client input, so a tampered field can't redirect mail
+ * elsewhere.
  */
 
 require __DIR__ . '/smtp-mailer.php';
 $SMTP_CONFIG = require __DIR__ . '/mail-config.php';
 
 // TEST MODE: every form currently sends to this address instead of its real
-// recipient below, for testing before go-live. Set to null to restore the
+// recipient(s) below, for testing before go-live. Set to null to restore the
 // normal per-form recipients in $FORMS.
 $TEST_OVERRIDE_TO = null;
 
-// form_id => [recipient, email subject, friendly label, return path (ar), return path (en)]
+// form_id => [recipient(s), email subject, friendly label]. 'to' may be a
+// single address or an array of addresses (sent to each).
 $FORMS = [
     'quote' => [
-        'to' => 'wafi@jazdrm.com',
+        'to' => ['sales-1@jazdrm.com', 'sales-2@jazdrm.com'],
         'subject' => 'طلب عرض سعر جديد - jazdrm.com',
         'label' => 'طلب عرض سعر',
     ],
@@ -27,7 +29,7 @@ $FORMS = [
         'label' => 'اتصل بنا',
     ],
     'service-request' => [
-        'to' => 'wafi@jazdrm.com',
+        'to' => 'jazdrm@jazdrm.com',
         'subject' => 'طلب خدمة جديد - jazdrm.com',
         'label' => 'طلب خدمة',
     ],
@@ -60,6 +62,17 @@ $FIELD_LABELS = [
     'experience' => 'نبذة عن الخبرات والمهارات',
 ];
 
+// Every form's file input accepts the same set of types: PDF, Word docs, images.
+$ALLOWED_ATTACHMENT_TYPES = [
+    'application/pdf' => 'pdf',
+    'application/msword' => 'doc',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
+    'image/jpeg' => 'jpg',
+    'image/png' => 'png',
+    'image/webp' => 'webp',
+];
+$MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB
+
 function reject($msg) {
     http_response_code(400);
     echo $msg;
@@ -80,9 +93,7 @@ if (!isset($FORMS[$form_id])) {
     reject('Unknown form.');
 }
 $form = $FORMS[$form_id];
-if ($TEST_OVERRIDE_TO) {
-    $form['to'] = $TEST_OVERRIDE_TO;
-}
+$recipients = $TEST_OVERRIDE_TO ? [$TEST_OVERRIDE_TO] : (array) $form['to'];
 
 $return_to = $_POST['return_to'] ?? '/';
 // Only allow a same-site relative path back, never an absolute/external URL.
@@ -120,21 +131,21 @@ if ($reply_to) {
     $headers .= "Reply-To: {$reply_to}\r\n";
 }
 
-$has_attachment = $form_id === 'job-application'
-    && isset($_FILES['resume'])
-    && $_FILES['resume']['error'] === UPLOAD_ERR_OK;
+// Every form's file field is named "attachment", except job-application's
+// long-standing "resume" field - both are accepted, whichever is present.
+$upload_field = isset($_FILES['resume']) ? 'resume' : (isset($_FILES['attachment']) ? 'attachment' : null);
+$has_attachment = $upload_field !== null && $_FILES[$upload_field]['error'] === UPLOAD_ERR_OK;
 
 if ($has_attachment) {
-    $file = $_FILES['resume'];
-    $allowed_types = ['application/pdf'];
-    $max_bytes = 5 * 1024 * 1024; // 5 MB
+    $file = $_FILES[$upload_field];
 
-    if (!in_array($file['type'], $allowed_types, true) || $file['size'] > $max_bytes) {
-        reject('Resume must be a PDF under 5MB.');
+    if (!isset($ALLOWED_ATTACHMENT_TYPES[$file['type']]) || $file['size'] > $MAX_ATTACHMENT_BYTES) {
+        reject('Attachment must be a PDF, Word document, or image (JPG/PNG/WEBP) under 10MB.');
     }
 
     $file_content = chunk_split(base64_encode(file_get_contents($file['tmp_name'])));
     $filename = preg_replace('/[^A-Za-z0-9._\-]/', '_', basename($file['name']));
+    $mime_type = $file['type'];
 
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: multipart/mixed; boundary=\"{$boundary}\"\r\n";
@@ -144,7 +155,7 @@ if ($has_attachment) {
     $message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
     $message .= $body . "\r\n";
     $message .= "--{$boundary}\r\n";
-    $message .= "Content-Type: application/pdf; name=\"{$filename}\"\r\n";
+    $message .= "Content-Type: {$mime_type}; name=\"{$filename}\"\r\n";
     $message .= "Content-Transfer-Encoding: base64\r\n";
     $message .= "Content-Disposition: attachment; filename=\"{$filename}\"\r\n\r\n";
     $message .= $file_content . "\r\n";
@@ -155,10 +166,14 @@ if ($has_attachment) {
     $message = $body;
 }
 
-$result = smtp_send_mail($form['to'], $form['subject'], $headers, $message, $SMTP_CONFIG);
-if (!$result['ok']) {
-    error_log('send-form.php SMTP error (' . $form_id . '): ' . $result['error']);
+$all_ok = true;
+foreach ($recipients as $to) {
+    $result = smtp_send_mail($to, $form['subject'], $headers, $message, $SMTP_CONFIG);
+    if (!$result['ok']) {
+        $all_ok = false;
+        error_log('send-form.php SMTP error (' . $form_id . ' -> ' . $to . '): ' . $result['error']);
+    }
 }
 
-header('Location: ' . $return_to . (strpos($return_to, '?') === false ? '?' : '&') . 'sent=' . ($result['ok'] ? '1' : '0') . '#' . $form_id . '-form');
+header('Location: ' . $return_to . (strpos($return_to, '?') === false ? '?' : '&') . 'sent=' . ($all_ok ? '1' : '0') . '#' . $form_id . '-form');
 exit;
