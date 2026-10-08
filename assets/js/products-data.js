@@ -697,7 +697,7 @@ window.JAZDRM_PRODUCTS = [
     "category_key": "deposit-lockers",
     "category_ar": "خزائن الإيداع وصناديق الأمانات",
     "category_en": "Deposit Lockers & Safety Deposit Boxes",
-    "image": "assets/img/products/teeler-3drawer.jpg?v=df72ee2c",
+    "image": "assets/img/products/teeler-3drawer.jpg?v=36ca1a74",
     "short_desc_ar": "خزانة صراف Teeler بثلاثة أدراج، بقفل واحد أو ثلاثي.",
     "short_desc_en": "Teeler pedestal cabinet, 3 drawers, 1 or 3-key lock.",
     "full_desc_ar": "Teeler (3 Drawer)Dimension:Outside: 640 x 460 x 520 (mm)Weight: 25 Kg.Lock System: 1 OR 3 KL",
