@@ -737,7 +737,7 @@ def get_contact_wa_cta(is_en=False):
     title = "تواصل أسرع عبر واتساب" if not is_en else "Faster Assistance via WhatsApp"
     desc = ("يمكنك محادثة ممثلي خدمة العملاء والدعم الفني مباشرة والحصول على رد فوري ومباشر لاستفسارك أو طلبك على مدار الساعة." if not is_en
             else "Chat directly with our technical support and customer care team for instant project inquiries or service requests.")
-    action = "محادثة واتساب: +966 55 489 0900" if not is_en else "WhatsApp: +966 55 489 0900"
+    action = "محادثة واتساب: 0554890900" if not is_en else "WhatsApp: 0554890900"
     media_alt = "تواصل مع أحلام الجزيرة عبر واتساب" if not is_en else "Contact Aljazeera Dreams on WhatsApp"
     return f"""        <div style="margin-top: 50px;">
           <div class="cta-whatsapp-card">
@@ -1514,7 +1514,7 @@ def build_contact_page(is_en=False):
 
     contact_info_card = f"""          <div class="form-card" style="margin: 0; max-width: 100%;">
             <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 24px;">{t['info_title']}</h3>
-{info_row(phone_svg, t['unified_label'], f'<a href="tel:+966920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">+966 92 002 8440</a>')}
+{info_row(phone_svg, t['unified_label'], f'<a href="tel:+966920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">920028440</a>')}
 {info_row(mail_svg, t['email_label'], f'<a href="mailto:wafi@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">wafi@jazdrm.com</a><a href="mailto:jazdrm@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">jazdrm@jazdrm.com</a>')}
 {info_row(pin_svg, t['address_label'], f'<p style="color: var(--text-body); line-height: 1.8; font-size: 0.92rem; margin: 0;">{t["address_text"]}</p>')}
           </div>"""
@@ -1702,7 +1702,7 @@ def build_tech_support_page(is_en=False):
               <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
             </div>
             <h3 class="branch-name">{'دعم الواتساب الفوري' if not is_en else 'Instant WhatsApp Help'}</h3>
-            <p style="font-size: 1.1rem; font-weight: 800; color: #17823f; margin: 10px 0;">+966 55 489 0900</p>
+            <p style="font-size: 1.1rem; font-weight: 800; color: #17823f; margin: 10px 0;">0554890900</p>
             <p style="color: var(--text-muted); font-size: 0.85rem;">{'استجابة سريعة للحالات الطارئة' if not is_en else 'Fast response for emergency inquiries'}</p>
           </div>
         </div>
@@ -2007,8 +2007,8 @@ def build_legal_pages():
                  ("تُحفظ البيانات في بيئة آمنة ويقتصر الوصول إليها على الموظفين المعنيين بتنفيذ الطلب.",
                   "Data is stored securely and access is limited to the staff handling your request.")),
                 (("التواصل", "Contact"),
-                 ("لأي استفسار يتعلق بالخصوصية يمكنكم التواصل معنا عبر الهاتف <bdi>+966920028440</bdi> أو صفحة اتصل بنا.",
-                  "For any privacy question, contact us on <bdi>+966920028440</bdi> or via the Contact Us page.")),
+                 ("لأي استفسار يتعلق بالخصوصية يمكنكم التواصل معنا عبر الهاتف <bdi>920028440</bdi> أو صفحة اتصل بنا.",
+                  "For any privacy question, contact us on <bdi>920028440</bdi> or via the Contact Us page.")),
             ],
         },
         "terms-and-conditions": {
