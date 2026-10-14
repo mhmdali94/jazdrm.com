@@ -17,9 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
   initQuoteModal();
   initImageLightbox();
   initForms();
+  initServicePreselect();
   initScrollReveal();
   showSentToast();
 });
+
+/* Services page buttons link to service-request/?service=<key>; preselect the
+   matching option (by data-key) so the form opens on the service clicked. */
+function initServicePreselect() {
+  const select = document.querySelector('select[name="service_type"]');
+  if (!select) return;
+  const key = new URLSearchParams(window.location.search).get('service');
+  if (!key) return;
+  const option = Array.from(select.options).find(o => o.dataset.key === key);
+  if (option) select.value = option.value;
+}
 
 /* Helper: exact relative root path */
 function getRootPrefix() {

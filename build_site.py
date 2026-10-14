@@ -1095,6 +1095,22 @@ def build_products_page(is_en=False):
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html, encoding="utf-8")
 
+# Service-request form dropdown: (key, Arabic, English). The services page links to
+# service-request/index.html?service=<key> so each card opens the form preselected.
+SERVICE_REQUEST_OPTIONS = [
+    ("vault-room", "تصميم وإنشاء الغرف المحصنة", "Custom Vault Room Design & Construction"),
+    ("vault-doors", "توريد وتركيب أبواب الخزائن والغرف المحصنة", "Vault & Bunker Room Doors"),
+    ("safes", "توريد وتركيب الخزائن المقاومة للحريق والسطو", "Fireproof & Burglary-Resistant Safes"),
+    ("filing", "توريد وتركيب دواليب الملفات المقاومة للحريق", "Fireproof Filing Cabinets"),
+    ("doors", "تصنيع وتركيب أبواب الصرافين وأبواب الطوارئ", "Teller, ATM & Emergency Doors"),
+    ("locks", "توريد وتركيب الأقفال الرقمية واليدوية", "Digital & Manual Locks"),
+    ("lockers", "توريد وتركيب خزائن الإيداع وصناديق الأمانات", "Deposit Lockers & Safety Deposit Boxes"),
+    ("atm", "تنفيذ وتجهيز غرف ومواقع الصراف الآلي", "ATM Booth Execution & Site Setup"),
+    ("maintenance", "الفك والنقل والتركيب والصيانة الدورية", "Dismantling, Transport, Installation & Maintenance"),
+    ("quote", "طلب عرض سعر", "Request a Quote"),
+]
+
+
 def build_services_page(is_en=False):
     assets = "../../" if is_en else "../"
     cat = "../"
@@ -1119,7 +1135,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب أبواب الغرف المحصنة الحاصلة على شهادات الاعتماد الأمريكي UL وشهادات الاعتماد الأوروبي EN، بمقاسات وتصاميم تناسب متطلبات البنوك ومراكز البيانات والمؤسسات المالية."
             if not is_en else
             "Supply and installation of reinforced vault and bunker room doors, certified to American UL and European EN standards, in sizes and designs suited to banks, data centers, and financial institutions.",
-            service_req_href,
+            f"{service_req_href}?service=vault-doors",
             ["معتمدة UL أمريكياً وEN أوروبياً", "مقاسات وتصاميم مخصصة", "مناسبة للبنوك ومراكز البيانات"]
             if not is_en else
             ["Certified to American UL and European EN", "Custom sizes and designs", "Suited to banks and data centers"],
@@ -1131,7 +1147,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب الخزن الحديدية المقاومة للحريق والسطو بجميع أنواعها وأحجامها، بما يشمل الخزائن المصرفية والتجارية ذات الأقفال الإلكترونية والميكانيكية."
             if not is_en else
             "Supply and installation of fire and burglary-resistant steel safes in all types and sizes, including banking and commercial safes with electronic and mechanical locking.",
-            service_req_href,
+            f"{service_req_href}?service=safes",
             ["مقاومة للحريق والسطو معاً", "جميع الأحجام والمقاسات", "أقفال إلكترونية وميكانيكية"]
             if not is_en else
             ["Both fire- and burglary-resistant", "Every size and specification", "Electronic and mechanical locking"],
@@ -1143,7 +1159,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب الدواليب الحديدية المقاومة للحريق بعدد أدراج يبدأ من درجين وحتى خمسة أدراج، بمختلف أنواع الأقفال الميكانيكية والإلكترونية، لحفظ المستندات والسجلات الهامة."
             if not is_en else
             "Supply and installation of fireproof steel filing cabinets from 2 up to 5 drawers, with a range of mechanical and electronic locks, for safeguarding important documents and records.",
-            service_req_href,
+            f"{service_req_href}?service=filing",
             ["من درجين حتى خمسة أدراج", "أقفال ميكانيكية وإلكترونية", "لحفظ المستندات والسجلات الهامة"]
             if not is_en else
             ["From 2 up to 5 drawers", "Mechanical and electronic locks", "For important documents and records"],
@@ -1155,7 +1171,7 @@ def build_services_page(is_en=False):
             "تصنيع وتوريد وتركيب أبواب مقاومة للحريق ومقاومة للرصاص، تشمل أبواب الصرافين ومخارج الطوارئ وأبواب غرف الصراف الآلي (ATM) وغرف الداتا، حاصلة على شهادة مقاومة الحريق المعتمدة من Intertek وفق معيار UL 10C."
             if not is_en else
             "Manufacturing, supply, and installation of fire- and bullet-resistant doors, including teller cabinet doors, emergency exits, ATM room doors, and data room doors, Intertek listed to UL 10C for fire resistance.",
-            service_req_href,
+            f"{service_req_href}?service=doors",
             ["مقاومة للحريق ومقاومة للرصاص", "شهادة Intertek وفق UL 10C", "لغرف الصرافين والصراف الآلي والبيانات"]
             if not is_en else
             ["Fire- and bullet-resistant", "Intertek listed to UL 10C", "For teller, ATM, and data rooms"],
@@ -1167,7 +1183,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب جميع أنواع الأقفال الرقمية واليدوية ذات المفاتيح الأمنية والشفرات الرقمية، الحاصلة على شهادات اختبار معتمدة، مع خدمة إعادة برمجة وتغيير الأقفال."
             if not is_en else
             "Supply and installation of all types of certified digital and manual locks with security keys and digital combinations, plus lock reprogramming and replacement service.",
-            service_req_href,
+            f"{service_req_href}?service=locks",
             ["أقفال رقمية ويدوية معتمدة", "شهادات اختبار دولية", "خدمة إعادة برمجة وتغيير الأقفال"]
             if not is_en else
             ["Certified digital and manual locks", "International test certifications", "Reprogramming and replacement service"],
@@ -1179,7 +1195,7 @@ def build_services_page(is_en=False):
             "توريد وتركيب جميع أنواع صناديق الأمانات وخزائن الإيداع المصرفية بمقاسات مختلفة وأقفالها، بالإضافة إلى خدمة ترهيم (إعادة برمجة) الأقفال والأقراص للموديلات القديمة."
             if not is_en else
             "Supply and installation of all types of safety deposit boxes and banking deposit lockers in different sizes, and their locks, plus re-keying and re-coding of locks and dials for older models.",
-            service_req_href,
+            f"{service_req_href}?service=lockers",
             ["صناديق أمانات وخزائن إيداع بمقاسات مختلفة", "خدمة ترهيم للموديلات القديمة", "حلول متكاملة للبنوك والمؤسسات"]
             if not is_en else
             ["Safety deposit boxes and lockers in different sizes", "Re-keying service for older models", "Integrated solutions for banks and institutions"],
@@ -1191,7 +1207,7 @@ def build_services_page(is_en=False):
             "تنفيذ وتجهيز غرف الصراف الآلي ومواقعها على الطرق العامة، من الأعمال المدنية والتأسيس إلى التركيب النهائي والإضاءة والتغطية، بما يضمن موقعاً آمناً وجاهزاً للتشغيل على مدار الساعة."
             if not is_en else
             "End-to-end execution and setup of ATM booths and roadside locations, from civil works and foundations to final installation, lighting, and canopy, delivering a secure site ready for round-the-clock operation.",
-            service_req_href,
+            f"{service_req_href}?service=atm",
             ["من الأعمال المدنية إلى التشغيل الكامل", "تركيب وإضاءة وتغطية متكاملة", "جاهزية تشغيل على مدار الساعة"]
             if not is_en else
             ["From civil works to full operation", "Integrated installation, lighting, canopy", "Ready for round-the-clock operation"],
@@ -1255,7 +1271,7 @@ def build_services_page(is_en=False):
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 24px;">
 {breakdown_html}
               </div>
-              <a href="{service_req_href}" class="division-btn">
+              <a href="{service_req_href}?service=maintenance" class="division-btn">
                 <span>{quote_btn}</span>
                 {_ARROW_SVG}
               </a>
@@ -1291,7 +1307,7 @@ def build_services_page(is_en=False):
               <ul style="list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 8px;">
 {vault_highlights_html}
               </ul>
-              <a href="{service_req_href}" class="division-btn">
+              <a href="{service_req_href}?service=vault-room" class="division-btn">
                 <span>{quote_btn}</span>
                 {_ARROW_SVG}
               </a>
@@ -1601,6 +1617,12 @@ def build_contact_page(is_en=False):
 
 def build_service_request_page(is_en=False):
     rel = "../../" if is_en else "../"
+    # value is always the Arabic name so the staff email reads the same whichever
+    # language the visitor used; data-key lets ?service=<key> preselect it (main.js).
+    service_options_html = "\n".join(
+        f'                <option value="{ar}" data-key="{key}">{ar if not is_en else en}</option>'
+        for key, ar, en in SERVICE_REQUEST_OPTIONS
+    )
     t = {
         "tag": "طلب خدمة" if not is_en else "Service Request",
         "h1": "طلب خدمة صيانة أو تجهيز أو نقل" if not is_en else "Request Maintenance, Setup, or Relocation",
@@ -1623,12 +1645,7 @@ def build_service_request_page(is_en=False):
             <div class="form-group">
               <label class="form-label">{'نوع الخدمة المطلوبة' if not is_en else 'Service Type'} *</label>
               <select name="service_type" class="form-control" required>
-                <option value="atm">{'تجهيز غرف الصراف والبنوك' if not is_en else 'ATM & Vault Room Setup'}</option>
-                <option value="maintenance">{'صيانة دورية أو طارئة' if not is_en else 'Periodic / Emergency Maintenance'}</option>
-                <option value="relocation">{'نقل وتركيب خزائن ثقيلة' if not is_en else 'Heavy Safe Relocation & Installation'}</option>
-                <option value="filing">{'تركيب دواليب ملفات وخزائن إيداع' if not is_en else 'Filing Cabinet & Deposit Locker Installation'}</option>
-                <option value="locks">{'برمجة وتركيب أقفال أمنية' if not is_en else 'Lock Programming & Installation'}</option>
-                <option value="quote">{'طلب عرض سعر' if not is_en else 'Request a Quote'}</option>
+{service_options_html}
               </select>
             </div>
             <div class="form-row">
