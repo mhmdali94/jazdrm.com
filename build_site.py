@@ -281,7 +281,6 @@ def get_header(is_en=False, depth=0):
         <!-- Actions -->
         <div class="header-actions">
           <a href="{lang_toggle_url}" class="lang-btn" title="{lang_target}">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
             <span>{lang_label}</span>
           </a>
           <button class="btn-quote open-quote-modal">{t['quote_btn']}</button>
@@ -393,11 +392,12 @@ def get_footer(is_en=False, depth=0):
         <div>
           <h3 class="footer-title">{t['contact_title']}</h3>
           <div class="footer-links">
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">{t['address']}</p>
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 12px;">{t['branches']}</p>
             <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">920028440</a>
-            <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
             <a href="mailto:jazdrm@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">jazdrm@jazdrm.com</a>
+            <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
+            <p style="color: #fff; font-weight: 700; font-size: 0.9rem; margin: 12px 0 8px;">{'الموقع' if not is_en else 'Location'}</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">{t['address']}</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem;">{t['branches']}</p>
           </div>
         </div>
       </div>
@@ -413,7 +413,7 @@ def get_footer(is_en=False, depth=0):
 
   <!-- Floating Buttons -->
   <div class="floating-actions">
-    <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="floating-btn floating-whatsapp" aria-label="{'تواصل عبر واتساب' if not is_en else 'Chat on WhatsApp'}" title="{'واتساب' if not is_en else 'WhatsApp'}">
+    <a href="https://wa.me/966920028440" target="_blank" rel="noopener" class="floating-btn floating-whatsapp" aria-label="{'تواصل عبر واتساب' if not is_en else 'Chat on WhatsApp'}" title="{'واتساب' if not is_en else 'WhatsApp'}">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
     <a href="tel:+966920028440" class="floating-btn floating-phone" aria-label="{'اتصل بنا' if not is_en else 'Call us'}" title="{'اتصل بنا' if not is_en else 'Call us'}">
@@ -667,6 +667,9 @@ def get_clients(is_en=False, rel=""):
         ("mahmal", "شركة المحمل لخدمات المرافق", "Mahmal Facilities Services"),
         ("masdar", "شركة مصدر", "Masdar"),
         ("el-seif", "السيف مهندسون مقاولون", "El Seif Engineering Contracting"),
+        ("romez", "شركة روميز", "ROMÊZ"),
+        ("annabel", "شركة انابيل", "Annabel"),
+        ("alrajhi-transfer", "تحويل الراجحي", "Tahweel Al Rajhi"),
     ]
     return "\n".join(
         f'          <li class="client-logo">'
@@ -741,7 +744,7 @@ def get_contact_wa_cta(is_en=False):
     title = "تواصل أسرع عبر واتساب" if not is_en else "Faster Assistance via WhatsApp"
     desc = ("يمكنك محادثة ممثلي خدمة العملاء والدعم الفني مباشرة والحصول على رد فوري ومباشر لاستفسارك أو طلبك على مدار الساعة." if not is_en
             else "Chat directly with our technical support and customer care team for instant project inquiries or service requests.")
-    action = "محادثة واتساب: 0554890900" if not is_en else "WhatsApp: 0554890900"
+    action = "محادثة واتساب: 920028440" if not is_en else "WhatsApp: 920028440"
     media_alt = "تواصل مع أحلام الجزيرة عبر واتساب" if not is_en else "Contact Aljazeera Dreams on WhatsApp"
     return f"""        <div style="margin-top: 50px;">
           <div class="cta-whatsapp-card">
@@ -753,7 +756,7 @@ def get_contact_wa_cta(is_en=False):
               <h2 class="cta-whatsapp-title">{title}</h2>
               <p class="cta-whatsapp-desc">{desc}</p>
               <div class="cta-whatsapp-actions">
-                <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="btn-whatsapp-cta">
+                <a href="https://wa.me/966920028440" target="_blank" rel="noopener" class="btn-whatsapp-cta">
                   <svg viewBox="0 0 24 24"><path d="{_WA_GLYPH}"/></svg>
                   <span>{action}</span>
                 </a>
@@ -803,7 +806,7 @@ def get_whatsapp_cta(is_en=False, rel=""):
             <h2 class="cta-whatsapp-title">{title}</h2>
             <p class="cta-whatsapp-desc">{desc}</p>
             <div class="cta-whatsapp-actions">
-              <a href="https://wa.me/966554890900" target="_blank" rel="noopener" class="btn-whatsapp-cta">
+              <a href="https://wa.me/966920028440" target="_blank" rel="noopener" class="btn-whatsapp-cta">
                 <svg viewBox="0 0 24 24"><path d="{_WA_GLYPH}"/></svg>
                 <span>{chat}</span>
               </a>
@@ -1173,13 +1176,13 @@ def build_services_page(is_en=False):
             f"{img}deposit-lockers.jpg", "Deposit Lockers & Safety Deposit Boxes",
             "خزائن الإيداع" if not is_en else "Deposit Lockers",
             "توريد وتركيب خزائن الإيداع وصناديق الأمانات" if not is_en else "Deposit Lockers & Safety Deposit Boxes",
-            "توريد وتركيب جميع أنواع صناديق الأمانات وخزائن الإيداع المصرفية وأقفالها، بالإضافة إلى خدمة ترهيم (إعادة برمجة) الأقفال والأقراص للموديلات القديمة."
+            "توريد وتركيب جميع أنواع صناديق الأمانات وخزائن الإيداع المصرفية بمقاسات مختلفة وأقفالها، بالإضافة إلى خدمة ترهيم (إعادة برمجة) الأقفال والأقراص للموديلات القديمة."
             if not is_en else
-            "Supply and installation of all types of safety deposit boxes, banking deposit lockers, and their locks, plus re-keying and re-coding of locks and dials for older models.",
+            "Supply and installation of all types of safety deposit boxes and banking deposit lockers in different sizes, and their locks, plus re-keying and re-coding of locks and dials for older models.",
             service_req_href,
-            ["صناديق أمانات وخزائن إيداع مصرفية", "خدمة ترهيم للموديلات القديمة", "حلول متكاملة للبنوك والمؤسسات"]
+            ["صناديق أمانات وخزائن إيداع بمقاسات مختلفة", "خدمة ترهيم للموديلات القديمة", "حلول متكاملة للبنوك والمؤسسات"]
             if not is_en else
-            ["Safety deposit boxes and bank lockers", "Re-keying service for older models", "Integrated solutions for banks and institutions"],
+            ["Safety deposit boxes and lockers in different sizes", "Re-keying service for older models", "Integrated solutions for banks and institutions"],
         ),
         (
             f"{img}atm-booths.jpg", "ATM Booth Execution & Site Setup",
@@ -1625,6 +1628,7 @@ def build_service_request_page(is_en=False):
                 <option value="relocation">{'نقل وتركيب خزائن ثقيلة' if not is_en else 'Heavy Safe Relocation & Installation'}</option>
                 <option value="filing">{'تركيب دواليب ملفات وخزائن إيداع' if not is_en else 'Filing Cabinet & Deposit Locker Installation'}</option>
                 <option value="locks">{'برمجة وتركيب أقفال أمنية' if not is_en else 'Lock Programming & Installation'}</option>
+                <option value="quote">{'طلب عرض سعر' if not is_en else 'Request a Quote'}</option>
               </select>
             </div>
             <div class="form-row">
@@ -1714,7 +1718,7 @@ def build_tech_support_page(is_en=False):
               <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
             </div>
             <h3 class="branch-name">{'دعم الواتساب الفوري' if not is_en else 'Instant WhatsApp Help'}</h3>
-            <p style="font-size: 1.1rem; font-weight: 800; color: #17823f; margin: 10px 0;">0554890900</p>
+            <p style="font-size: 1.1rem; font-weight: 800; color: #17823f; margin: 10px 0;">920028440</p>
             <p style="color: var(--text-muted); font-size: 0.85rem;">{'استجابة سريعة للحالات الطارئة' if not is_en else 'Fast response for emergency inquiries'}</p>
           </div>
         </div>
@@ -1923,7 +1927,7 @@ def build_single_product_pages():
                       <button class="btn-primary open-quote-btn" data-product="{title}">
                         {'طلب تسعير المنتج' if not is_en else 'Request Quote'}
                       </button>
-                      <a href="https://wa.me/966554890900?text=استفسار%20عن%20منتج%20{title}" target="_blank" class="btn-secondary" style="background: #25d366; color: #fff; border-color: #25d366;">
+                      <a href="https://wa.me/966920028440?text=استفسار%20عن%20منتج%20{title}" target="_blank" class="btn-secondary" style="background: #25d366; color: #fff; border-color: #25d366;">
                         {'استفسار عبر واتساب' if not is_en else 'Inquire via WhatsApp'}
                       </a>
                     </div>

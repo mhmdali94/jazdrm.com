@@ -387,7 +387,6 @@ main:focus {
 .top-bar-item {
   display: flex;
   align-items: center;
-  gap: 6px;
   transition: color var(--transition-fast);
 }
 
@@ -398,6 +397,7 @@ main:focus {
 .top-bar-item svg {
   width: 14px;
   height: 14px;
+  margin-inline-end: 10px;
   fill: var(--accent-cyan);
 }
 
@@ -2107,7 +2107,6 @@ html[dir="ltr"] .spec-value-list li {
 .coverage-hq-row {
   display: flex;
   align-items: center;
-  gap: 10px;
   min-height: 44px;
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.82);
@@ -2117,6 +2116,7 @@ html[dir="ltr"] .spec-value-list li {
   width: 17px;
   height: 17px;
   flex-shrink: 0;
+  margin-inline-end: 14px;
   color: var(--accent-cyan);
 }
 
