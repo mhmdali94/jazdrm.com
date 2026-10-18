@@ -2468,6 +2468,35 @@ html[dir="ltr"] .spec-value-list li {
   max-width: 340px;
 }
 
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  transition: var(--transition-ui);
+}
+
+.footer-social a:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.footer-social svg {
+  width: 17px;
+  height: 17px;
+}
+
 .footer-title {
   font-size: 1.15rem;
   font-weight: 700;
