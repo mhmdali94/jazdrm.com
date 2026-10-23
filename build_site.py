@@ -227,7 +227,7 @@ def get_header(is_en=False, depth=0):
   <div class="top-bar">
     <div class="container">
       <div class="top-bar-contact">
-        <a href="tel:+966920028440" class="top-bar-item">
+        <a href="tel:920028440" class="top-bar-item">
           <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
           <span>{t['phone_display']}</span>
         </a>
@@ -347,6 +347,13 @@ def get_footer(is_en=False, depth=0):
         for _key, slug, name_ar, name_en, _banner in PRODUCT_CATEGORIES
     ]
 
+    phone_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                 '<path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>')
+    mail_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                '<path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z"/></svg>')
+    pin_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+               '<path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>')
+
     t = {
         "about_p": "شركة أحلام الجزيرة للمقاولات: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
         "nav_title": "روابط سريعة" if not is_en else "Quick Links",
@@ -398,13 +405,25 @@ def get_footer(is_en=False, depth=0):
         </div>
         <div>
           <h3 class="footer-title">{t['contact_title']}</h3>
-          <div class="footer-links">
-            <a href="tel:+966920028440" style="color: var(--accent-cyan); font-weight: 700; font-size: 1.1rem;">920028440</a>
-            <a href="mailto:jazdrm@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">jazdrm@jazdrm.com</a>
-            <a href="mailto:wafi@jazdrm.com" style="color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem;">wafi@jazdrm.com</a>
-            <p style="color: #fff; font-weight: 700; font-size: 0.9rem; margin: 12px 0 8px;">{'الموقع' if not is_en else 'Location'}</p>
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-bottom: 8px;">{t['address']}</p>
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem;">{t['branches']}</p>
+          <div class="footer-contact-list">
+            <a href="tel:920028440" class="footer-contact-row footer-contact-phone">
+              <span class="footer-contact-icon">{phone_svg}</span>
+              <span>920028440</span>
+            </a>
+            <div class="footer-contact-row">
+              <span class="footer-contact-icon">{mail_svg}</span>
+              <div class="footer-contact-text">
+                <a href="mailto:jazdrm@jazdrm.com">jazdrm@jazdrm.com</a>
+                <a href="mailto:wafi@jazdrm.com">wafi@jazdrm.com</a>
+              </div>
+            </div>
+            <div class="footer-contact-row">
+              <span class="footer-contact-icon">{pin_svg}</span>
+              <div class="footer-contact-text">
+                <p>{t['address']}</p>
+                <p>{t['branches']}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -423,7 +442,7 @@ def get_footer(is_en=False, depth=0):
     <a href="https://wa.me/966920028440" target="_blank" rel="noopener" class="floating-btn floating-whatsapp" aria-label="{'تواصل عبر واتساب' if not is_en else 'Chat on WhatsApp'}" title="{'واتساب' if not is_en else 'WhatsApp'}">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
-    <a href="tel:+966920028440" class="floating-btn floating-phone" aria-label="{'اتصل بنا' if not is_en else 'Call us'}" title="{'اتصل بنا' if not is_en else 'Call us'}">
+    <a href="tel:920028440" class="floating-btn floating-phone" aria-label="{'اتصل بنا' if not is_en else 'Call us'}" title="{'اتصل بنا' if not is_en else 'Call us'}">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.28.67-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
   </div>
@@ -636,7 +655,7 @@ def get_coverage(is_en=False):
             <p class="coverage-hq-addr">{hq_addr}</p>
             <div class="coverage-hq-meta">
               <p class="coverage-hq-row">{clock_svg}<span>{hq_hours}</span></p>
-              <a href="tel:+966920028440" class="coverage-hq-row coverage-hq-phone">{phone_svg}<span>920028440</span></a>
+              <a href="tel:920028440" class="coverage-hq-row coverage-hq-phone">{phone_svg}<span>920028440</span></a>
               <a href="{maps_url}" target="_blank" rel="noopener" class="coverage-hq-row coverage-hq-map">{pin_svg}<span>{maps_label}</span></a>
             </div>
           </div>
@@ -1544,7 +1563,7 @@ def build_contact_page(is_en=False):
 
     contact_info_card = f"""          <div class="form-card" style="margin: 0; max-width: 100%;">
             <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 24px;">{t['info_title']}</h3>
-{info_row(phone_svg, t['unified_label'], f'<a href="tel:+966920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">920028440</a>')}
+{info_row(phone_svg, t['unified_label'], f'<a href="tel:920028440" style="color: var(--text-main); font-weight: 700; font-size: 1.05rem;">920028440</a>')}
 {info_row(mail_svg, t['email_label'], f'<a href="mailto:wafi@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">wafi@jazdrm.com</a><a href="mailto:jazdrm@jazdrm.com" style="color: var(--text-main); font-weight: 700; display: block;">jazdrm@jazdrm.com</a>')}
 {info_row(pin_svg, t['address_label'], f'<p style="color: var(--text-body); line-height: 1.8; font-size: 0.92rem; margin: 0;">{t["address_text"]}</p>')}
           </div>"""

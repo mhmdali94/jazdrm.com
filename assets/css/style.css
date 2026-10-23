@@ -2460,6 +2460,23 @@ html[dir="ltr"] .spec-value-list li {
   margin-bottom: 50px;
 }
 
+.footer-grid > * {
+  min-width: 0;
+}
+
+.footer-about {
+  min-width: 0;
+}
+
+.footer-about .brand-logo {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.footer-about .brand-title {
+  overflow-wrap: break-word;
+}
+
 .footer-about p {
   font-size: 0.95rem;
   line-height: 1.8;
@@ -2539,6 +2556,75 @@ html[dir="ltr"] .footer-title::after {
 
 .footer-links a:hover {
   color: var(--accent-cyan);
+}
+
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.footer-contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent-cyan);
+}
+
+.footer-contact-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.footer-contact-phone {
+  align-items: center;
+}
+
+.footer-contact-phone span:last-child {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-contact-phone:hover span:last-child {
+  color: #fff;
+}
+
+.footer-contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 7px;
+}
+
+.footer-contact-text a {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-contact-text a:hover {
+  color: var(--accent-cyan);
+}
+
+.footer-contact-text p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin: 0;
 }
 
 .footer-bottom {
