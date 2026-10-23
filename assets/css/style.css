@@ -2538,10 +2538,10 @@ html[dir="ltr"] .spec-value-list li {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 35px;
+  width: 48px;
   height: 3px;
-  background: var(--primary);
-  border-radius: 2px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent-cyan) 100%);
+  border-radius: var(--radius-pill);
 }
 
 html[dir="ltr"] .footer-title::after {
@@ -2588,7 +2588,8 @@ html[dir="ltr"] .footer-title::after {
   height: 34px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(31, 186, 179, 0.12);
+  border: 1px solid rgba(31, 186, 179, 0.3);
   color: var(--accent-cyan);
 }
 
@@ -2599,6 +2600,17 @@ html[dir="ltr"] .footer-title::after {
 
 .footer-contact-phone {
   align-items: center;
+}
+
+.footer-contact-phone .footer-contact-icon {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.footer-contact-phone:hover .footer-contact-icon {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 .footer-contact-phone span:last-child {
