@@ -353,6 +353,9 @@ def get_footer(is_en=False, depth=0):
                 '<path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z"/></svg>')
     pin_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
                '<path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>')
+    chevron_svg = ('<svg class="footer-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                    'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+                    '<path d="M6 9l6 6 6-6"/></svg>')
 
     t = {
         "about_p": "شركة أحلام الجزيرة للمقاولات: رواد تزويد وتركيب الخزائن والأبواب الأمنية المحصنة، ودواليب الملفات المقاومة للحريق، والأقفال الذكية لكبرى البنوك والشركات والمؤسسات في المملكة." if not is_en else "Aljazeera Dreams Contracting: pioneers in security safes, bunker vault doors, fireproof filing cabinets, and smart locks for major banks and corporations across Saudi Arabia.",
@@ -385,8 +388,8 @@ def get_footer(is_en=False, depth=0):
             <a href="https://www.facebook.com/profile.php?id=61595394726403" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
           </div>
         </div>
-        <div>
-          <h3 class="footer-title">{t['nav_title']}</h3>
+        <div class="footer-collapse">
+          <button type="button" class="footer-title footer-collapse-toggle">{t['nav_title']}{chevron_svg}</button>
           <div class="footer-links">
             <a href="{home_url}">{'الرئيسية' if not is_en else 'Home'}</a>
             <a href="{about_url}">{'نبذة عنا' if not is_en else 'About Us'}</a>
@@ -397,14 +400,14 @@ def get_footer(is_en=False, depth=0):
             <a href="{contact_url}">{'اتصل بنا' if not is_en else 'Contact Us'}</a>
           </div>
         </div>
-        <div>
-          <h3 class="footer-title">{t['cats_title']}</h3>
+        <div class="footer-collapse">
+          <button type="button" class="footer-title footer-collapse-toggle">{t['cats_title']}{chevron_svg}</button>
           <div class="footer-links">
 {chr(10).join(f'            <a href="{url}">{name}</a>' for url, name in cat_urls)}
           </div>
         </div>
-        <div>
-          <h3 class="footer-title">{t['contact_title']}</h3>
+        <div class="footer-collapse">
+          <button type="button" class="footer-title footer-collapse-toggle">{t['contact_title']}{chevron_svg}</button>
           <div class="footer-contact-list">
             <a href="tel:920028440" class="footer-contact-row footer-contact-phone">
               <span class="footer-contact-icon">{phone_svg}</span>

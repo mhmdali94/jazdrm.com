@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initA11y();
   initHeader();
   initMobileDrawer();
+  initFooterAccordion();
   initProductCatalog();
   initQuoteModal();
   initImageLightbox();
@@ -21,6 +22,23 @@ document.addEventListener('DOMContentLoaded', function () {
   initScrollReveal();
   showSentToast();
 });
+
+/* Footer: Quick Links / Categories / Contact collapse into a tap accordion
+   below 850px (closed by default, so the footer doesn't dump a long stack of
+   links on mobile); above that width the CSS keeps them permanently open and
+   this toggle is a no-op. */
+function initFooterAccordion() {
+  document.querySelectorAll('.footer-collapse').forEach(function (col) {
+    const toggle = col.querySelector('.footer-collapse-toggle');
+    if (!toggle) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', function () {
+      if (window.innerWidth > 850) return;
+      const open = col.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  });
+}
 
 /* Services page buttons link to service-request/?service=<key>; preselect the
    matching option (by data-key) so the form opens on the service clicked. */
