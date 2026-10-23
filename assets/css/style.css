@@ -2599,7 +2599,12 @@ html[dir="ltr"] .footer-title::after {
 }
 
 .footer-contact-phone {
+  /* overrides the sitewide a[href^="tel:"] inline-block rule, which otherwise
+     wins on specificity and breaks the row's flex centering below */
+  display: flex !important;
+  width: 100%;
   align-items: center;
+  justify-content: center;
 }
 
 .footer-contact-phone .footer-contact-icon {
