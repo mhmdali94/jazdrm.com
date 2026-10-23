@@ -2651,11 +2651,13 @@ html[dir="ltr"] .footer-title::after {
   display: none;
 }
 
-.footer-contact-list {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
-  padding: 20px;
+@media (min-width: 851px) {
+  .footer-contact-list {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
 }
 
 .footer-bottom {
@@ -2834,11 +2836,6 @@ html[dir="ltr"] .footer-title::after {
   .footer-collapse.open > .footer-links,
   .footer-collapse.open > .footer-contact-list {
     display: flex;
-  }
-  .footer-contact-list {
-    background: none;
-    border: none;
-    padding: 0;
   }
 }
 
