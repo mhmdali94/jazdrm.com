@@ -2881,6 +2881,9 @@ html[dir="ltr"] .footer-title::after {
   .hero-stats {
     gap: 12px;
   }
+  .stat-item {
+    text-align: center;
+  }
   .stat-number {
     font-size: 1.55rem;
   }
