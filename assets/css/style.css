@@ -2603,14 +2603,20 @@ html[dir="ltr"] .footer-title::after {
 }
 
 .footer-contact-phone .footer-contact-icon {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  color: var(--accent-cyan);
+}
+
+.footer-contact-phone .footer-contact-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .footer-contact-phone:hover .footer-contact-icon {
-  background: var(--primary-hover);
-  border-color: var(--primary-hover);
+  color: #fff;
 }
 
 .footer-contact-phone span:last-child {
